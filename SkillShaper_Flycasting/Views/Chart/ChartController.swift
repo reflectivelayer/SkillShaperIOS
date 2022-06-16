@@ -48,19 +48,6 @@ struct ChartController: View {
             Color.black
             
         VStack{
-            
-            Button(action: {
-                drawBtnClicked = true
-                print(drawBtnClicked)
-                print("draw button")
-            }) {
-            Text("DRAW")
-                .padding(10)
-                .font(.system(size: 17))
-                .background(greenBtn)
-                .foregroundColor(.white)
-            }
-            
             HStack{
                 Text("Show acceleraions on")
                     .foregroundColor(.green)
