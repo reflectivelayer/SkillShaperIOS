@@ -243,16 +243,15 @@ struct HomeView: View {
                 }
                 .padding(10)
                 .background(greenBtn)
-                .foregroundColor(remoteAcc ? .gray : .white)
-                .disabled(remoteAcc)
+                .foregroundColor(.white)
 
-                    Button("QUIT") {
-                        print("Quit")
-                        exit(-1)
-                    }
-                    .padding(10)
-                    .background(greenBtn)
-                    .foregroundColor(.white)
+                Button("QUIT") {
+                    print("Quit")
+                    exit(-1)
+                }
+                .padding(10)
+                .background(greenBtn)
+                .foregroundColor(.white)
                     
                }
 
