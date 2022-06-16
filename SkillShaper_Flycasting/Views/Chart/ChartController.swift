@@ -100,7 +100,7 @@ struct ChartController: View {
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                        Text("Forward")
+                            Text(dataSource == AccAxis.main ? "Forward" : "Left")
                             .font(.system(size: 15))
                             .foregroundColor(.green)
                         }
@@ -116,7 +116,7 @@ struct ChartController: View {
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                        Text("Backward")
+                            Text(dataSource == AccAxis.main ? "Backward" : "Right")
                             .font(.system(size: 15))
                             .foregroundColor(.green)
                         }
