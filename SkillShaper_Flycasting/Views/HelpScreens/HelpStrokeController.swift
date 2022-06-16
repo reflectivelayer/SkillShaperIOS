@@ -12,27 +12,10 @@ import AVKit
 struct HelpStrokeController: View {
     let greenBtn = Color(red: 76.0/255, green: 84.0/255, blue: 75.0/255)
     @State var is2Way:Bool = false
-
-    func gotoHelp() {
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: HelpController())
-            window.makeKeyAndVisible()
-        }
-    }
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 0){
-            
-            Button(action: {
-                gotoHelp()
-            }, label: {
-                Text("< BACK <")
-                    .padding(7)
-                    .font(.system(size: 16))
-                    .background(greenBtn)
-                    .foregroundColor(.white)
-            })
             
             Text(" ")
             
@@ -81,6 +64,13 @@ struct Stroke1Way: View {
     private let playerStroke = AVPlayer(url:  Bundle.main.url(forResource: "strokefore", withExtension: "mp4")!)
     @Binding var is2Way:Bool
 
+    func gotoHelp() {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = UIHostingController(rootView: HelpController())
+            window.makeKeyAndVisible()
+        }
+    }
+    
     var body: some View {
         VStack{
             
@@ -139,6 +129,16 @@ struct Stroke1Way: View {
                         .background(greenBtn)
                         .foregroundColor(.white)
                     }
+                
+                    Button(action: {
+                        gotoHelp()
+                    }, label: {
+                        Text("< BACK <")
+                            .padding(7)
+                            .font(.system(size: 16))
+                            .background(greenBtn)
+                            .foregroundColor(.white)
+                    })
                     
                 }
             }
@@ -149,6 +149,13 @@ struct Stroke2Way: View {
     let greenBtn = Color(red: 76.0/255, green: 84.0/255, blue: 75.0/255)
     private let playerStroke = AVPlayer(url:  Bundle.main.url(forResource: "strokebothways", withExtension: "mp4")!)
     @Binding var is2Way:Bool
+    
+    func gotoHelp() {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = UIHostingController(rootView: HelpController())
+            window.makeKeyAndVisible()
+        }
+    }
     
     var body: some View {
         VStack{
@@ -210,6 +217,16 @@ struct Stroke2Way: View {
                         .background(greenBtn)
                         .foregroundColor(.white)
                     }
+                
+                    Button(action: {
+                        gotoHelp()
+                    }, label: {
+                        Text("< BACK <")
+                            .padding(7)
+                            .font(.system(size: 16))
+                            .background(greenBtn)
+                            .foregroundColor(.white)
+                    })
                 
                 }
             }

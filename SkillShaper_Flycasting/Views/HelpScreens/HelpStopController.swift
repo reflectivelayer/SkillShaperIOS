@@ -16,27 +16,10 @@ struct HelpStopController: View {
     private let playerStopWeak = AVPlayer(url:  Bundle.main.url(forResource: "stopweak", withExtension: "mp4")!)
     
     @State var isStrong:Bool = false
-
-        func gotoHelp() {
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = UIHostingController(rootView: HelpController())
-                window.makeKeyAndVisible()
-            }
-        }
         
         var body: some View {
             
             VStack(alignment: .leading, spacing: 0){
-                
-                Button(action: {
-                    gotoHelp()
-                }, label: {
-                    Text("< BACK <")
-                        .padding(7)
-                        .font(.system(size: 16))
-                        .background(greenBtn)
-                        .foregroundColor(.white)
-                })
                 
                 Text(" ")
                 
@@ -85,6 +68,13 @@ struct HelpStopController: View {
         private let playerStrong = AVPlayer(url:  Bundle.main.url(forResource: "stopstrong", withExtension: "mp4")!)
         @Binding var isStrong:Bool
 
+        func gotoHelp() {
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = UIHostingController(rootView: HelpController())
+                window.makeKeyAndVisible()
+            }
+        }
+        
         var body: some View {
             VStack{
                 
@@ -143,6 +133,17 @@ struct HelpStopController: View {
                             .background(greenBtn)
                             .foregroundColor(.white)
                         }
+                    
+                    
+                        Button(action: {
+                            gotoHelp()
+                        }, label: {
+                            Text("< BACK <")
+                                .padding(7)
+                                .font(.system(size: 16))
+                                .background(greenBtn)
+                                .foregroundColor(.white)
+                        })
                     }
                 }
             }
@@ -152,6 +153,13 @@ struct HelpStopController: View {
         let greenBtn = Color(red: 76.0/255, green: 84.0/255, blue: 75.0/255)
         private let playerWeak = AVPlayer(url:  Bundle.main.url(forResource: "stopweak", withExtension: "mp4")!)
         @Binding var isStrong:Bool
+        
+        func gotoHelp() {
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = UIHostingController(rootView: HelpController())
+                window.makeKeyAndVisible()
+            }
+        }
         
         var body: some View {
             VStack{
@@ -213,6 +221,18 @@ struct HelpStopController: View {
                              .background(greenBtn)
                              .foregroundColor(.white)
                          }
+                    
+                    
+                        Button(action: {
+                            gotoHelp()
+                        }, label: {
+                            Text("< BACK <")
+                                .padding(7)
+                                .font(.system(size: 16))
+                                .background(greenBtn)
+                                .foregroundColor(.white)
+                        })
+                    
                     
                     }
                 }

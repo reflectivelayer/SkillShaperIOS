@@ -45,15 +45,6 @@ struct HelpStraightController: View {
         
         VStack(alignment: .leading, spacing: 0){
             
-            Button(action: {
-                gotoHelp()
-            }, label: {
-                Text("< BACK <")
-                    .padding(7)
-                    .font(.system(size: 16))
-                    .background(greenBtn)
-                    .foregroundColor(.white)
-            })
             Text(" ")
             
         ZStack {
@@ -106,6 +97,16 @@ struct HelpStraightController: View {
                     .background(greenBtn)
                     .foregroundColor(.white)
                 }
+                
+                Button(action: {
+                    gotoHelp()
+                }, label: {
+                    Text("< BACK <")
+                        .padding(7)
+                        .font(.system(size: 16))
+                        .background(greenBtn)
+                        .foregroundColor(.white)
+                })
                }
             Text(" ")
                 
