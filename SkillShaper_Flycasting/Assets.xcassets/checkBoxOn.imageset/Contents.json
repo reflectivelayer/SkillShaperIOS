@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "toggleOn.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

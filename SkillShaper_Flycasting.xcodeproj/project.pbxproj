@@ -1,0 +1,1156 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48203AF124EBCB6D00BFE868 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203AF024EBCB6D00BFE868 /* Dashboard.swift */; };
+		48203AF524EBCB8A00BFE868 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203AF424EBCB8A00BFE868 /* Help.swift */; };
+		48203B0224EBDC7600BFE868 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0124EBDC7600BFE868 /* Logo.swift */; };
+		48203B0924EBDD7A00BFE868 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0824EBDD7A00BFE868 /* Config.swift */; };
+		487B12E424FFAA2C009E51C2 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B12E324FFAA2C009E51C2 /* UserDefaultsService.swift */; };
+		487B12E524FFAFFE009E51C2 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B12E324FFAA2C009E51C2 /* UserDefaultsService.swift */; };
+		48808CEC24F01882009C4C60 /* straightline.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48808CEB24F01879009C4C60 /* straightline.mp4 */; };
+		48808CED24F01882009C4C60 /* strokebothways.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48808CE924F01879009C4C60 /* strokebothways.mp4 */; };
+		48808CEE24F01882009C4C60 /* stopstrong.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48808CEA24F01879009C4C60 /* stopstrong.mp4 */; };
+		48808CEF24F01882009C4C60 /* strokefore.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48808CE724F01879009C4C60 /* strokefore.mp4 */; };
+		48808CF024F01882009C4C60 /* stopweak.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 48808CE824F01879009C4C60 /* stopweak.mp4 */; };
+		48808CF224F018D0009C4C60 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48808CF124F018D0009C4C60 /* Stroke.swift */; };
+		48808CF424F01C92009C4C60 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48808CF324F01C92009C4C60 /* PlayerView.swift */; };
+		48808CF624F01D0E009C4C60 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48808CF524F01D0E009C4C60 /* Video.swift */; };
+		4881D8FF24F59A230048C49F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203AF624EBCB9900BFE868 /* Settings.swift */; };
+		4881D90024F59A290048C49F /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F9B8724EE85A80044840D /* SettingsSection.swift */; };
+		4881D90124F59A2D0048C49F /* SettingsCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F9B8A24EE85F90044840D /* SettingsCheckBox.swift */; };
+		4881D90324F59A8E0048C49F /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0B24EBDFC700BFE868 /* SettingsStore.swift */; };
+		4881D90424F59A980048C49F /* SectionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F9B8D24EEA8B40044840D /* SectionStrategy.swift */; };
+		4881D90524F59A9B0048C49F /* SingleSectionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F9B8F24EEAA540044840D /* SingleSectionStrategy.swift */; };
+		4881D90624F59A9E0048C49F /* MultipleSectionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F9B9124EEB0CF0044840D /* MultipleSectionStrategy.swift */; };
+		4881D90724F59AB40048C49F /* SettingsParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1D24EBE8CF00BFE868 /* SettingsParameter.swift */; };
+		4881D90824F59AB40048C49F /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0F24EBE01C00BFE868 /* Skill.swift */; };
+		4881D90924F59AB40048C49F /* Hear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1124EBE0F700BFE868 /* Hear.swift */; };
+		4881D90A24F59AB40048C49F /* WatchPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1324EBE15000BFE868 /* WatchPosition.swift */; };
+		4881D90B24F59B010048C49F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485F9B9324EECADB0044840D /* SettingsViewModel.swift */; };
+		4881D90C24F59B010048C49F /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1924EBE26F00BFE868 /* SectionViewModel.swift */; };
+		4881D90D24F59B010048C49F /* CheckBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1B24EBE5F500BFE868 /* CheckBoxViewModel.swift */; };
+		4881D90E24F59B380048C49F /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0B24EBDFC700BFE868 /* SettingsStore.swift */; };
+		488A994124F02ABE00BF0BFE /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A994024F02ABE00BF0BFE /* Stop.swift */; };
+		488A994424F02D3300BF0BFE /* Straight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A994324F02D3300BF0BFE /* Straight.swift */; };
+		48992DFD24D4820D00B59465 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992DFC24D4820D00B59465 /* AppDelegate.swift */; };
+		48992DFF24D4820D00B59465 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992DFE24D4820D00B59465 /* SceneDelegate.swift */; };
+		48992E0324D4820E00B59465 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48992E0224D4820E00B59465 /* Assets.xcassets */; };
+		48992E0624D4820E00B59465 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48992E0524D4820E00B59465 /* Preview Assets.xcassets */; };
+		48992E0924D4820E00B59465 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48992E0724D4820E00B59465 /* LaunchScreen.storyboard */; };
+		48992E0E24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 48992E0D24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		48992E1424D4820E00B59465 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48992E1224D4820E00B59465 /* Interface.storyboard */; };
+		48992E1624D4820F00B59465 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48992E1524D4820F00B59465 /* Assets.xcassets */; };
+		48992E1D24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 48992E1C24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		48992E2424D4820F00B59465 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E2324D4820F00B59465 /* HostingController.swift */; };
+		48992E2624D4820F00B59465 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E2524D4820F00B59465 /* ExtensionDelegate.swift */; };
+		48992E2824D4821000B59465 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48992E2724D4821000B59465 /* Assets.xcassets */; };
+		48992E2B24D4821000B59465 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48992E2A24D4821000B59465 /* Preview Assets.xcassets */; };
+		48992E5324D482B900B59465 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E4B24D482B900B59465 /* Main.swift */; };
+		48992E5424D482B900B59465 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E4D24D482B900B59465 /* ConnectivityService.swift */; };
+		48992E5524D482B900B59465 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E4E24D482B900B59465 /* AudioService.swift */; };
+		48992E5724D482B900B59465 /* ConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E5224D482B900B59465 /* ConfigViewModel.swift */; };
+		48992E8B24D4835400B59465 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E6C24D4835400B59465 /* MainViewModel.swift */; };
+		48992E9224D4835400B59465 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E7824D4835400B59465 /* Main.swift */; };
+		48992E9324D4835400B59465 /* WorkoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E7A24D4835400B59465 /* WorkoutService.swift */; };
+		48992E9424D4835400B59465 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E7B24D4835400B59465 /* ConnectivityService.swift */; };
+		48992E9624D4835400B59465 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48992E7D24D4835400B59465 /* MotionService.swift */; };
+		48992E9A24D483F700B59465 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48992E9924D483F700B59465 /* HealthKit.framework */; };
+		48B4F3BB24F7DA1200A09C89 /* StrokeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B4F3BA24F7DA1200A09C89 /* StrokeViewModel.swift */; };
+		48B4F3BD24F7DFDE00A09C89 /* StopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B4F3BC24F7DFDE00A09C89 /* StopViewModel.swift */; };
+		48B825F224EEFC7D006594E8 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B825F124EEFC7D006594E8 /* DashboardViewModel.swift */; };
+		48B825F824EF0B88006594E8 /* SettingsParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1D24EBE8CF00BFE868 /* SettingsParameter.swift */; };
+		48B825F924EF0B8B006594E8 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0F24EBE01C00BFE868 /* Skill.swift */; };
+		48B825FA24EF0B8E006594E8 /* Hear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1124EBE0F700BFE868 /* Hear.swift */; };
+		48B825FB24EF0B91006594E8 /* WatchPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1324EBE15000BFE868 /* WatchPosition.swift */; };
+		8D36DCB22733913100A88DCC /* ChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCB12733913100A88DCC /* ChartController.swift */; };
+		8D36DCB72733917E00A88DCC /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCB62733917E00A88DCC /* ChartView.swift */; };
+		8D36DCBD2733921700A88DCC /* StrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCBC2733921700A88DCC /* StrokeManager.swift */; };
+		8D36DCC5273392BA00A88DCC /* MotionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCC4273392BA00A88DCC /* MotionPublisher.swift */; };
+		8D36DCCA2733935F00A88DCC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCC92733935F00A88DCC /* HomeView.swift */; };
+		8D36DCCF273394CD00A88DCC /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCCE273394CD00A88DCC /* BasicButton.swift */; };
+		8D36DCD42733959700A88DCC /* AccStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCD32733959700A88DCC /* AccStrengthView.swift */; };
+		8D36DCDD273396F000A88DCC /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCDC273396F000A88DCC /* SettingsController.swift */; };
+		8D36DCEA273397A800A88DCC /* HelpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCE9273397A800A88DCC /* HelpController.swift */; };
+		8D36DCEF2733981100A88DCC /* HelpStopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCEE2733981100A88DCC /* HelpStopController.swift */; };
+		8D36DCF42733985200A88DCC /* HelpStraightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCF32733985200A88DCC /* HelpStraightController.swift */; };
+		8D36DCF92733988E00A88DCC /* HelpStrokeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCF82733988E00A88DCC /* HelpStrokeController.swift */; };
+		8D36DD012733A1BD00A88DCC /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DD002733A1BD00A88DCC /* MotionManager.swift */; };
+		8D65EBF227357B130042FFA2 /* AudioService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65EBF127357B130042FFA2 /* AudioService2.swift */; };
+		8DA1AE092735A47600E47F4C /* c4sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE042735A47600E47F4C /* c4sq.wav */; };
+		8DA1AE0B2735A47600E47F4C /* e4sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE062735A47600E47F4C /* e4sq.wav */; };
+		8DA1AE0C2735A47600E47F4C /* g5sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE072735A47600E47F4C /* g5sq.wav */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		48992E0F24D4820E00B59465 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48992DF124D4820D00B59465 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48992E0C24D4820E00B59465;
+			remoteInfo = "SkillShaper_Flycasting WatchKit App";
+		};
+		48992E1E24D4820F00B59465 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48992DF124D4820D00B59465 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48992E1B24D4820F00B59465;
+			remoteInfo = "SkillShaper_Flycasting WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		48992E3224D4821000B59465 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				48992E1D24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48992E3624D4821000B59465 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				48992E0E24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		48203AF024EBCB6D00BFE868 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		48203AF424EBCB8A00BFE868 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		48203AF624EBCB9900BFE868 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		48203B0124EBDC7600BFE868 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		48203B0824EBDD7A00BFE868 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		48203B0B24EBDFC700BFE868 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		48203B0F24EBE01C00BFE868 /* Skill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		48203B1124EBE0F700BFE868 /* Hear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hear.swift; sourceTree = "<group>"; };
+		48203B1324EBE15000BFE868 /* WatchPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPosition.swift; sourceTree = "<group>"; };
+		48203B1924EBE26F00BFE868 /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
+		48203B1B24EBE5F500BFE868 /* CheckBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxViewModel.swift; sourceTree = "<group>"; };
+		48203B1D24EBE8CF00BFE868 /* SettingsParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsParameter.swift; sourceTree = "<group>"; };
+		485F9B8724EE85A80044840D /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
+		485F9B8A24EE85F90044840D /* SettingsCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCheckBox.swift; sourceTree = "<group>"; };
+		485F9B8D24EEA8B40044840D /* SectionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionStrategy.swift; sourceTree = "<group>"; };
+		485F9B8F24EEAA540044840D /* SingleSectionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionStrategy.swift; sourceTree = "<group>"; };
+		485F9B9124EEB0CF0044840D /* MultipleSectionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSectionStrategy.swift; sourceTree = "<group>"; };
+		485F9B9324EECADB0044840D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		487B12E324FFAA2C009E51C2 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		48808CE724F01879009C4C60 /* strokefore.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = strokefore.mp4; sourceTree = "<group>"; };
+		48808CE824F01879009C4C60 /* stopweak.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = stopweak.mp4; sourceTree = "<group>"; };
+		48808CE924F01879009C4C60 /* strokebothways.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = strokebothways.mp4; sourceTree = "<group>"; };
+		48808CEA24F01879009C4C60 /* stopstrong.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = stopstrong.mp4; sourceTree = "<group>"; };
+		48808CEB24F01879009C4C60 /* straightline.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = straightline.mp4; sourceTree = "<group>"; };
+		48808CF124F018D0009C4C60 /* Stroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stroke.swift; sourceTree = "<group>"; };
+		48808CF324F01C92009C4C60 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		48808CF524F01D0E009C4C60 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		488A994024F02ABE00BF0BFE /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		488A994324F02D3300BF0BFE /* Straight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Straight.swift; sourceTree = "<group>"; };
+		48992DF924D4820D00B59465 /* SkillShaper_Flycasting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillShaper_Flycasting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48992DFC24D4820D00B59465 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		48992DFE24D4820D00B59465 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		48992E0224D4820E00B59465 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48992E0524D4820E00B59465 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		48992E0824D4820E00B59465 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48992E0A24D4820E00B59465 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48992E0D24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SkillShaper_Flycasting WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48992E1324D4820E00B59465 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		48992E1524D4820F00B59465 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48992E1724D4820F00B59465 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48992E1C24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SkillShaper_Flycasting WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48992E2324D4820F00B59465 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		48992E2524D4820F00B59465 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		48992E2724D4821000B59465 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48992E2A24D4821000B59465 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		48992E2C24D4821000B59465 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48992E4B24D482B900B59465 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		48992E4D24D482B900B59465 /* ConnectivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
+		48992E4E24D482B900B59465 /* AudioService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		48992E5224D482B900B59465 /* ConfigViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewModel.swift; sourceTree = "<group>"; };
+		48992E6C24D4835400B59465 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		48992E7824D4835400B59465 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		48992E7A24D4835400B59465 /* WorkoutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutService.swift; sourceTree = "<group>"; };
+		48992E7B24D4835400B59465 /* ConnectivityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
+		48992E7D24D4835400B59465 /* MotionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
+		48992E9724D483F700B59465 /* SkillShaper_Flycasting WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SkillShaper_Flycasting WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		48992E9924D483F700B59465 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		48B4F3BA24F7DA1200A09C89 /* StrokeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeViewModel.swift; sourceTree = "<group>"; };
+		48B4F3BC24F7DFDE00A09C89 /* StopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewModel.swift; sourceTree = "<group>"; };
+		48B825F124EEFC7D006594E8 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		8D36DCB12733913100A88DCC /* ChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartController.swift; sourceTree = "<group>"; };
+		8D36DCB62733917E00A88DCC /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		8D36DCBC2733921700A88DCC /* StrokeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeManager.swift; sourceTree = "<group>"; };
+		8D36DCC4273392BA00A88DCC /* MotionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionPublisher.swift; sourceTree = "<group>"; };
+		8D36DCC92733935F00A88DCC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8D36DCCE273394CD00A88DCC /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		8D36DCD32733959700A88DCC /* AccStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccStrengthView.swift; sourceTree = "<group>"; };
+		8D36DCDC273396F000A88DCC /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		8D36DCE9273397A800A88DCC /* HelpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpController.swift; sourceTree = "<group>"; };
+		8D36DCEE2733981100A88DCC /* HelpStopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpStopController.swift; sourceTree = "<group>"; };
+		8D36DCF32733985200A88DCC /* HelpStraightController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpStraightController.swift; sourceTree = "<group>"; };
+		8D36DCF82733988E00A88DCC /* HelpStrokeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpStrokeController.swift; sourceTree = "<group>"; };
+		8D36DD002733A1BD00A88DCC /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		8D65EBF127357B130042FFA2 /* AudioService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService2.swift; sourceTree = "<group>"; };
+		8DA1AE042735A47600E47F4C /* c4sq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = c4sq.wav; sourceTree = "<group>"; };
+		8DA1AE062735A47600E47F4C /* e4sq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = e4sq.wav; sourceTree = "<group>"; };
+		8DA1AE072735A47600E47F4C /* g5sq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = g5sq.wav; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48992DF624D4820D00B59465 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48992E1924D4820F00B59465 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48992E9A24D483F700B59465 /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48203AFB24EBDC0800BFE868 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				48992E4B24D482B900B59465 /* Main.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		48203AFC24EBDC1600BFE868 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				48203B0024EBDC5300BFE868 /* Subviews */,
+				48203AF024EBCB6D00BFE868 /* Dashboard.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		48203AFE24EBDC3800BFE868 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				488A994224F02AC800BF0BFE /* Video */,
+				48203AF424EBCB8A00BFE868 /* Help.swift */,
+				48808CF124F018D0009C4C60 /* Stroke.swift */,
+				488A994024F02ABE00BF0BFE /* Stop.swift */,
+				488A994324F02D3300BF0BFE /* Straight.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		48203AFF24EBDC4300BFE868 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				485F9B8924EE85AF0044840D /* Subviews */,
+				48203AF624EBCB9900BFE868 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		48203B0024EBDC5300BFE868 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				48203B0124EBDC7600BFE868 /* Logo.swift */,
+				48203B0824EBDD7A00BFE868 /* Config.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		48203B0324EBDC9600BFE868 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				48203B0A24EBDFB100BFE868 /* Stores */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		48203B0A24EBDFB100BFE868 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				48203B0D24EBDFD700BFE868 /* SettingsStore */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		48203B0D24EBDFD700BFE868 /* SettingsStore */ = {
+			isa = PBXGroup;
+			children = (
+				48203B0E24EBDFE000BFE868 /* SettingsParameters */,
+				48203B0B24EBDFC700BFE868 /* SettingsStore.swift */,
+			);
+			path = SettingsStore;
+			sourceTree = "<group>";
+		};
+		48203B0E24EBDFE000BFE868 /* SettingsParameters */ = {
+			isa = PBXGroup;
+			children = (
+				48203B1D24EBE8CF00BFE868 /* SettingsParameter.swift */,
+				48203B0F24EBE01C00BFE868 /* Skill.swift */,
+				48203B1124EBE0F700BFE868 /* Hear.swift */,
+				48203B1324EBE15000BFE868 /* WatchPosition.swift */,
+			);
+			path = SettingsParameters;
+			sourceTree = "<group>";
+		};
+		485F9B8924EE85AF0044840D /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				485F9B8724EE85A80044840D /* SettingsSection.swift */,
+				485F9B8A24EE85F90044840D /* SettingsCheckBox.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		485F9B8C24EEA89A0044840D /* Strategies */ = {
+			isa = PBXGroup;
+			children = (
+				485F9B9724EED2BE0044840D /* SectionStrategy */,
+			);
+			path = Strategies;
+			sourceTree = "<group>";
+		};
+		485F9B9524EED19B0044840D /* DashboardViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				48992E5224D482B900B59465 /* ConfigViewModel.swift */,
+				48B825F124EEFC7D006594E8 /* DashboardViewModel.swift */,
+			);
+			path = DashboardViewModel;
+			sourceTree = "<group>";
+		};
+		485F9B9624EED1A80044840D /* SettingsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				48203B1924EBE26F00BFE868 /* SectionViewModel.swift */,
+				48203B1B24EBE5F500BFE868 /* CheckBoxViewModel.swift */,
+				485F9B9324EECADB0044840D /* SettingsViewModel.swift */,
+			);
+			path = SettingsViewModel;
+			sourceTree = "<group>";
+		};
+		485F9B9724EED2BE0044840D /* SectionStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				485F9B8D24EEA8B40044840D /* SectionStrategy.swift */,
+				485F9B8F24EEAA540044840D /* SingleSectionStrategy.swift */,
+				485F9B9124EEB0CF0044840D /* MultipleSectionStrategy.swift */,
+			);
+			path = SectionStrategy;
+			sourceTree = "<group>";
+		};
+		48808CE624F01862009C4C60 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				48808CEA24F01879009C4C60 /* stopstrong.mp4 */,
+				48808CE824F01879009C4C60 /* stopweak.mp4 */,
+				48808CEB24F01879009C4C60 /* straightline.mp4 */,
+				48808CE924F01879009C4C60 /* strokebothways.mp4 */,
+				48808CE724F01879009C4C60 /* strokefore.mp4 */,
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
+		488A994224F02AC800BF0BFE /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				48808CF324F01C92009C4C60 /* PlayerView.swift */,
+				48808CF524F01D0E009C4C60 /* Video.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		48992DF024D4820D00B59465 = {
+			isa = PBXGroup;
+			children = (
+				48203B0324EBDC9600BFE868 /* Shared */,
+				48992DFB24D4820D00B59465 /* SkillShaper_Flycasting */,
+				48992E1124D4820E00B59465 /* SkillShaper_Flycasting WatchKit App */,
+				48992E2024D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension */,
+				48992DFA24D4820D00B59465 /* Products */,
+				48992E9824D483F700B59465 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		48992DFA24D4820D00B59465 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48992DF924D4820D00B59465 /* SkillShaper_Flycasting.app */,
+				48992E0D24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App.app */,
+				48992E1C24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48992DFB24D4820D00B59465 /* SkillShaper_Flycasting */ = {
+			isa = PBXGroup;
+			children = (
+				48992DFC24D4820D00B59465 /* AppDelegate.swift */,
+				48992DFE24D4820D00B59465 /* SceneDelegate.swift */,
+				48992E4C24D482B900B59465 /* Services */,
+				48992E5124D482B900B59465 /* ViewModels */,
+				48992E4A24D482B900B59465 /* Views */,
+				48992E4F24D482B900B59465 /* Sounds */,
+				48808CE624F01862009C4C60 /* Videos */,
+				48992E0224D4820E00B59465 /* Assets.xcassets */,
+				48992E0724D4820E00B59465 /* LaunchScreen.storyboard */,
+				48992E0A24D4820E00B59465 /* Info.plist */,
+				48992E0424D4820E00B59465 /* Preview Content */,
+			);
+			path = SkillShaper_Flycasting;
+			sourceTree = "<group>";
+		};
+		48992E0424D4820E00B59465 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				48992E0524D4820E00B59465 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		48992E1124D4820E00B59465 /* SkillShaper_Flycasting WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				48992E1224D4820E00B59465 /* Interface.storyboard */,
+				48992E1524D4820F00B59465 /* Assets.xcassets */,
+				48992E1724D4820F00B59465 /* Info.plist */,
+			);
+			path = "SkillShaper_Flycasting WatchKit App";
+			sourceTree = "<group>";
+		};
+		48992E2024D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				48992E9724D483F700B59465 /* SkillShaper_Flycasting WatchKit Extension.entitlements */,
+				48992E7924D4835400B59465 /* Services */,
+				485F9B8C24EEA89A0044840D /* Strategies */,
+				48992E6624D4835400B59465 /* ViewModels */,
+				48992E7124D4835400B59465 /* Views */,
+				48992E2324D4820F00B59465 /* HostingController.swift */,
+				48992E2524D4820F00B59465 /* ExtensionDelegate.swift */,
+				48992E2724D4821000B59465 /* Assets.xcassets */,
+				48992E2C24D4821000B59465 /* Info.plist */,
+				48992E2924D4821000B59465 /* Preview Content */,
+			);
+			path = "SkillShaper_Flycasting WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		48992E2924D4821000B59465 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				48992E2A24D4821000B59465 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		48992E4A24D482B900B59465 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D36DCE82733978B00A88DCC /* HelpScreens */,
+				8D36DCDB273396D800A88DCC /* Settings */,
+				8D36DCBB2733920500A88DCC /* Home */,
+				8D36DCAD273390BD00A88DCC /* Chart */,
+				48203AFB24EBDC0800BFE868 /* Main */,
+				48203AFC24EBDC1600BFE868 /* Dashboard */,
+				48203AFE24EBDC3800BFE868 /* Help */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		48992E4C24D482B900B59465 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				48992E4D24D482B900B59465 /* ConnectivityService.swift */,
+				48992E4E24D482B900B59465 /* AudioService.swift */,
+				8D65EBF127357B130042FFA2 /* AudioService2.swift */,
+				8D36DCC4273392BA00A88DCC /* MotionPublisher.swift */,
+				8D36DD002733A1BD00A88DCC /* MotionManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		48992E4F24D482B900B59465 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8DA1AE042735A47600E47F4C /* c4sq.wav */,
+				8DA1AE062735A47600E47F4C /* e4sq.wav */,
+				8DA1AE072735A47600E47F4C /* g5sq.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		48992E5124D482B900B59465 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				485F9B9524EED19B0044840D /* DashboardViewModel */,
+				48B4F3B924F7D9EF00A09C89 /* HelpViewModels */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		48992E6624D4835400B59465 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				48992E6B24D4835400B59465 /* MainViewModel */,
+				485F9B9624EED1A80044840D /* SettingsViewModel */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		48992E6B24D4835400B59465 /* MainViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				48992E6C24D4835400B59465 /* MainViewModel.swift */,
+			);
+			path = MainViewModel;
+			sourceTree = "<group>";
+		};
+		48992E7124D4835400B59465 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				48992E7724D4835400B59465 /* Main */,
+				48203AFF24EBDC4300BFE868 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		48992E7724D4835400B59465 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				48992E7824D4835400B59465 /* Main.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		48992E7924D4835400B59465 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				487B12E324FFAA2C009E51C2 /* UserDefaultsService.swift */,
+				48992E7A24D4835400B59465 /* WorkoutService.swift */,
+				48992E7D24D4835400B59465 /* MotionService.swift */,
+				48992E7B24D4835400B59465 /* ConnectivityService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		48992E9824D483F700B59465 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48992E9924D483F700B59465 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48B4F3B924F7D9EF00A09C89 /* HelpViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				48B4F3BA24F7DA1200A09C89 /* StrokeViewModel.swift */,
+				48B4F3BC24F7DFDE00A09C89 /* StopViewModel.swift */,
+			);
+			path = HelpViewModels;
+			sourceTree = "<group>";
+		};
+		8D36DCAD273390BD00A88DCC /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				8D36DCB12733913100A88DCC /* ChartController.swift */,
+				8D36DCB62733917E00A88DCC /* ChartView.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		8D36DCBB2733920500A88DCC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8D36DCBC2733921700A88DCC /* StrokeManager.swift */,
+				8D36DCC92733935F00A88DCC /* HomeView.swift */,
+				8D36DCCE273394CD00A88DCC /* BasicButton.swift */,
+				8D36DCD32733959700A88DCC /* AccStrengthView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8D36DCDB273396D800A88DCC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8D36DCDC273396F000A88DCC /* SettingsController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8D36DCE82733978B00A88DCC /* HelpScreens */ = {
+			isa = PBXGroup;
+			children = (
+				8D36DCE9273397A800A88DCC /* HelpController.swift */,
+				8D36DCEE2733981100A88DCC /* HelpStopController.swift */,
+				8D36DCF32733985200A88DCC /* HelpStraightController.swift */,
+				8D36DCF82733988E00A88DCC /* HelpStrokeController.swift */,
+			);
+			path = HelpScreens;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48992DF824D4820D00B59465 /* SkillShaper_Flycasting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48992E3724D4821000B59465 /* Build configuration list for PBXNativeTarget "SkillShaper_Flycasting" */;
+			buildPhases = (
+				48992DF524D4820D00B59465 /* Sources */,
+				48992DF624D4820D00B59465 /* Frameworks */,
+				48992DF724D4820D00B59465 /* Resources */,
+				48992E3624D4821000B59465 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48992E1024D4820E00B59465 /* PBXTargetDependency */,
+			);
+			name = SkillShaper_Flycasting;
+			productName = SkillShaper_Flycasting;
+			productReference = 48992DF924D4820D00B59465 /* SkillShaper_Flycasting.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48992E0C24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48992E3324D4821000B59465 /* Build configuration list for PBXNativeTarget "SkillShaper_Flycasting WatchKit App" */;
+			buildPhases = (
+				48992E0B24D4820E00B59465 /* Resources */,
+				48992E3224D4821000B59465 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48992E1F24D4820F00B59465 /* PBXTargetDependency */,
+			);
+			name = "SkillShaper_Flycasting WatchKit App";
+			productName = "SkillShaper_Flycasting WatchKit App";
+			productReference = 48992E0D24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		48992E1B24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48992E2F24D4821000B59465 /* Build configuration list for PBXNativeTarget "SkillShaper_Flycasting WatchKit Extension" */;
+			buildPhases = (
+				48992E1824D4820F00B59465 /* Sources */,
+				48992E1924D4820F00B59465 /* Frameworks */,
+				48992E1A24D4820F00B59465 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SkillShaper_Flycasting WatchKit Extension";
+			productName = "SkillShaper_Flycasting WatchKit Extension";
+			productReference = 48992E1C24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48992DF124D4820D00B59465 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1200;
+				ORGANIZATIONNAME = skillshaper.us;
+				TargetAttributes = {
+					48992DF824D4820D00B59465 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+					48992E0C24D4820E00B59465 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+					48992E1B24D4820F00B59465 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = 48992DF424D4820D00B59465 /* Build configuration list for PBXProject "SkillShaper_Flycasting" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48992DF024D4820D00B59465;
+			productRefGroup = 48992DFA24D4820D00B59465 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48992DF824D4820D00B59465 /* SkillShaper_Flycasting */,
+				48992E0C24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App */,
+				48992E1B24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48992DF724D4820D00B59465 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DA1AE0C2735A47600E47F4C /* g5sq.wav in Resources */,
+				48992E0924D4820E00B59465 /* LaunchScreen.storyboard in Resources */,
+				48808CEF24F01882009C4C60 /* strokefore.mp4 in Resources */,
+				8DA1AE0B2735A47600E47F4C /* e4sq.wav in Resources */,
+				8DA1AE092735A47600E47F4C /* c4sq.wav in Resources */,
+				48992E0624D4820E00B59465 /* Preview Assets.xcassets in Resources */,
+				48808CED24F01882009C4C60 /* strokebothways.mp4 in Resources */,
+				48808CEE24F01882009C4C60 /* stopstrong.mp4 in Resources */,
+				48808CEC24F01882009C4C60 /* straightline.mp4 in Resources */,
+				48808CF024F01882009C4C60 /* stopweak.mp4 in Resources */,
+				48992E0324D4820E00B59465 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48992E0B24D4820E00B59465 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48992E1624D4820F00B59465 /* Assets.xcassets in Resources */,
+				48992E1424D4820E00B59465 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48992E1A24D4820F00B59465 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48992E2B24D4821000B59465 /* Preview Assets.xcassets in Resources */,
+				48992E2824D4821000B59465 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48992DF524D4820D00B59465 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D36DCC5273392BA00A88DCC /* MotionPublisher.swift in Sources */,
+				4881D90824F59AB40048C49F /* Skill.swift in Sources */,
+				8D36DCB72733917E00A88DCC /* ChartView.swift in Sources */,
+				8D36DCD42733959700A88DCC /* AccStrengthView.swift in Sources */,
+				8D36DD012733A1BD00A88DCC /* MotionManager.swift in Sources */,
+				48992E5724D482B900B59465 /* ConfigViewModel.swift in Sources */,
+				48203AF524EBCB8A00BFE868 /* Help.swift in Sources */,
+				4881D90E24F59B380048C49F /* SettingsStore.swift in Sources */,
+				8D36DCCF273394CD00A88DCC /* BasicButton.swift in Sources */,
+				8D36DCDD273396F000A88DCC /* SettingsController.swift in Sources */,
+				48992DFD24D4820D00B59465 /* AppDelegate.swift in Sources */,
+				8D36DCF92733988E00A88DCC /* HelpStrokeController.swift in Sources */,
+				8D36DCB22733913100A88DCC /* ChartController.swift in Sources */,
+				48203B0224EBDC7600BFE868 /* Logo.swift in Sources */,
+				48808CF224F018D0009C4C60 /* Stroke.swift in Sources */,
+				48808CF624F01D0E009C4C60 /* Video.swift in Sources */,
+				4881D90A24F59AB40048C49F /* WatchPosition.swift in Sources */,
+				8D36DCCA2733935F00A88DCC /* HomeView.swift in Sources */,
+				488A994424F02D3300BF0BFE /* Straight.swift in Sources */,
+				8D65EBF227357B130042FFA2 /* AudioService2.swift in Sources */,
+				488A994124F02ABE00BF0BFE /* Stop.swift in Sources */,
+				8D36DCEF2733981100A88DCC /* HelpStopController.swift in Sources */,
+				4881D90724F59AB40048C49F /* SettingsParameter.swift in Sources */,
+				8D36DCEA273397A800A88DCC /* HelpController.swift in Sources */,
+				487B12E524FFAFFE009E51C2 /* UserDefaultsService.swift in Sources */,
+				48203B0924EBDD7A00BFE868 /* Config.swift in Sources */,
+				48B4F3BD24F7DFDE00A09C89 /* StopViewModel.swift in Sources */,
+				48203AF124EBCB6D00BFE868 /* Dashboard.swift in Sources */,
+				48992E5324D482B900B59465 /* Main.swift in Sources */,
+				4881D90924F59AB40048C49F /* Hear.swift in Sources */,
+				48808CF424F01C92009C4C60 /* PlayerView.swift in Sources */,
+				8D36DCF42733985200A88DCC /* HelpStraightController.swift in Sources */,
+				48B825F224EEFC7D006594E8 /* DashboardViewModel.swift in Sources */,
+				8D36DCBD2733921700A88DCC /* StrokeManager.swift in Sources */,
+				48B4F3BB24F7DA1200A09C89 /* StrokeViewModel.swift in Sources */,
+				48992E5524D482B900B59465 /* AudioService.swift in Sources */,
+				48992DFF24D4820D00B59465 /* SceneDelegate.swift in Sources */,
+				48992E5424D482B900B59465 /* ConnectivityService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48992E1824D4820F00B59465 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48992E9324D4835400B59465 /* WorkoutService.swift in Sources */,
+				48992E9224D4835400B59465 /* Main.swift in Sources */,
+				48992E2424D4820F00B59465 /* HostingController.swift in Sources */,
+				48992E9424D4835400B59465 /* ConnectivityService.swift in Sources */,
+				48992E9624D4835400B59465 /* MotionService.swift in Sources */,
+				4881D90D24F59B010048C49F /* CheckBoxViewModel.swift in Sources */,
+				4881D90C24F59B010048C49F /* SectionViewModel.swift in Sources */,
+				4881D90024F59A290048C49F /* SettingsSection.swift in Sources */,
+				48B825F824EF0B88006594E8 /* SettingsParameter.swift in Sources */,
+				4881D90324F59A8E0048C49F /* SettingsStore.swift in Sources */,
+				4881D90424F59A980048C49F /* SectionStrategy.swift in Sources */,
+				48992E8B24D4835400B59465 /* MainViewModel.swift in Sources */,
+				487B12E424FFAA2C009E51C2 /* UserDefaultsService.swift in Sources */,
+				4881D90124F59A2D0048C49F /* SettingsCheckBox.swift in Sources */,
+				4881D8FF24F59A230048C49F /* Settings.swift in Sources */,
+				48B825FB24EF0B91006594E8 /* WatchPosition.swift in Sources */,
+				48B825FA24EF0B8E006594E8 /* Hear.swift in Sources */,
+				4881D90624F59A9E0048C49F /* MultipleSectionStrategy.swift in Sources */,
+				48B825F924EF0B8B006594E8 /* Skill.swift in Sources */,
+				4881D90524F59A9B0048C49F /* SingleSectionStrategy.swift in Sources */,
+				48992E2624D4820F00B59465 /* ExtensionDelegate.swift in Sources */,
+				4881D90B24F59B010048C49F /* SettingsViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		48992E1024D4820E00B59465 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48992E0C24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App */;
+			targetProxy = 48992E0F24D4820E00B59465 /* PBXContainerItemProxy */;
+		};
+		48992E1F24D4820F00B59465 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48992E1B24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension */;
+			targetProxy = 48992E1E24D4820F00B59465 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		48992E0724D4820E00B59465 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48992E0824D4820E00B59465 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		48992E1224D4820E00B59465 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48992E1324D4820E00B59465 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48992E2D24D4821000B59465 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		48992E2E24D4821000B59465 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48992E3024D4821000B59465 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "SkillShaper_Flycasting WatchKit Extension/SkillShaper_Flycasting WatchKit Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 28;
+				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = VQKUT3YD36;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		48992E3124D4821000B59465 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "SkillShaper_Flycasting WatchKit Extension/SkillShaper_Flycasting WatchKit Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 28;
+				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = VQKUT3YD36;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		48992E3424D4821000B59465 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 28;
+				DEVELOPMENT_TEAM = VQKUT3YD36;
+				IBSC_MODULE = SkillShaper_Flycasting_WatchKit_Extension;
+				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit App/Info.plist";
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		48992E3524D4821000B59465 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 28;
+				DEVELOPMENT_TEAM = VQKUT3YD36;
+				IBSC_MODULE = SkillShaper_Flycasting_WatchKit_Extension;
+				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit App/Info.plist";
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		48992E3824D4821000B59465 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 28;
+				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting/Preview Content\"";
+				DEVELOPMENT_TEAM = VQKUT3YD36;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SkillShaper_Flycasting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		48992E3924D4821000B59465 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 28;
+				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting/Preview Content\"";
+				DEVELOPMENT_TEAM = VQKUT3YD36;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SkillShaper_Flycasting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48992DF424D4820D00B59465 /* Build configuration list for PBXProject "SkillShaper_Flycasting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48992E2D24D4821000B59465 /* Debug */,
+				48992E2E24D4821000B59465 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48992E2F24D4821000B59465 /* Build configuration list for PBXNativeTarget "SkillShaper_Flycasting WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48992E3024D4821000B59465 /* Debug */,
+				48992E3124D4821000B59465 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48992E3324D4821000B59465 /* Build configuration list for PBXNativeTarget "SkillShaper_Flycasting WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48992E3424D4821000B59465 /* Debug */,
+				48992E3524D4821000B59465 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48992E3724D4821000B59465 /* Build configuration list for PBXNativeTarget "SkillShaper_Flycasting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48992E3824D4821000B59465 /* Debug */,
+				48992E3924D4821000B59465 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 48992DF124D4820D00B59465 /* Project object */;
+}
