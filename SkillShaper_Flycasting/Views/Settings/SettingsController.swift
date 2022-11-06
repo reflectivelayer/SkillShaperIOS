@@ -482,17 +482,23 @@ import SwiftUI
          leftBtn = false
          rightBtn = true
          clearSkills()
-         strokeBox = true
+         allMovesBox = true
+         strokeBox = false
          strokeForeBox = true
          strokeBackBox = false
+         straightLeftBox = true
+         straightRightBox = true
          stopForeBox = true
          stopBackBox = false
          
          saveSettings(name: "left", value: "false")
          saveSettings(name: "right", value: "true")
-         saveSettings(name: "skill", value: "stroke")
+         saveSettings(name: "skill", value: "allMoves")
+         saveSettings(name: "allMoves", value: "true")
          saveSettings(name: "strokeFore", value: "true")
          saveSettings(name: "strokeBack", value: "false")
+         saveSettings(name: "straightLeft", value: "true")
+         saveSettings(name: "straightRight", value: "true")
          saveSettings(name: "stopFore", value: "true")
          saveSettings(name: "stopBack", value: "false")
      }
