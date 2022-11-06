@@ -12,11 +12,14 @@ import SwiftUI
 
     let greenBtn = Color(red: 76.0/255, green: 84.0/255, blue: 75.0/255)
 
+    @State var allMovesBox = false
     @State var strokeBox = false
     @State var strokeForeBox = false
     @State var strokeBackBox = false
     @State var straightBox = true
-    @State var stopBox = true
+    @State var straightLeftBox = false
+    @State var straightRightBox = false
+    @State var stopBox = false
     @State var stopForeBox = false
     @State var stopBackBox = false
     @State var leftBtn = true
@@ -96,13 +99,13 @@ import SwiftUI
      
     func renderAllMoves()-> some View{
         return Button(action: {
-            skillToggle(skillType: "stroke")
+            skillToggle(skillType: "allMoves")
             print("stroke check box")
             print(strokeBox)
             
         }) {
             HStack{
-                 Image(systemName: strokeBox ? "checkmark.square" : "square" )
+                 Image(systemName: allMovesBox ? "checkmark.square" : "square" )
                          .padding(3)
                          .foregroundColor(.white)
 
@@ -121,201 +124,176 @@ import SwiftUI
      
      
      func renderStroke()->some View{
-         
-         return Button(action: {
-             skillToggle(skillType: "stroke")
-             print("stroke check box")
-             print(strokeBox)
-         }) {
-         HStack{
-             Image(systemName: strokeBox ? "checkmark.square" : "square" )
-                     .padding(3)
-                     .foregroundColor(.white)
-
+         return VStack{
                  HStack{
-                 Text("Stroke")
-                     .font(.system(size: 20))
-                     .bold()
-                     .foregroundColor(.yellow)
+                     Button(action: {
+                            skillToggle(skillType: "stroke")
+                        }) {
+                             Image(systemName: strokeBox ? "checkmark.square" : "square")
+                                 .padding(3)
+                                 .foregroundColor(.white)
+                         }
+                         Text("Stroke")
+                             .font(.system(size: 20))
+                             .bold()
+                             .foregroundColor(.yellow)
+        
+                         
+                         Text("Hear when you veer")
+                             .foregroundColor(.white)
+                             .font(.system(size: 15))
+                         Spacer()
                  }
-             }
-             Text("Accelerate smoothly")
-                 .foregroundColor(.white)
-                 .font(.system(size: 15))
-         }
-            
-         HStack{
-             Spacer()
-             Button(action: {
-                 strokeForeToggle()
-                 print("stroke fore check box")
-                 print(strokeForeBox)
-             }) {
-                 Text("Listen to")
-                     .foregroundColor(.white)
-                     .font(.system(size: 14))
-                 HStack{
-                     Image(systemName: strokeForeBox ? "checkmark.square" : "square")
-                         .padding(3)
-                         .foregroundColor(.white)
-
-                     VStack{
-                     Text("fore")
-                         .font(.system(size: 15))
-                         .foregroundColor(.white)
+                 if(strokeBox){
+                     HStack{
+                       Text("   ")
+                         Button(action: {
+                             stopForeToggle()
+                         }) {
+                             Image(systemName: strokeForeBox ? "checkmark.square" : "square")
+                                 .padding(3)
+                                 .foregroundColor(.white)
+                         }
+                         Text("fore")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
+                             
+                         Button(action: {
+                             strokeBackToggle()
+                         }) {
+                         Image(systemName: strokeBackBox ? "checkmark.square" : "square")
+                             .padding(3)
+                             .foregroundColor(.white)
+                         }
+                         Text("back")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
+                         
+                         Text("direction to hear")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
                      }
-                 }
+
              }
-
-             Button(action: {
-                 strokeBackToggle()
-                 print("stroke back check box")
-                 print(strokeBackBox)
-             }) {
-                 
-                 HStack{
-                     Image(systemName: strokeBackBox ? "checkmark.square" : "square")
-                         .padding(3)
-                         .foregroundColor(.white)
-
-                     VStack{
-                     Text("back  ")
-                         .font(.system(size: 15))
-                         .foregroundColor(.white)
-                     }
-                 }
-             }
-
          }
 
      }
+     
      
      
      func renderStraight()->some View{
-         return Button(action: {
-                 skillToggle(skillType: "straight")
-                 print("straight check box")
-                 print(straightBox)
-             }) {
-
-             HStack{
-                 Image(systemName: straightBox ? "checkmark.square" : "square")
-                     .padding(3)
-                     .foregroundColor(.white)
-
+         return VStack{
                  HStack{
-                 Text("Straigh")
-                     .font(.system(size: 20))
-                     .bold()
-                     .foregroundColor(.yellow)
+                     Button(action: {
+                             skillToggle(skillType: "straight")
+                             print("straight check box")
+                             print(straightBox)
+                         }) {
+                             Image(systemName: straightBox ? "checkmark.square" : "square")
+                                 .padding(3)
+                                 .foregroundColor(.white)
+                         }
+                         Text("Straight")
+                             .font(.system(size: 20))
+                             .bold()
+                             .foregroundColor(.yellow)
+        
+                         
+                         Text("Hear when you veer")
+                             .foregroundColor(.white)
+                             .font(.system(size: 15))
+                         Spacer()
                  }
-             }
-
-             Text("Hear when you veer")
-                 .foregroundColor(.white)
-                 .font(.system(size: 15))
-             }
-             Spacer()
-
-         Text(" ")
-         HStack{
-             Button(action: {
-                 skillToggle(skillType: "stop")
-                 print("stop check box")
-                 print(stopBox)
-             }) {
-                 HStack{
-                   Text("   ")
-                     Image(systemName: stopBox ? "checkmark.square" : "square")
-                         .padding(3)
-                         .foregroundColor(.white)
-
+                 if(straightBox){
                      HStack{
-                     Text("Stop")
-                         .font(.system(size: 17))
-                         .bold()
-                         .foregroundColor(.white)
+                       Text("   ")
+                         Button(action: {
+                             straightLeftToggle()
+                         }) {
+                             Image(systemName: straightLeftBox ? "checkmark.square" : "square")
+                                 .padding(3)
+                                 .foregroundColor(.white)
+                         }
+                         Text("left")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
+                             
+                         Button(action: {
+                             straightRightToggle()
+                         }) {
+                         Image(systemName: straightRightBox ? "checkmark.square" : "square")
+                             .padding(3)
+                             .foregroundColor(.white)
+                         }
+                         Text("right")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
+                         
+                         Text("direction to hear")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
                      }
-                 }
 
-                 Text("Stopping crisply")
-                     .foregroundColor(.white)
-                     .font(.system(size: 14))
              }
-                 Spacer()
          }
 
      }
      
      
-     
      func renderStop()->some View{
-         return Button(action: {
-                 skillToggle(skillType: "stop")
-                 print("stop check box")
-                 print(stopBox)
-             }) {
+         return VStack{
                  HStack{
-                     Image(systemName: stopBox ? "checkmark.square" : "square")
-                         .padding(3)
-                         .foregroundColor(.white)
-
+                     Button(action: {
+                            skillToggle(skillType: "stop")
+                        }) {
+                             Image(systemName: stopBox ? "checkmark.square" : "square")
+                                 .padding(3)
+                                 .foregroundColor(.white)
+                         }
+                         Text("Stop")
+                             .font(.system(size: 20))
+                             .bold()
+                             .foregroundColor(.yellow)
+        
+                         
+                         Text("Hear when you veer")
+                             .foregroundColor(.white)
+                             .font(.system(size: 15))
+                         Spacer()
+                 }
+                 if(stopBox){
                      HStack{
-                     Text("Stop move")
-                         .font(.system(size: 20))
-                         .bold()
-                         .foregroundColor(.yellow)
+                       Text("   ")
+                         Button(action: {
+                             stopForeToggle()
+                         }) {
+                             Image(systemName: stopForeBox ? "checkmark.square" : "square")
+                                 .padding(3)
+                                 .foregroundColor(.white)
+                         }
+                         Text("fore")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
+                             
+                         Button(action: {
+                             stopBackToggle()
+                         }) {
+                         Image(systemName: stopBackBox ? "checkmark.square" : "square")
+                             .padding(3)
+                             .foregroundColor(.white)
+                         }
+                         Text("back")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
+                         
+                         Text("direction to hear")
+                             .font(.system(size: 15))
+                             .foregroundColor(.white)
                      }
-                 }
 
-                 Text("Stopping crisply")
-                     .foregroundColor(.white)
-                     .font(.system(size: 15))
-             }
-         
-         HStack{
-             Spacer()
-
-             Button(action: {
-                 stopForeToggle()
-                 print("stop fore check box")
-                 print(stopForeBox)
-             }) {
-                 Text("Listen to")
-                     .foregroundColor(.white)
-                     .font(.system(size: 14))
-                 HStack{
-                     Image(systemName: stopForeBox ? "checkmark.square" : "square")
-                         .padding(3)
-                         .foregroundColor(.white)
-
-                     VStack{
-                     Text("fore")
-                         .font(.system(size: 15))
-                         .foregroundColor(.white)
-                     }
-                 }
-             }
-
-             Button(action: {
-                 stopBackToggle()
-                 print("stop back check box")
-                 print(stopBackBox)
-             }) {
-
-                 HStack{
-                     Image(systemName: stopBackBox ? "checkmark.square" : "square" )
-                         .padding(3)
-                         .foregroundColor(.white)
-
-                     VStack{
-                     Text("back")
-                         .font(.system(size: 15))
-                         .foregroundColor(.white)
-                     }
-                 }
              }
          }
+
      }
      
      
@@ -362,6 +340,16 @@ import SwiftUI
          saveSettings(name: "strokeBack", value: strokeBackBox ? "true" : "false")
       }
      
+     func  straightLeftToggle(){
+         straightLeftBox = !straightLeftBox
+         saveSettings(name: "straightLeft", value: straightLeftBox ? "true" : "false")
+      }
+     
+     func  straightRightToggle(){
+         straightRightBox = !straightRightBox
+         saveSettings(name: "straightRight", value: straightRightBox ? "true" : "false")
+      }
+     
      func  stopForeToggle(){
          stopForeBox = !stopForeBox
          saveSettings(name: "stopFore", value: stopForeBox ? "true" : "false")
@@ -375,6 +363,9 @@ import SwiftUI
      func  skillToggle(skillType:String){
          clearSkills()
          switch(skillType){
+             case "allMoves":
+                 allMovesBox = true
+                 break
              case "stroke":
                  strokeBox = true
                  break
@@ -421,6 +412,7 @@ import SwiftUI
       }
      
      func clearSkills(){
+         allMovesBox = false
          strokeBox = false
          straightBox = false
          stopBox = false
