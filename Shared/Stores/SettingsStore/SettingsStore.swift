@@ -30,8 +30,11 @@ class PhoneStore{
     var skill: Skill = .stroke
     var hears: [Hear] = []
     var isLeft: Bool = false
+    var allMoves: Bool = true
     var strokeFore: Bool = true
     var strokeBack: Bool = false
+    var staightLeft: Bool = true
+    var straightRight: Bool = true
     var stopFore: Bool = true
     var stopBack: Bool = false
     
@@ -53,7 +56,11 @@ class PhoneStore{
             UserDefaults.standard.set("true",forKey: "stopFore")
             UserDefaults.standard.set("false",forKey: "stopBack")
         }
-        if(skillType == "stroke"){
+        if(skillType == "allMoves"){
+            skill = .allMoves
+            hears.append(.fore)
+            hears.append(.back)
+        }else if(skillType == "stroke"){
             skill = .stroke
             let strokeF = UserDefaults.standard.string(forKey: "strokeFore")
             if(strokeF == "true"){

@@ -26,6 +26,7 @@ class StrokeManager{
     var dataSegment = 0
     var accDataMain = [Double]()
     var accDataLateral = [Double]()
+    var accDataVertical = [Double]()
     var isLogging = false
     var centerY:CGFloat = 0
     var lineDiv:CGFloat = 0
@@ -83,6 +84,7 @@ class StrokeManager{
     func start(){
         accDataMain.removeAll()
         accDataLateral.removeAll()
+        accDataVertical.removeAll()
         isLogging = true
         configAudio()
         audioService?.play()
@@ -93,6 +95,10 @@ class StrokeManager{
         var skill = settingsStore.skill
         var hears = [Hear]()
         switch settingsStore.skill {
+        case .allMoves:
+            hears.append(.fore)
+            hears.append(.back)
+            skill = .allMoves
         case .stroke:
             let strokeF = UserDefaults.standard.string(forKey: "strokeFore")
             if(strokeF == "true"){
@@ -133,9 +139,12 @@ class StrokeManager{
             if(accDataMain.count>maxSample){
                 accDataMain.removeFirst();
                 accDataLateral.removeFirst();
+                accDataVertical.removeFirst();
+                
             }
             accDataMain.append(accMain)
             accDataLateral.append(acceleration.z)
+            accDataVertical.append(acceleration.y)
             
         }
     }

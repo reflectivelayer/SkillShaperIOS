@@ -49,6 +49,9 @@ import SwiftUI
             
         }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
             .padding(10)
+            .onAppear(){
+             loadSettings()
+            }
     }
      //===========================================================================
      
@@ -148,7 +151,7 @@ import SwiftUI
                      HStack{
                        Text("   ")
                          Button(action: {
-                             stopForeToggle()
+                             strokeForeToggle()
                          }) {
                              Image(systemName: strokeForeBox ? "checkmark.square" : "square")
                                  .padding(3)
@@ -441,7 +444,9 @@ import SwiftUI
 
          clearSkills()
          let skill = UserDefaults.standard.string(forKey: "skill")
-         if(skill == "stroke"){
+         if(skill == "allMoves"){
+             allMovesBox = true
+         }else if(skill == "stroke"){
              strokeBox = true
          }else if(skill == "straight"){
              straightBox = true

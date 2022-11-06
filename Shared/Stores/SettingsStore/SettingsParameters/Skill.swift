@@ -9,6 +9,7 @@ import Foundation
 
 enum Skill: Int, SettingsParameter {
     
+    case allMoves
     case stroke
     case stop
     case straight
@@ -16,6 +17,7 @@ enum Skill: Int, SettingsParameter {
     var name: String {
         
         switch self {
+        case .allMoves: return "allMoves"
         case .stroke: return "stroke"
         case .stop: return "stop"
         case .straight: return "straight"

@@ -31,12 +31,20 @@ class AudioService2 {
     
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()
-        configurate(for: .stroke)
+        configurate(for: settingsStore.skill)
         publisher.sink { [weak self] acc in
             if remoteAccelerometer { return }
             guard let self = self else { return }
             if(!self.isLogging){return}
-            let sensorValue = self.settingsStore.skill == .straight ? acc.z * MotionManager.accMultiplier : acc.x * MotionManager.accMultiplier
+            var sensorValue = 0.0;
+            if self.settingsStore.skill == .allMoves{
+                sensorValue = self.vectoredValue(acc: acc)
+            }else if self.settingsStore.skill == .straight{
+                sensorValue = acc.z * MotionManager.accMultiplier
+            }else{
+                sensorValue = acc.x * MotionManager.accMultiplier
+            }
+
             guard self.validateSensorValue(value: sensorValue) else {
                 //                           ---------------------------------------Not validated ----------
                 self.audioPlayer.volume = 0.0
@@ -94,6 +102,13 @@ class AudioService2 {
             self.lastReading = sensorValue
             self.updateTimer()
         }.store(in: &cancellables)
+    }
+    
+    func vectoredValue(acc:CMAcceleration)->Double{
+        let vXsq = acc.x * acc.x
+        let vYsq = acc.y * acc.y
+        let vZsq = acc.z * acc.z
+        return sqrt(vXsq + vYsq + vZsq)
     }
     
     func configurate(for skill: Skill, hears: [Hear] = [Hear]()) {
