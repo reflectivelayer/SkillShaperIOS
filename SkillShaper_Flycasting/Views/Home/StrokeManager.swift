@@ -15,6 +15,7 @@ import Combine
 enum AccAxis {
     case main
     case lateral
+    case vertical
 }
 
 class StrokeManager{
@@ -200,6 +201,8 @@ class StrokeManager{
             data = accDataMain
         case .lateral:
             data = accDataLateral
+        case .vertical:
+            data = accDataVertical
         }
         var path = Path()
         var y:CGFloat = 0
@@ -224,6 +227,8 @@ class StrokeManager{
             data = accDataMain
         case .lateral:
             data = accDataLateral
+        case .vertical:
+            data = accDataVertical
         }
         var path = Path()
         var y:CGFloat = 0

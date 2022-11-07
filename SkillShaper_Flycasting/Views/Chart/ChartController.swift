@@ -12,14 +12,18 @@ import SwiftUI
 struct ChartController: View {
     
     let greenBtn = Color(red: 76.0/255, green: 84.0/255, blue: 75.0/255)
+    let yellow = Color(UIColor(hexaString: "#CDDC39"))
     @State var offset = CGSize.zero
     @State var remoteBoxClicked1 = false
     @State var remoteBoxClicked2 = false
     @State var drawBtnClicked = true //TODO Make FALSE
-    @State var radioBtnSideways = false
     @State var dataSource = AccAxis.main
     @State var fillPositive = false
     @State var fillNegative = false
+    @State var chkStroke = true
+    @State var chkSide = false
+    @State var chkUpDown = false
+
     func  toggle1(){
         remoteBoxClicked1 = !remoteBoxClicked1
      }
@@ -40,7 +44,6 @@ struct ChartController: View {
     }
     
     var body: some View {
-        
         VStack(alignment: .leading, spacing:0){
             Text(" ")
         
@@ -48,77 +51,64 @@ struct ChartController: View {
             Color.black
             
         VStack{
+            Text("Axis Accelerations")
+                .foregroundColor(yellow)
+                .font(.system(size: 30)
+                        .bold())
+            
             HStack{
-                Text("Show acceleraions on")
-                    .foregroundColor(.green)
-                    .font(.system(size: 15))
                 Button(action: {
-                    radioBtnSideways = false
-                    print("cast axis btn")
-                    dataSource = AccAxis.main
+                    chkStroke = !chkStroke
+                    if chkStroke{
+                        dataSource = AccAxis.main
+                        chkSide = false
+                        chkUpDown = false
+                    }
                 }) {
                     HStack{
-                      Image(systemName: radioBtnSideways ? "circle" : "largecircle.fill.circle")
+                        Image(systemName: !chkStroke ? "square" : "checkmark.square")
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                        Text("Cast axis")
+                            Text("Stroke")
                             .font(.system(size: 15))
-                            .foregroundColor(.green)
+                            .foregroundColor(yellow)
                         }
                     }
                 }
                 Button(action: {
-                    radioBtnSideways = true
-                    print("sideways radio btn")
-                    dataSource = AccAxis.lateral
-                }) {
-                    HStack{
-                        Image(systemName: radioBtnSideways ? "largecircle.fill.circle" : "circle")
-                            .padding(3)
-                            .foregroundColor(.green)
-                        VStack{
-                        Text("Sideways")
-                            .font(.system(size: 15))
-                            .foregroundColor(.green)
-                        }
+                    chkSide = !chkSide
+                    if chkSide{
+                        dataSource = AccAxis.lateral
+                        chkStroke = false
+                        chkUpDown = false
                     }
-                }
-            }
-
-            HStack{
-                Text("Highlight acceleraions")
-                    .foregroundColor(.green)
-                    .font(.system(size: 15))
-                Button(action: {
-                    toggle1()
-                    print("forward check box")
-                    fillPositive = remoteBoxClicked1
                 }) {
                     HStack{
-                      Image(systemName: !remoteBoxClicked1 ? "square" : "checkmark.square")
+                        Image(systemName: !chkSide ? "square" : "checkmark.square")
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                            Text(dataSource == AccAxis.main ? "Forward" : "Left")
+                            Text("Side")
                             .font(.system(size: 15))
-                            .foregroundColor(.green)
+                            .foregroundColor(yellow)
                         }
                     }
                 }
                 Button(action: {
-                    toggle2()
-                    print("backwardcheck box")
-                    fillNegative = remoteBoxClicked2
+                    chkUpDown = !chkUpDown
+                    if chkUpDown{
+                        dataSource = AccAxis.vertical
+                    }
                 }) {
                     HStack{
-                        Image(systemName: !remoteBoxClicked2 ? "square" : "checkmark.square")
+                        Image(systemName: !chkUpDown ? "square" : "checkmark.square")
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                            Text(dataSource == AccAxis.main ? "Backward" : "Right")
+                            Text("UpDown")
                             .font(.system(size: 15))
-                            .foregroundColor(.green)
+                            .foregroundColor(yellow)
                         }
                     }
                 }
@@ -143,6 +133,43 @@ struct ChartController: View {
                 }
             
             }
+            HStack{
+                Text("Highlight acceleraions")
+                    .foregroundColor(yellow)
+                    .font(.system(size: 15))
+                Button(action: {
+                    toggle1()
+                    fillPositive = remoteBoxClicked1
+                }) {
+                    HStack{
+                      Image(systemName: !remoteBoxClicked1 ? "square" : "checkmark.square")
+                            .padding(3)
+                            .foregroundColor(.green)
+                        VStack{
+                            Text(dataSource == AccAxis.main ? "fore" : "left")
+                            .font(.system(size: 15))
+                            .foregroundColor(yellow)
+                        }
+                    }
+                }
+                Button(action: {
+                    toggle2()
+                    print("backwardcheck box")
+                    fillNegative = remoteBoxClicked2
+                }) {
+                    HStack{
+                        Image(systemName: !remoteBoxClicked2 ? "square" : "checkmark.square")
+                            .padding(3)
+                            .foregroundColor(.green)
+                        VStack{
+                            Text(dataSource == AccAxis.main ? "back" : "right")
+                            .font(.system(size: 15))
+                            .foregroundColor(yellow)
+                        }
+                    }
+                }
+            }
+            
             HStack{
                 Text("Drag the graph to see all of it")
                 Spacer()
