@@ -38,6 +38,8 @@ class StrokeManager{
     var accLateral:Double = 0
     var viewWidth:CGFloat = 0
     var audioService:AudioService2?
+    let dataManager = SessionDataManager()
+    
     private var cancellables = Set<AnyCancellable>()
     
     func setMotionManager(motionManager: MotionManager){
@@ -131,6 +133,8 @@ class StrokeManager{
     func stop(){
         audioService?.stop()
         isLogging = false
+        //dataManager.saveData(dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
+        print(dataManager.loadData(filenName: "fileName"))
     }
     
     func updateAcceleration(acceleration: CMAcceleration){

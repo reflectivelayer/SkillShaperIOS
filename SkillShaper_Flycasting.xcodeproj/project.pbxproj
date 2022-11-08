@@ -68,6 +68,7 @@
 		48B825F924EF0B8B006594E8 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0F24EBE01C00BFE868 /* Skill.swift */; };
 		48B825FA24EF0B8E006594E8 /* Hear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1124EBE0F700BFE868 /* Hear.swift */; };
 		48B825FB24EF0B91006594E8 /* WatchPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1324EBE15000BFE868 /* WatchPosition.swift */; };
+		8D16ABA6291A300500541C78 /* SessionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16ABA5291A300500541C78 /* SessionDataManager.swift */; };
 		8D36DCB22733913100A88DCC /* ChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCB12733913100A88DCC /* ChartController.swift */; };
 		8D36DCB72733917E00A88DCC /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCB62733917E00A88DCC /* ChartView.swift */; };
 		8D36DCBD2733921700A88DCC /* StrokeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCBC2733921700A88DCC /* StrokeManager.swift */; };
@@ -190,6 +191,7 @@
 		48B4F3BA24F7DA1200A09C89 /* StrokeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeViewModel.swift; sourceTree = "<group>"; };
 		48B4F3BC24F7DFDE00A09C89 /* StopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewModel.swift; sourceTree = "<group>"; };
 		48B825F124EEFC7D006594E8 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		8D16ABA5291A300500541C78 /* SessionDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDataManager.swift; sourceTree = "<group>"; };
 		8D36DCB12733913100A88DCC /* ChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartController.swift; sourceTree = "<group>"; };
 		8D36DCB62733917E00A88DCC /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		8D36DCBC2733921700A88DCC /* StrokeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeManager.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				8D65EBF127357B130042FFA2 /* AudioService2.swift */,
 				8D36DCC4273392BA00A88DCC /* MotionPublisher.swift */,
 				8D36DD002733A1BD00A88DCC /* MotionManager.swift */,
+				8D16ABA5291A300500541C78 /* SessionDataManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -759,6 +762,7 @@
 				8D36DCCF273394CD00A88DCC /* BasicButton.swift in Sources */,
 				8D36DCDD273396F000A88DCC /* SettingsController.swift in Sources */,
 				48992DFD24D4820D00B59465 /* AppDelegate.swift in Sources */,
+				8D16ABA6291A300500541C78 /* SessionDataManager.swift in Sources */,
 				8D36DCF92733988E00A88DCC /* HelpStrokeController.swift in Sources */,
 				8D36DCB22733913100A88DCC /* ChartController.swift in Sources */,
 				48203B0224EBDC7600BFE868 /* Logo.swift in Sources */,
