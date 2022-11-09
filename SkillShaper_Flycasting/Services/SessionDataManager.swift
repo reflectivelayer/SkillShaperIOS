@@ -8,13 +8,36 @@
 
 import Foundation
 class SessionDataManager {
-
+    let formatter = DateFormatter()
+    init(){
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "MM.dd HH:mm:ss"
+    }
+    
     func saveData(dataPrimary:[Double], dataLateral:[Double], dataVertical:[Double]){
         var sessionText = _addHeader()
         sessionText += _addData(dataPrimary:dataPrimary, dataLateral:dataLateral, dataVertical:dataVertical)
         sessionText += _addAnnotations()
-        _saveToDisk(fileName: "dfx", text: sessionText)
-        print(sessionText)
+        var fileName = formatter.string(from: Date()) + ".txt"
+        _saveToDisk(fileName: fileName, text: sessionText)
+
+    }
+    
+    func getFileList(folder:String)->[URL]{
+        var docList:[URL] = []
+        let fileManager = FileManager.default
+        let documentsPath = fileManager.urls(for: .documentDirectory,
+            in:.userDomainMask)[0]
+        let motionPath = documentsPath.path + "/MotionData"
+        do {
+            docList = try fileManager.contentsOfDirectory(at:URL(fileURLWithPath:motionPath), includingPropertiesForKeys: nil)
+        } catch {
+            print("Error while enumerating files \(motionPath): \(error.localizedDescription)")
+        }
+        for url in docList {
+            print(url.lastPathComponent)
+        }
+        return docList
     }
     
     func loadData(filenName:String) -> String{
@@ -54,11 +77,19 @@ class SessionDataManager {
     }
     
     func _saveToDisk(fileName:String, text:String){
-        let path = FileManager.default.urls(for: .documentDirectory,
-                                            in: .userDomainMask)[0].appendingPathComponent(fileName)
-
+        let documentsPath = FileManager.default.urls(for: .documentDirectory,
+                                            in: .userDomainMask)[0]
+        let motionPath = documentsPath.path + "/MotionData"
+        if !FileManager.default.fileExists(atPath: motionPath) {
+            do {
+                try FileManager.default.createDirectory(atPath: motionPath, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error.localizedDescription);
+            }
+        }
+        let path = motionPath + "/" + fileName
         if let stringData = text.data(using: .utf8) {
-            try? stringData.write(to: path)
+            try? stringData.write(to: URL(fileURLWithPath: path))
         }
     }
     

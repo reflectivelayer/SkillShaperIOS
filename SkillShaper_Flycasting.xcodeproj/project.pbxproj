@@ -83,6 +83,7 @@
 		8D36DCF92733988E00A88DCC /* HelpStrokeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCF82733988E00A88DCC /* HelpStrokeController.swift */; };
 		8D36DD012733A1BD00A88DCC /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DD002733A1BD00A88DCC /* MotionManager.swift */; };
 		8D65EBF227357B130042FFA2 /* AudioService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65EBF127357B130042FFA2 /* AudioService2.swift */; };
+		8D77E298291B98830080FE6D /* DataFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77E297291B98830080FE6D /* DataFilesView.swift */; };
 		8DA1AE092735A47600E47F4C /* c4sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE042735A47600E47F4C /* c4sq.wav */; };
 		8DA1AE0B2735A47600E47F4C /* e4sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE062735A47600E47F4C /* e4sq.wav */; };
 		8DA1AE0C2735A47600E47F4C /* g5sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE072735A47600E47F4C /* g5sq.wav */; };
@@ -206,6 +207,7 @@
 		8D36DCF82733988E00A88DCC /* HelpStrokeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpStrokeController.swift; sourceTree = "<group>"; };
 		8D36DD002733A1BD00A88DCC /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		8D65EBF127357B130042FFA2 /* AudioService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService2.swift; sourceTree = "<group>"; };
+		8D77E297291B98830080FE6D /* DataFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFilesView.swift; sourceTree = "<group>"; };
 		8DA1AE042735A47600E47F4C /* c4sq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = c4sq.wav; sourceTree = "<group>"; };
 		8DA1AE062735A47600E47F4C /* e4sq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = e4sq.wav; sourceTree = "<group>"; };
 		8DA1AE072735A47600E47F4C /* g5sq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = g5sq.wav; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 			children = (
 				8D36DCB12733913100A88DCC /* ChartController.swift */,
 				8D36DCB62733917E00A88DCC /* ChartView.swift */,
+				8D77E297291B98830080FE6D /* DataFilesView.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				8D16ABA6291A300500541C78 /* SessionDataManager.swift in Sources */,
 				8D36DCF92733988E00A88DCC /* HelpStrokeController.swift in Sources */,
 				8D36DCB22733913100A88DCC /* ChartController.swift in Sources */,
+				8D77E298291B98830080FE6D /* DataFilesView.swift in Sources */,
 				48203B0224EBDC7600BFE868 /* Logo.swift in Sources */,
 				48808CF224F018D0009C4C60 /* Stroke.swift in Sources */,
 				48808CF624F01D0E009C4C60 /* Video.swift in Sources */,

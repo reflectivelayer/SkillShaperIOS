@@ -30,7 +30,7 @@ struct HomeView: View {
     @State var accLateralStrength:Double = 0
     @State var timeRemaining = 0
     @State var timerActive = false
-    @State var dataBtnEnabled = false
+    @State var dataBtnEnabled = true
     @State var watchDataEnabled = false
     @State var remoteAcc = false
     
@@ -57,9 +57,9 @@ struct HomeView: View {
         }
     }
 
-    func go2Chart() {
+    func gotoDataFiles() {
         if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: ChartController())
+            window.rootViewController = UIHostingController(rootView: DataFilesView())
             window.makeKeyAndVisible()
         }
     }
@@ -101,6 +101,7 @@ struct HomeView: View {
         dataBtnEnabled = true
         isLogging = false
         strokeManager.stop()
+        strokeManager.saveData()
     }
 
     var body: some View {
@@ -214,7 +215,6 @@ struct HomeView: View {
                 HStack {
                     
                 Button("SETTINGS") {
-                    print("Settings")
                     gotoSettings()
                 }
                 .padding(10)
@@ -223,8 +223,7 @@ struct HomeView: View {
                 .disabled(remoteAcc)
                     
                 Button("DATA") {
-                    print("Data")
-                    go2Chart()
+                    gotoDataFiles()
                 }
                 .padding(10)
                 .background(greenBtn)

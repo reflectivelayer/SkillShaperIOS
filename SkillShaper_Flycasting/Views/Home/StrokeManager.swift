@@ -133,8 +133,13 @@ class StrokeManager{
     func stop(){
         audioService?.stop()
         isLogging = false
-        //dataManager.saveData(dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
-        print(dataManager.loadData(filenName: "fileName"))
+
+    }
+    
+    func saveData(){
+        if accDataMain.count > 0{
+            dataManager.saveData(dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
+        }
     }
     
     func updateAcceleration(acceleration: CMAcceleration){
@@ -277,6 +282,10 @@ class StrokeManager{
     
     func updateOffset(){
         dataSegment = dataStart
+    }
+    
+    func getFileList()->[URL]{
+        return dataManager.getFileList(folder: "MotionData")
     }
 }
 
