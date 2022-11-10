@@ -29,6 +29,7 @@ struct DataFilesView: View {
     @State var btnEnableSend = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var showShareSheet = false
     
     func geFileList(){
         selectedItems.removeAll()
@@ -111,6 +112,11 @@ struct DataFilesView: View {
         .onAppear {
             UITableView.appearance().backgroundColor = .white
             geFileList()
+        } .sheet(isPresented: $showShareSheet) {
+            if selectedItems.first != nil {
+                let data = strokeManager.getDataFromFile(fileName: selectedItems.first!)
+                ShareSheet(activityItems: [data])
+            }
         }
      }
     
@@ -163,7 +169,7 @@ struct DataFilesView: View {
     }
     
     func onSendTapped(){
-        
+        showShareSheet = true
     }
     
     func onEraseAllTapped(){
@@ -191,6 +197,28 @@ struct DataFilesView: View {
     }
 }
 
+
+struct ShareSheet: UIViewControllerRepresentable {
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+    
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    let callback: Callback? = nil
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+            activityItems: activityItems,
+            applicationActivities: applicationActivities)
+        controller.excludedActivityTypes = excludedActivityTypes
+        controller.completionWithItemsHandler = callback
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // nothing to do here
+    }
+}
 
 
 

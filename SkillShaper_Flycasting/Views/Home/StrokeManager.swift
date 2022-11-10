@@ -151,6 +151,10 @@ class StrokeManager{
         loadMotionFromData(data: data)
     }
     
+    func getDataFromFile(fileName:String)->String{
+        return dataManager.loadData(fileName: fileName)
+    }
+    
     func loadMotionFromData(data:String){
         accDataMain.removeAll()
         accDataLateral.removeAll()
