@@ -142,8 +142,12 @@ class StrokeManager{
         }
     }
     
-    func loadDataFromFile(path:String){
-        var data:String = dataManager.loadData(fileName: path)
+    func deleteDataFile(fileName:String){
+        dataManager.deleteData(fileName: fileName)
+    }
+    
+    func loadDataFromFile(fileName:String){
+        var data:String = dataManager.loadData(fileName: fileName)
         loadMotionFromData(data: data)
     }
     

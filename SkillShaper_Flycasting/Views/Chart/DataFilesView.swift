@@ -27,7 +27,6 @@ struct DataFilesView: View {
     @State var btnEnableChart = false
     @State var btnEnableDelete = false
     @State var btnEnableSend = false
-    @State var btnEnableDeleteAll = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -36,7 +35,7 @@ struct DataFilesView: View {
         fileList = strokeManager.getFileList()
     }
     
-    func goHome() {
+    func goBack() {
         presentationMode.wrappedValue.dismiss()
     }
     
@@ -68,7 +67,7 @@ struct DataFilesView: View {
 
     
                 Button(action: {
-                    goHome()
+                    onDeleteTapped()
                 }, label: {
                     Text("DELETE")
                         .padding(7)
@@ -78,7 +77,7 @@ struct DataFilesView: View {
                 }).disabled(!btnEnableDelete)
                    
                 Button(action: {
-                    goHome()
+                    onSendTapped()
                 }, label: {
                     Text("SEND")
                         .padding(7)
@@ -88,17 +87,17 @@ struct DataFilesView: View {
                 }).disabled(!btnEnableSend)
                     
                 Button(action: {
-                    goHome()
+                    onEraseAllTapped()
                 }, label: {
                     Text("ERASE ALL")
                         .padding(7)
                         .font(.system(size: 14))
                         .background(greenBtn)
-                        .foregroundColor(btnEnableDeleteAll ? .white : .gray)
-                }).disabled(!btnEnableDeleteAll)
+                        .foregroundColor(fileList.count>0 ? .white : .gray)
+                }).disabled(fileList.count==0)
             
                 Button(action: {
-                    goHome()
+                    goBack()
                 }, label: {
                     Text("<Back")
                         .padding(7)
@@ -146,8 +145,32 @@ struct DataFilesView: View {
     
     func onChartTapped(){
         if !selectedItems.isEmpty{
-            strokeManager.loadDataFromFile(path: selectedItems.first ?? "")
+            strokeManager.loadDataFromFile(fileName: selectedItems.first ?? "")
         }
+    }
+    
+    func onDeleteTapped(){
+        var toRemove:[URL] = []
+        for item in selectedItems {
+            strokeManager.deleteDataFile(fileName: item)
+            fileList.forEach { url in
+                if url.lastPathComponent == item{
+                    toRemove.append(url)
+                }
+            }
+        }
+        fileList = Array(Set(fileList).subtracting(toRemove))
+    }
+    
+    func onSendTapped(){
+        
+    }
+    
+    func onEraseAllTapped(){
+        for item in fileList {
+            strokeManager.deleteDataFile(fileName: item.lastPathComponent)
+        }
+        fileList.removeAll()
     }
     
     func updateButtons(){
@@ -156,17 +179,14 @@ struct DataFilesView: View {
             btnEnableChart = false
             btnEnableDelete = false
             btnEnableSend = false
-            btnEnableDeleteAll = false
         }else if count == 1{
             btnEnableChart = true
             btnEnableDelete = true
             btnEnableSend = true
-            btnEnableDeleteAll = true
         }else{
             btnEnableChart = false
             btnEnableDelete = true
             btnEnableSend = false
-            btnEnableDeleteAll = true
         }
     }
 }

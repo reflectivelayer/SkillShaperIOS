@@ -55,22 +55,21 @@ class SessionDataManager {
         return data
     }
     
-    func loadDataOld(filenName:String) -> String{
-        var data = ""
-        do{
-            let directory = try FileManager.default.url(
-                for: .documentDirectory,
-                   in: .userDomainMask,
-                   appropriateFor: nil,
-                   create: true
-            )
-            data = try String(
-                contentsOf: directory.appendingPathComponent(filenName), encoding: .utf8)
-        }catch{
-            
+    
+    func deleteData(fileName:String){
+        let fileManager = FileManager.default
+        let documentsPath = fileManager.urls(for: .documentDirectory,
+            in:.userDomainMask)[0]
+        let motionPath = documentsPath.path + "/MotionData"
+        
+        do {
+            try fileManager.removeItem(at: URL(fileURLWithPath:motionPath).appendingPathComponent(fileName))
+        } catch {
+            print("Error while enumerating files \(motionPath): \(error.localizedDescription)")
         }
-        return data
     }
+    
+    
     
     func _addHeader()->String{
         return "<header>\n</header>\n"
