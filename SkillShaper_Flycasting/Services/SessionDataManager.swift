@@ -40,7 +40,22 @@ class SessionDataManager {
         return docList
     }
     
-    func loadData(filenName:String) -> String{
+    func loadData(fileName:String)->String{
+        var data = ""
+        let fileManager = FileManager.default
+        let documentsPath = fileManager.urls(for: .documentDirectory,
+            in:.userDomainMask)[0]
+        let motionPath = documentsPath.path + "/MotionData"
+        do {
+            data = try String(
+                contentsOf: URL(fileURLWithPath:motionPath).appendingPathComponent(fileName), encoding: .utf8)
+        } catch {
+            print("Error while enumerating files \(motionPath): \(error.localizedDescription)")
+        }
+        return data
+    }
+    
+    func loadDataOld(filenName:String) -> String{
         var data = ""
         do{
             let directory = try FileManager.default.url(

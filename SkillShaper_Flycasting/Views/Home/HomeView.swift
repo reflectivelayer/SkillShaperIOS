@@ -34,6 +34,9 @@ struct HomeView: View {
     @State var watchDataEnabled = false
     @State var remoteAcc = false
     
+    @State var isPresenting = false
+    
+    ///
     func dataToggle(){
         ("data btn", isOn: $dataBtnEnabled)
     }
@@ -59,7 +62,7 @@ struct HomeView: View {
 
     func gotoDataFiles() {
         if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: DataFilesView())
+            window.rootViewController  = UIHostingController(rootView: DataFilesView())
             window.makeKeyAndVisible()
         }
     }
@@ -105,13 +108,13 @@ struct HomeView: View {
     }
 
     var body: some View {
-
+        NavigationView{
         VStack{
 
             Logo()
 
             VStack{
-
+            
                 HStack {
 
                     
@@ -222,9 +225,13 @@ struct HomeView: View {
                 .foregroundColor(remoteAcc ? .gray : .white)
                 .disabled(remoteAcc)
                     
-                Button("DATA") {
-                    gotoDataFiles()
-                }
+                    NavigationLink(
+                                /// 2
+                                destination: DataFilesView().navigationBarBackButtonHidden(true),
+                                /// 3
+                                label: {
+                                    Text("DATA")
+                                })
                 .padding(10)
                 .background(greenBtn)
                 .foregroundColor((remoteAcc && watchDataEnabled) || (!remoteAcc && dataBtnEnabled) ? .white : .gray)
@@ -254,7 +261,9 @@ struct HomeView: View {
                     
                }
 
-             }.onReceive(viewModel.$isPlaying, perform: { status in
+             } .navigationBarTitle("")
+              .navigationBarHidden(true)
+              .onReceive(viewModel.$isPlaying, perform: { status in
                  if(remoteAcc){
                      if(!status){
                          watchDataEnabled = true
@@ -266,4 +275,5 @@ struct HomeView: View {
                     Text(" ")
          }
     }
+}
 

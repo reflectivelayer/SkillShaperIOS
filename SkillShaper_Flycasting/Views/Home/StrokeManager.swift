@@ -142,6 +142,29 @@ class StrokeManager{
         }
     }
     
+    func loadDataFromFile(path:String){
+        var data:String = dataManager.loadData(fileName: path)
+        loadMotionFromData(data: data)
+    }
+    
+    func loadMotionFromData(data:String){
+        accDataMain.removeAll()
+        accDataLateral.removeAll()
+        accDataVertical.removeAll()
+        var dataSub = data.components(separatedBy: "<data>")[1]
+        dataSub = dataSub.components(separatedBy: "</data>")[0]
+        var entries = dataSub.components(separatedBy: "\n")
+            entries.forEach { entry in
+                var vals = entry.components(separatedBy: "\t")
+                if(vals.count == 3){
+                    accDataMain.append(Double(vals[0])!)
+                    accDataLateral.append(Double(vals[1])!)
+                    accDataVertical.append(Double(vals[2])!)
+                }
+            }
+    }
+    
+    
     func updateAcceleration(acceleration: CMAcceleration){
         if(isLogging){
             accMain = acceleration.x * MotionManager.accMultiplier

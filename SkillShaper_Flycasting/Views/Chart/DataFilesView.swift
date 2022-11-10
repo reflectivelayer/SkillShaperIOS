@@ -29,16 +29,21 @@ struct DataFilesView: View {
     @State var btnEnableSend = false
     @State var btnEnableDeleteAll = false
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     func geFileList(){
         selectedItems.removeAll()
         fileList = strokeManager.getFileList()
     }
     
     func goHome() {
+        /*
         if let window = UIApplication.shared.windows.first {
             window.rootViewController = UIHostingController(rootView: HomeView(viewModel:viewModel.configViewModel, motion: MotionManager()))
             window.makeKeyAndVisible()
         }
+         */
+        presentationMode.wrappedValue.dismiss()
     }
     
     var body: some View {
@@ -56,11 +61,11 @@ struct DataFilesView: View {
             
             HStack{
                 Button(action: {
-                    goHome()
+                    onChartTapped()
                 }, label: {
                     Text("CHART")
                         .padding(7)
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .background(greenBtn)
                         .foregroundColor(btnEnableChart ? .white : .gray)
                 }).disabled(!btnEnableChart)
@@ -70,7 +75,7 @@ struct DataFilesView: View {
                 }, label: {
                     Text("DELETE")
                         .padding(7)
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .background(greenBtn)
                         .foregroundColor(btnEnableDelete ? .white : .gray)
                 }).disabled(!btnEnableDelete)
@@ -80,7 +85,7 @@ struct DataFilesView: View {
                 }, label: {
                     Text("SEND")
                         .padding(7)
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .background(greenBtn)
                         .foregroundColor(btnEnableSend ? .white : .gray)
                 }).disabled(!btnEnableSend)
@@ -90,7 +95,7 @@ struct DataFilesView: View {
                 }, label: {
                     Text("ERASE ALL")
                         .padding(7)
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .background(greenBtn)
                         .foregroundColor(btnEnableDeleteAll ? .white : .gray)
                 }).disabled(!btnEnableDeleteAll)
@@ -98,14 +103,16 @@ struct DataFilesView: View {
                 Button(action: {
                     goHome()
                 }, label: {
-                    Text("<")
+                    Text("<Back")
                         .padding(7)
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .background(greenBtn)
                         .foregroundColor(.white)
                 })
             }
-        }.onAppear {
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
+        .onAppear {
             UITableView.appearance().backgroundColor = .white
             geFileList()
         }
@@ -138,6 +145,17 @@ struct DataFilesView: View {
             selectedItems.insert(title)
         }
         updateButtons()
+    }
+    
+    func onChartTapped(){
+        if !selectedItems.isEmpty{
+            strokeManager.loadDataFromFile(path: selectedItems.first ?? "")
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = UIHostingController(rootView: ChartController())
+                window.makeKeyAndVisible()
+            }
+
+        }
     }
     
     func updateButtons(){

@@ -23,6 +23,8 @@ struct ChartController: View {
     @State var chkStroke = true
     @State var chkSide = false
     @State var chkUpDown = false
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     func  toggle1(){
         remoteBoxClicked1 = !remoteBoxClicked1
@@ -37,10 +39,13 @@ struct ChartController: View {
     }
     
     func goHome() {
+        /*
         if let window = UIApplication.shared.windows.first {
             window.rootViewController = UIHostingController(rootView: HomeView(viewModel:viewModel.configViewModel, motion: MotionManager()))
             window.makeKeyAndVisible()
         }
+         */
+        presentationMode.wrappedValue.dismiss()
     }
     
     var body: some View {
