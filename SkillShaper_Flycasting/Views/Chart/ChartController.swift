@@ -39,12 +39,6 @@ struct ChartController: View {
     }
     
     func goHome() {
-        /*
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: HomeView(viewModel:viewModel.configViewModel, motion: MotionManager()))
-            window.makeKeyAndVisible()
-        }
-         */
         presentationMode.wrappedValue.dismiss()
     }
     
@@ -181,17 +175,18 @@ struct ChartController: View {
                 Button(action: {
                     goHome()
                 }, label: {
-                    Text("< BACK <")
+                    Text("<BACK")
                         .padding(7)
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .background(greenBtn)
                         .foregroundColor(.white)
                 })
             }
         }
      }
+    }.navigationBarTitle("")
+    .navigationBarHidden(true)
   }
-    }
 }
 
 

@@ -37,12 +37,6 @@ struct DataFilesView: View {
     }
     
     func goHome() {
-        /*
-        if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: HomeView(viewModel:viewModel.configViewModel, motion: MotionManager()))
-            window.makeKeyAndVisible()
-        }
-         */
         presentationMode.wrappedValue.dismiss()
     }
     
@@ -60,16 +54,19 @@ struct DataFilesView: View {
             }
             
             HStack{
-                Button(action: {
-                    onChartTapped()
-                }, label: {
-                    Text("CHART")
-                        .padding(7)
-                        .font(.system(size: 14))
-                        .background(greenBtn)
-                        .foregroundColor(btnEnableChart ? .white : .gray)
-                }).disabled(!btnEnableChart)
-                    
+                NavigationLink(
+                    destination: ChartController().navigationBarBackButtonHidden(true).onAppear(perform: {
+                        onChartTapped()
+                    }),
+                    label: {
+                        Text("CHART")
+                            .padding(7)
+                            .font(.system(size: 14))
+                            .background(greenBtn)
+                            .foregroundColor(btnEnableChart ? .white : .gray)
+                    }).disabled(!btnEnableChart)
+
+    
                 Button(action: {
                     goHome()
                 }, label: {
@@ -150,11 +147,6 @@ struct DataFilesView: View {
     func onChartTapped(){
         if !selectedItems.isEmpty{
             strokeManager.loadDataFromFile(path: selectedItems.first ?? "")
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = UIHostingController(rootView: ChartController())
-                window.makeKeyAndVisible()
-            }
-
         }
     }
     

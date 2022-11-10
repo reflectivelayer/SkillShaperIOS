@@ -224,14 +224,11 @@ struct HomeView: View {
                 .background(greenBtn)
                 .foregroundColor(remoteAcc ? .gray : .white)
                 .disabled(remoteAcc)
-                    
-                    NavigationLink(
-                                /// 2
-                                destination: DataFilesView().navigationBarBackButtonHidden(true),
-                                /// 3
-                                label: {
-                                    Text("DATA")
-                                })
+                NavigationLink(
+                    destination: DataFilesView().navigationBarBackButtonHidden(true),
+                    label: {
+                        Text("DATA")
+                    })
                 .padding(10)
                 .background(greenBtn)
                 .foregroundColor((remoteAcc && watchDataEnabled) || (!remoteAcc && dataBtnEnabled) ? .white : .gray)
