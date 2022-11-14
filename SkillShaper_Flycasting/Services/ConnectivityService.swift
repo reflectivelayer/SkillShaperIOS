@@ -13,6 +13,8 @@ class ConnectivityService: NSObject {
     private let session: WCSession = .default
     
     @Published var sensorValue: Double = 0.0
+    @Published var sensorValueLateral: Double = 0.0
+    @Published var sensorValueVertical: Double = 0.0
     
     init(settingsStore: SettingsStore) {
         
@@ -58,6 +60,8 @@ extension ConnectivityService: WCSessionDelegate {
             }else{
                 strokeManager.stop()
             }
+        case "t": sensorValueLateral = Double(message[key] as! Float32)
+        case "u": sensorValueVertical = Double(message[key] as! Float32)
         case "v": sensorValue = Double(message[key] as! Float32)
         case "s": settingsStore.skill = Skill(rawValue: message[key] as! Int)!
         case "h": settingsStore.hears = (message[key] as! [Int]).map { Hear(rawValue: $0)! }
@@ -65,6 +69,7 @@ extension ConnectivityService: WCSessionDelegate {
         default:
             break
         }
+        print(sensorValueVertical)
         //NSLog(message.description)//                                    for Debug Build 25
     }
 }
