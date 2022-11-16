@@ -17,7 +17,7 @@ struct ChartController: View {
     @State var remoteBoxClicked1 = false
     @State var remoteBoxClicked2 = false
     @State var drawBtnClicked = true //TODO Make FALSE
-    @State var dataSource = AccAxis.main
+    @State var dataSources:Set = [AccAxis.main]
     @State var fillPositive = false
     @State var fillNegative = false
     @State var chkStroke = true
@@ -59,9 +59,9 @@ struct ChartController: View {
                 Button(action: {
                     chkStroke = !chkStroke
                     if chkStroke{
-                        dataSource = AccAxis.main
-                        chkSide = false
-                        chkUpDown = false
+                        dataSources.insert(AccAxis.main)
+                    }else{
+                        dataSources.remove(AccAxis.main)
                     }
                 }) {
                     HStack{
@@ -78,9 +78,9 @@ struct ChartController: View {
                 Button(action: {
                     chkSide = !chkSide
                     if chkSide{
-                        dataSource = AccAxis.lateral
-                        chkStroke = false
-                        chkUpDown = false
+                        dataSources.insert(AccAxis.lateral)
+                    }else{
+                        dataSources.remove(AccAxis.lateral)
                     }
                 }) {
                     HStack{
@@ -97,7 +97,9 @@ struct ChartController: View {
                 Button(action: {
                     chkUpDown = !chkUpDown
                     if chkUpDown{
-                        dataSource = AccAxis.vertical
+                        dataSources.insert(AccAxis.vertical)
+                    }else{
+                        dataSources.remove(AccAxis.vertical)
                     }
                 }) {
                     HStack{
@@ -119,7 +121,7 @@ struct ChartController: View {
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                 } else {
-                    ChartGrid(dataSource: $dataSource,fillPositive: $fillPositive,fillNegative: $fillNegative, offset: $offset)
+                    ChartGrid(dataSources: $dataSources,fillPositive: $fillPositive,fillNegative: $fillNegative, offset: $offset)
                         .background(Color.white)
                         .gesture(DragGesture().onChanged({ gesture in
                             self.offset = gesture.translation
@@ -145,7 +147,7 @@ struct ChartController: View {
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                            Text(dataSource == AccAxis.main ? "fore" : "left")
+                            Text(dataSources.contains(AccAxis.main) ? "fore" : "left")
                             .font(.system(size: 15))
                             .foregroundColor(yellow)
                         }
@@ -161,7 +163,7 @@ struct ChartController: View {
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                            Text(dataSource == AccAxis.main ? "back" : "right")
+                            Text(dataSources.contains(AccAxis.main) ? "back" : "right")
                             .font(.system(size: 15))
                             .foregroundColor(yellow)
                         }
