@@ -50,7 +50,6 @@ extension ConnectivityService: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        
         guard let key = message.keys.first else { return }
         switch key {
         case "p":
@@ -69,7 +68,6 @@ extension ConnectivityService: WCSessionDelegate {
         default:
             break
         }
-        print(sensorValueVertical)
         //NSLog(message.description)//                                    for Debug Build 25
     }
 }

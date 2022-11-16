@@ -133,6 +133,12 @@ class StrokeManager{
     func stop(){
         audioService?.stop()
         isLogging = false
+        var min = 50
+        if(accDataMain.count>min || accDataLateral.count>min || accDataVertical.count>min){
+            saveData()
+            clearMotionData()
+        }
+
 
     }
     
@@ -156,9 +162,7 @@ class StrokeManager{
     }
     
     func loadMotionFromData(data:String){
-        accDataMain.removeAll()
-        accDataLateral.removeAll()
-        accDataVertical.removeAll()
+        clearMotionData()
         var dataSub = data.components(separatedBy: "<data>")[1]
         dataSub = dataSub.components(separatedBy: "</data>")[0]
         var entries = dataSub.components(separatedBy: "\n")
@@ -170,6 +174,12 @@ class StrokeManager{
                     accDataVertical.append(Double(vals[2])!)
                 }
             }
+    }
+    
+    func clearMotionData(){
+        accDataMain.removeAll()
+        accDataLateral.removeAll()
+        accDataVertical.removeAll()
     }
     
     
