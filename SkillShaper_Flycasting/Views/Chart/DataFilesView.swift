@@ -30,6 +30,7 @@ struct DataFilesView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var showShareSheet = false
+    @State private var showingAlert = false
     
     func geFileList(){
         selectedItems.removeAll()
@@ -89,7 +90,7 @@ struct DataFilesView: View {
                 }).disabled(!btnEnableSend)
                     
                 Button(action: {
-                    onEraseAllTapped()
+                    showingAlert = true
                 }, label: {
                     Text("ERASE ALL")
                         .padding(7)
@@ -97,7 +98,23 @@ struct DataFilesView: View {
                         .background(greenBtn)
                         .foregroundColor(fileList.count>0 ? .white : .gray)
                 }).disabled(fileList.count==0)
-            
+                .alert(isPresented:$showingAlert) {
+                            Alert(
+                                title: Text("Erase all session data records?"),
+                                message: Text("You will lose them permanently"),
+                                primaryButton: .destructive(Text("Delete")) {
+                                    onEraseAllTapped()
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+                
+                
+                
+                
+                
+                
+                
                 Button(action: {
                     goBack()
                 }, label: {
