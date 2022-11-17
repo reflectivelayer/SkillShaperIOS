@@ -21,16 +21,15 @@ struct ChartGrid:View {
             strokeManager.createGridOffset(width: geo.size.width, height: geo.size.height, graphOffset: offset).stroke(style: StrokeStyle(lineWidth: 1,dash: [5])).offset(x:50, y:0).foregroundColor(Color.black)
             
             strokeManager.createCenterLine(width: geo.size.width, height: geo.size.height).stroke(style: StrokeStyle(lineWidth: 4)).offset(x:50, y:0).foregroundColor(Color.black)
-            /*
-            if fillNegative {
-                strokeManager.createGraphFilled(accAxis:dataSource,fillPositive:true,fillNegative:false).stroke(Color.red,lineWidth: 2).offset(x:50, y:0)
+            
+            if (fillNegative && dataSources.count == 1) {
+                strokeManager.createGraphFilled(accAxis:dataSources.first!,fillPositive:true,fillNegative:false).stroke(Color.red,lineWidth: 2).offset(x:50, y:0)
             }
              
             
-            if fillPositive {
-                strokeManager.createGraphFilled(accAxis:dataSource,fillPositive:false,fillNegative:true).stroke(Color.green,lineWidth: 2).offset(x:50, y:0)
+            if (fillPositive && dataSources.count == 1) {
+                strokeManager.createGraphFilled(accAxis:dataSources.first!,fillPositive:false,fillNegative:true).stroke(Color.green,lineWidth: 2).offset(x:50, y:0)
             }
-             */
             
             if(dataSources.contains(AccAxis.main)){
                 strokeManager.createGraph(accAxis:AccAxis.main).stroke(Color.black,lineWidth: 2).offset(x:50, y:0)

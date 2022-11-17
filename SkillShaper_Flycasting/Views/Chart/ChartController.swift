@@ -42,6 +42,34 @@ struct ChartController: View {
         presentationMode.wrappedValue.dismiss()
     }
     
+    func getDirection(invert:Bool) -> String?{
+        if(invert){
+            if(dataSources.contains(AccAxis.main)){
+                return "fore"
+            }else if(dataSources.contains(AccAxis.lateral)){
+                return "right"
+            }else if(dataSources.contains(AccAxis.vertical)){
+                return "up"
+            }else{
+                return nil
+            }
+        }else{
+            if(dataSources.contains(AccAxis.main)){
+                return "back"
+            }else if(dataSources.contains(AccAxis.lateral)){
+                return "left"
+            }else if(dataSources.contains(AccAxis.vertical)){
+                return "down"
+            }else{
+                return nil
+            }
+        }
+    }
+    
+    func isAxisChangeValid(axis:AccAxis)->Bool{
+        return dataSources.count > 1 || dataSources.first != axis
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing:0){
             Text(" ")
@@ -54,14 +82,19 @@ struct ChartController: View {
                 .foregroundColor(yellow)
                 .font(.system(size: 30)
                         .bold())
-            
+            Text(strokeManager.loadedFile ?? "")
+                .foregroundColor(yellow)
+                .font(.system(size: 25)
+                        .bold())
             HStack{
                 Button(action: {
-                    chkStroke = !chkStroke
-                    if chkStroke{
-                        dataSources.insert(AccAxis.main)
-                    }else{
-                        dataSources.remove(AccAxis.main)
+                    if(isAxisChangeValid(axis: .main)){
+                        chkStroke = !chkStroke
+                        if chkStroke{
+                            dataSources.insert(AccAxis.main)
+                        }else{
+                            dataSources.remove(AccAxis.main)
+                        }
                     }
                 }) {
                     HStack{
@@ -76,11 +109,13 @@ struct ChartController: View {
                     }
                 }
                 Button(action: {
-                    chkSide = !chkSide
-                    if chkSide{
-                        dataSources.insert(AccAxis.lateral)
-                    }else{
-                        dataSources.remove(AccAxis.lateral)
+                    if(isAxisChangeValid(axis: .lateral)){
+                        chkSide = !chkSide
+                        if chkSide{
+                            dataSources.insert(AccAxis.lateral)
+                        }else{
+                            dataSources.remove(AccAxis.lateral)
+                        }
                     }
                 }) {
                     HStack{
@@ -95,11 +130,13 @@ struct ChartController: View {
                     }
                 }
                 Button(action: {
-                    chkUpDown = !chkUpDown
-                    if chkUpDown{
-                        dataSources.insert(AccAxis.vertical)
-                    }else{
-                        dataSources.remove(AccAxis.vertical)
+                    if(isAxisChangeValid(axis: .vertical)){
+                        chkUpDown = !chkUpDown
+                        if chkUpDown{
+                            dataSources.insert(AccAxis.vertical)
+                        }else{
+                            dataSources.remove(AccAxis.vertical)
+                        }
                     }
                 }) {
                     HStack{
@@ -134,6 +171,7 @@ struct ChartController: View {
                 }
             
             }
+            if(dataSources.count < 2){
             HStack{
                 Text("Highlight acceleraions")
                     .foregroundColor(yellow)
@@ -147,7 +185,7 @@ struct ChartController: View {
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                            Text(dataSources.contains(AccAxis.main) ? "fore" : "left")
+                            Text(getDirection(invert: false) ?? "")
                             .font(.system(size: 15))
                             .foregroundColor(yellow)
                         }
@@ -163,12 +201,13 @@ struct ChartController: View {
                             .padding(3)
                             .foregroundColor(.green)
                         VStack{
-                            Text(dataSources.contains(AccAxis.main) ? "back" : "right")
+                            Text(getDirection(invert: true) ?? "")
                             .font(.system(size: 15))
                             .foregroundColor(yellow)
                         }
                     }
                 }
+             }
             }
             
             HStack{

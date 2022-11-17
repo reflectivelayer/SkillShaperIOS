@@ -49,7 +49,8 @@ struct DataFilesView: View {
                        
             List {
                 ForEach(fileList, id: \.self) { url in
-                    renderFileEntry(title: url.lastPathComponent)
+                    var isSelected = selectedItems.contains(url.lastPathComponent)
+                    renderFileEntry(title: url.lastPathComponent).listRowBackground(isSelected ? Color(red:0.9,green:0.9,blue:0.9) : Color.white)
                 }.listRowBackground(Color.white)
             }
             
@@ -112,6 +113,7 @@ struct DataFilesView: View {
         .onAppear {
             UITableView.appearance().backgroundColor = .white
             geFileList()
+            updateButtons()
         } .sheet(isPresented: $showShareSheet) {
             if selectedItems.first != nil {
                 let data = strokeManager.getDataFromFile(fileName: selectedItems.first!)
@@ -129,6 +131,7 @@ struct DataFilesView: View {
                 .font(.system(size: 17))
                 .bold()
                 .foregroundColor(.black)
+            Spacer()
             Button(action: {
                 onFileItemTapped(title:title)
             }) {

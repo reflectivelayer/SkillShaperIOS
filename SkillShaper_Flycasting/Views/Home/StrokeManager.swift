@@ -38,6 +38,7 @@ class StrokeManager{
     var accLateral:Double = 0
     var viewWidth:CGFloat = 0
     var audioService:AudioService2?
+    var loadedFile:String?
     let dataManager = SessionDataManager()
     
     private var cancellables = Set<AnyCancellable>()
@@ -155,6 +156,7 @@ class StrokeManager{
     func loadDataFromFile(fileName:String){
         var data:String = dataManager.loadData(fileName: fileName)
         loadMotionFromData(data: data)
+        loadedFile = fileName
     }
     
     func getDataFromFile(fileName:String)->String{
