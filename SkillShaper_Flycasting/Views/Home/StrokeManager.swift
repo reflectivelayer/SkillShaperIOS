@@ -41,14 +41,14 @@ class StrokeManager{
     var audioService:AudioService2?
     var loadedFile:String?
     let dataManager = SessionDataManager()
-    var montionCanceller: AnyCancellable?
+    var motionCanceller: AnyCancellable?
     
     private var cancellables = Set<AnyCancellable>()
     
     func setMotionManager(motionManager: MotionManager){
         audioService = AudioService2(publisher: motionManager.$acc)
-        montionCanceller = motionManager.$acc.sink { [weak self] acc in
-            if(acc != nil){
+        if(motionCanceller == nil){
+            motionCanceller = motionManager.$acc.sink { [weak self] acc in
                 self?.updateAcceleration(acceleration: acc)
             }
         }

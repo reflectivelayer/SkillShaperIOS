@@ -28,73 +28,76 @@ class AudioService {
     private var bStopHasStarted = false
     private var gain = 0.0
     private var isLogging = false
+    var motionCanceller: AnyCancellable?
     
-    init(settingsStore: SettingsStore, publisher: Published<Double>.Publisher) {
+    init(settingsStore: SettingsStore, publisher: Published<CMAcceleration>.Publisher) {
         self.settingsStore = settingsStore
         configurate(for: .stroke)
-        publisher.sink { [weak self] acc in
-            if !remoteAccelerometer { return }
-            guard let self = self else { return }
-            if(!self.isLogging){return}
-            let sensorValue = acc
-            guard self.validateSensorValue(value: sensorValue) else {
-                //                           ---------------------------------------Not validated ----------
-                self.audioPlayer.volume = 0.0
-                self.pitchControl.pitch = 0.0
-                self.uPeak = 0.0
-                self.bStopHasStarted = false
-                self.lastReading = sensorValue
-                return }
-            //                           ------------------------------------------ Validated ----------
-            if settingsStore.skill == .stop {
-                self.uAccel = abs(sensorValue*5)
-                self.gain = sensorValue - self.lastReading
-                print(self.gain)
-                if sensorValue < 0.0 {
-                    self.gain = self.gain * -1
-                }
-                if self.bStopHasStarted { //               If Stopping has already started
-                   //self.path += "a1 "
-                   if self.uAccel > self.uPeak { //           if accel is greater than peak
-                       self.uPeak = self.uAccel //                 reset peak
-                       self.updateVolume(with: self.uAccel)
-                       self.updatePitch(with: self.uAccel)
+        if(motionCanceller == nil ){
+            motionCanceller = publisher.sink { [weak self] acc in
+                if !remoteAccelerometer { return }
+                guard let self = self else { return }
+                if(!self.isLogging){return}
+                let sensorValue = acc.x
+                guard self.validateSensorValue(value: sensorValue) else {
+                    //                           ---------------------------------------Not validated ----------
+                    self.audioPlayer.volume = 0.0
+                    self.pitchControl.pitch = 0.0
+                    self.uPeak = 0.0
+                    self.bStopHasStarted = false
+                    self.lastReading = sensorValue
+                    return }
+                //                           ------------------------------------------ Validated ----------
+                if settingsStore.skill == .stop {
+                    self.uAccel = abs(sensorValue*5)
+                    self.gain = sensorValue - self.lastReading
+                    print(self.gain)
+                    if sensorValue < 0.0 {
+                        self.gain = self.gain * -1
+                    }
+                    if self.bStopHasStarted { //               If Stopping has already started
+                       //self.path += "a1 "
+                       if self.uAccel > self.uPeak { //           if accel is greater than peak
+                           self.uPeak = self.uAccel //                 reset peak
+                           self.updateVolume(with: self.uAccel)
+                           self.updatePitch(with: self.uAccel)
+                       }
+                       else { //                                  if accel is less than peak
+                           if self.uAccel < 0.2{ //                   if accel less than 0.2
+                               self.bStopHasStarted = false//               turn off Stopping Flag
+                               self.uPeak = 0.0 //                          Algo 8c
+                               self.updateVolume(with: 0.0) //              turn off sound
+                               self.updatePitch(with: 0.0)
+                            
+                           }
+                           else { //                                   but if accel is still higher than 0.2
+                               self.updateVolume(with: self.uAccel) //       update volume ... but not pitch
+                               self.updatePitch(with: self.uPeak) //         no change in peak
+                           }
+                       }
                    }
-                   else { //                                  if accel is less than peak
-                       if self.uAccel < 0.2{ //                   if accel less than 0.2
-                           self.bStopHasStarted = false//               turn off Stopping Flag
-                           self.uPeak = 0.0 //                          Algo 8c
-                           self.updateVolume(with: 0.0) //              turn off sound
+                   else { //                                  Stopping has NOT sterted
+                       if self.uAccel > 1.6 && self.gain > 0.2{ //   If sharp change to strong accel
+                           self.bStopHasStarted = true //                  set StoppingFlag to true
+                           self.uPeak = self.uAccel //                     set peak
+                           self.updateVolume(with: self.uAccel)
+                           self.updatePitch(with: self.uAccel) //        update pitch & volume
+                           }
+                       else { //                                         If accel not signalling a Stopping event
+                           self.uPeak = 0.0 //                     Algo 8c
+                           self.updateVolume(with: 0.0)
                            self.updatePitch(with: 0.0)
-                        
                        }
-                       else { //                                   but if accel is still higher than 0.2
-                           self.updateVolume(with: self.uAccel) //       update volume ... but not pitch
-                           self.updatePitch(with: self.uPeak) //         no change in peak
-                       }
-                   }
-               }
-               else { //                                  Stopping has NOT sterted
-                   if self.uAccel > 1.6 && self.gain > 0.2{ //   If sharp change to strong accel
-                       self.bStopHasStarted = true //                  set StoppingFlag to true
-                       self.uPeak = self.uAccel //                     set peak
-                       self.updateVolume(with: self.uAccel)
-                       self.updatePitch(with: self.uAccel) //        update pitch & volume
-                       }
-                   else { //                                         If accel not signalling a Stopping event
-                       self.uPeak = 0.0 //                     Algo 8c
-                       self.updateVolume(with: 0.0)
-                       self.updatePitch(with: 0.0)
-                   }
-              }
+                  }
+                }
+                else {
+                    self.updateVolume(with: sensorValue)
+                    self.updatePitch(with: sensorValue)
+                }
+                self.lastReading = sensorValue
+                self.updateTimer()
             }
-            else {
-                self.updateVolume(with: sensorValue)
-                self.updatePitch(with: sensorValue)
-            }
-            self.lastReading = sensorValue
-            self.updateTimer()
-        }.store(in: &cancellables)
+        }
     }
     
     func configurate(for skill: Skill, hears: [Hear] = [Hear]()) {

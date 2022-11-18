@@ -20,7 +20,7 @@ class DashboardViewModel {
         
         self.configViewModel = ConfigViewModel(settingsStore: settingsStore)
         self.connectivityService = ConnectivityService(settingsStore: settingsStore)
-        self.audioService = AudioService(settingsStore: settingsStore, publisher: connectivityService.$sensorValue)
+        self.audioService = AudioService(settingsStore: settingsStore, publisher: connectivityService.$sensorValueXYZ)
         self.audioService.play()
         strokeManager.setRemoteMotionPublisher(publisher: connectivityService.$sensorValueXYZ)
     }

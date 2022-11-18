@@ -12,10 +12,6 @@ class ConnectivityService: NSObject {
     
     private let settingsStore: SettingsStore
     private let session: WCSession = .default
-    
-    @Published var sensorValue: Double = 0.0
-    @Published var sensorValueLateral: Double = 0.0
-    @Published var sensorValueVertical: Double = 0.0
     @Published var sensorValueXYZ:CMAcceleration = CMAcceleration()
     
     init(settingsStore: SettingsStore) {
@@ -54,10 +50,10 @@ extension ConnectivityService: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         guard let key = message.keys.first else { return }
         if(message.keys.contains("t")){
-            sensorValue = Double(message["v"] as! Float32)
+            let axisX = Double(message["v"] as! Float32)
             let axisY = Double(message["u"] as! Float32)
             let axitZ = Double(message["t"] as! Float32)
-            sensorValueXYZ = CMAcceleration(x:sensorValue,y:axisY,z:axitZ)
+            sensorValueXYZ = CMAcceleration(x:axisX,y:axisY,z:axitZ)
         }else{
             switch key {
                 case "p":

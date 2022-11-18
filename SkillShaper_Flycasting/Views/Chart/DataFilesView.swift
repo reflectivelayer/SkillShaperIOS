@@ -35,6 +35,7 @@ struct DataFilesView: View {
     func geFileList(){
         selectedItems.removeAll()
         fileList = strokeManager.getFileList()
+        fileList = fileList.sorted(by: { $0.lastPathComponent > $1.lastPathComponent })
     }
     
     func goBack() {
