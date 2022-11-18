@@ -103,8 +103,10 @@ struct HomeView: View {
         stopBtnVisible = false
         dataBtnEnabled = true
         isLogging = false
+        print("dfx - stop logging")
         strokeManager.stop()
         strokeManager.saveData()
+
     }
 
     var body: some View {

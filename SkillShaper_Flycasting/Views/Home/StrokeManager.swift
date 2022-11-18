@@ -36,6 +36,7 @@ class StrokeManager{
     var acc:CMDeviceMotion?
     var accMain:Double = 0
     var accLateral:Double = 0
+    var accVertical:Double = 0
     var viewWidth:CGFloat = 0
     var audioService:AudioService2?
     var loadedFile:String?
@@ -52,12 +53,9 @@ class StrokeManager{
         }.store(in: &cancellables)
     }
     
-    func setRemoteMotionPublisher( publisher: Published<Double>.Publisher){
+    func setRemoteMotionPublisher( publisher: Published<CMAcceleration>.Publisher){
         publisher.sink { [weak self] acc in
-            if(acc != nil){
-                let accXYZ = CMAcceleration(x:acc,y:0,z:0)
-                self?.updateAcceleration(acceleration: accXYZ)
-            }
+            self?.updateAcceleration(acceleration: acc)
         }.store(in: &cancellables)
     }
     
@@ -134,19 +132,13 @@ class StrokeManager{
     func stop(){
         audioService?.stop()
         isLogging = false
-        var min = 50
-        if(accDataMain.count>min || accDataLateral.count>min || accDataVertical.count>min){
-            saveData()
-            clearMotionData()
-        }
-
-
     }
     
     func saveData(){
-        if accDataMain.count > 0{
-            dataManager.saveData(dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
-        }
+        dataManager.saveData(dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
+        print("dfx - saveData - " + String(accDataMain.count))
+        clearMotionData()
+        
     }
     
     func deleteDataFile(fileName:String){
@@ -188,18 +180,19 @@ class StrokeManager{
     func updateAcceleration(acceleration: CMAcceleration){
         if(isLogging){
             accMain = acceleration.x * MotionManager.accMultiplier
-            accLateral = acceleration.z
+            accVertical = acceleration.y * MotionManager.accMultiplier
+            accLateral = acceleration.z * MotionManager.accMultiplier
             if(accDataMain.count>maxSample){
                 accDataMain.removeFirst();
                 accDataLateral.removeFirst();
                 accDataVertical.removeFirst();
                 
             }
-            accDataMain.append(accMain)
+            accDataMain.append(acceleration.x)
             accDataLateral.append(acceleration.z)
             accDataVertical.append(acceleration.y)
-            
         }
+        
     }
     
     func createGrid(width:CGFloat,height:CGFloat)->Path{

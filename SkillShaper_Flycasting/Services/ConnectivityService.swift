@@ -6,6 +6,7 @@
 import Foundation
 import Combine
 import WatchConnectivity
+import CoreMotion
 
 class ConnectivityService: NSObject {
     
@@ -15,6 +16,7 @@ class ConnectivityService: NSObject {
     @Published var sensorValue: Double = 0.0
     @Published var sensorValueLateral: Double = 0.0
     @Published var sensorValueVertical: Double = 0.0
+    @Published var sensorValueXYZ:CMAcceleration = CMAcceleration()
     
     init(settingsStore: SettingsStore) {
         
@@ -51,23 +53,27 @@ extension ConnectivityService: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         guard let key = message.keys.first else { return }
-        switch key {
-        case "p":
-            settingsStore.isPlaying = message[key] as! Bool
-            if(settingsStore.isPlaying){
-                strokeManager.start()
-            }else{
-                strokeManager.stop()
+        if(message.keys.contains("t")){
+            sensorValue = Double(message["v"] as! Float32)
+            let axisY = Double(message["u"] as! Float32)
+            let axitZ = Double(message["t"] as! Float32)
+            sensorValueXYZ = CMAcceleration(x:sensorValue,y:axisY,z:axitZ)
+        }else{
+            switch key {
+                case "p":
+                    settingsStore.isPlaying = message[key] as! Bool
+                    if(settingsStore.isPlaying){
+                        strokeManager.start()
+                    }else{
+                        strokeManager.stop()
+                        strokeManager.saveData()
+                    }
+                case "s": settingsStore.skill = Skill(rawValue: message[key] as! Int)!
+                case "h": settingsStore.hears = (message[key] as! [Int]).map { Hear(rawValue: $0)! }
+                case "w": settingsStore.watchPosition = WatchPosition(rawValue: message[key] as! Int)!
+                default:
+                    break
             }
-        case "t": sensorValueLateral = Double(message[key] as! Float32)
-        case "u": sensorValueVertical = Double(message[key] as! Float32)
-        case "v": sensorValue = Double(message[key] as! Float32)
-        case "s": settingsStore.skill = Skill(rawValue: message[key] as! Int)!
-        case "h": settingsStore.hears = (message[key] as! [Int]).map { Hear(rawValue: $0)! }
-        case "w": settingsStore.watchPosition = WatchPosition(rawValue: message[key] as! Int)!
-        default:
-            break
         }
-        //NSLog(message.description)//                                    for Debug Build 25
     }
 }

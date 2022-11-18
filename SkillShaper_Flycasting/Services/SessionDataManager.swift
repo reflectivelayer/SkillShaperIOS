@@ -76,8 +76,9 @@ class SessionDataManager {
     }
 
     func _addData(dataPrimary:[Double], dataLateral:[Double], dataVertical:[Double])->String{
+        let count = min(dataPrimary.count,dataLateral.count,dataVertical.count)
         var dataText = "<data>\n"
-        for i in 0..<dataPrimary.count {
+        for i in 0..<count {
             dataText += String(format: "%.2f", dataPrimary[i]) + "\t"
             + String(format: "%.2f", dataLateral[i]) + "\t"
             + String(format: "%.2f", dataVertical[i]) + "\n"
