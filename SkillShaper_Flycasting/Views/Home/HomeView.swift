@@ -205,7 +205,9 @@ struct HomeView: View {
         .onAppear {
                 timeRemaining = timeLength
                 print("ON APPEAR")
-                strokeManager.setMotionManager(motionManager: motion)
+                if(strokeManager.montionCanceller == nil){
+                    strokeManager.setMotionManager(motionManager: motion)
+                }
                 strokeManager.stop()
             accMainStrength = motion.acc.x
             accLateralStrength = motion.acc.y

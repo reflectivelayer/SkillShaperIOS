@@ -41,16 +41,17 @@ class StrokeManager{
     var audioService:AudioService2?
     var loadedFile:String?
     let dataManager = SessionDataManager()
+    var montionCanceller: AnyCancellable?
     
     private var cancellables = Set<AnyCancellable>()
     
     func setMotionManager(motionManager: MotionManager){
         audioService = AudioService2(publisher: motionManager.$acc)
-        motionManager.$acc.sink { [weak self] acc in
+        montionCanceller = motionManager.$acc.sink { [weak self] acc in
             if(acc != nil){
                 self?.updateAcceleration(acceleration: acc)
             }
-        }.store(in: &cancellables)
+        }
     }
     
     func setRemoteMotionPublisher( publisher: Published<CMAcceleration>.Publisher){
