@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -68,6 +68,7 @@
 		48B825F924EF0B8B006594E8 /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0F24EBE01C00BFE868 /* Skill.swift */; };
 		48B825FA24EF0B8E006594E8 /* Hear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1124EBE0F700BFE868 /* Hear.swift */; };
 		48B825FB24EF0B91006594E8 /* WatchPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B1324EBE15000BFE868 /* WatchPosition.swift */; };
+		8D02D539294352A900627E1B /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D02D538294352A900627E1B /* SoundpipeAudioKit */; };
 		8D16ABA6291A300500541C78 /* SessionDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16ABA5291A300500541C78 /* SessionDataManager.swift */; };
 		8D36DCB22733913100A88DCC /* ChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCB12733913100A88DCC /* ChartController.swift */; };
 		8D36DCB72733917E00A88DCC /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DCB62733917E00A88DCC /* ChartView.swift */; };
@@ -84,6 +85,7 @@
 		8D36DD012733A1BD00A88DCC /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36DD002733A1BD00A88DCC /* MotionManager.swift */; };
 		8D65EBF227357B130042FFA2 /* AudioService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65EBF127357B130042FFA2 /* AudioService2.swift */; };
 		8D77E298291B98830080FE6D /* DataFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77E297291B98830080FE6D /* DataFilesView.swift */; };
+		8D9BAE6329433CD20038676F /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D9BAE6229433CD20038676F /* AudioKit */; };
 		8DA1AE092735A47600E47F4C /* c4sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE042735A47600E47F4C /* c4sq.wav */; };
 		8DA1AE0B2735A47600E47F4C /* e4sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE062735A47600E47F4C /* e4sq.wav */; };
 		8DA1AE0C2735A47600E47F4C /* g5sq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8DA1AE072735A47600E47F4C /* g5sq.wav */; };
@@ -218,6 +220,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D02D539294352A900627E1B /* SoundpipeAudioKit in Frameworks */,
+				8D9BAE6329433CD20038676F /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +635,10 @@
 				48992E1024D4820E00B59465 /* PBXTargetDependency */,
 			);
 			name = SkillShaper_Flycasting;
+			packageProductDependencies = (
+				8D9BAE6229433CD20038676F /* AudioKit */,
+				8D02D538294352A900627E1B /* SoundpipeAudioKit */,
+			);
 			productName = SkillShaper_Flycasting;
 			productReference = 48992DF924D4820D00B59465 /* SkillShaper_Flycasting.app */;
 			productType = "com.apple.product-type.application";
@@ -699,6 +707,10 @@
 				Base,
 			);
 			mainGroup = 48992DF024D4820D00B59465;
+			packageReferences = (
+				8D9BAE6129433CD20038676F /* XCRemoteSwiftPackageReference "AudioKit" */,
+				8D02D537294352A900627E1B /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+			);
 			productRefGroup = 48992DFA24D4820D00B59465 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -983,7 +995,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "SkillShaper_Flycasting WatchKit Extension/SkillShaper_Flycasting WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
@@ -993,7 +1005,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1010,7 +1022,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "SkillShaper_Flycasting WatchKit Extension/SkillShaper_Flycasting WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
@@ -1020,7 +1032,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1037,11 +1049,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				IBSC_MODULE = SkillShaper_Flycasting_WatchKit_Extension;
 				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1058,11 +1070,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				IBSC_MODULE = SkillShaper_Flycasting_WatchKit_Extension;
 				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1078,7 +1090,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
@@ -1088,7 +1100,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1101,7 +1113,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
@@ -1111,7 +1123,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1159,6 +1171,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D02D537294352A900627E1B /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8D9BAE6129433CD20038676F /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D02D538294352A900627E1B /* SoundpipeAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D02D537294352A900627E1B /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
+			productName = SoundpipeAudioKit;
+		};
+		8D9BAE6229433CD20038676F /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D9BAE6129433CD20038676F /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 48992DF124D4820D00B59465 /* Project object */;
 }

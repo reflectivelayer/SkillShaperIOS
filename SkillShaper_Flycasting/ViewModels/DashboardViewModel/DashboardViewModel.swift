@@ -12,7 +12,7 @@ class DashboardViewModel {
     
     private let settingsStore = SettingsStore()
     private let connectivityService: ConnectivityService
-    private let audioService: AudioService
+    //private let audioService: AudioService
     
     let configViewModel: ConfigViewModel
     
@@ -20,8 +20,8 @@ class DashboardViewModel {
         
         self.configViewModel = ConfigViewModel(settingsStore: settingsStore)
         self.connectivityService = ConnectivityService(settingsStore: settingsStore)
-        self.audioService = AudioService(settingsStore: settingsStore, publisher: connectivityService.$sensorValueXYZ)
-        self.audioService.play()
+       // self.audioService = AudioService(settingsStore: settingsStore, publisher: connectivityService.$sensorValueXYZ)
+       // self.audioService.play()
         strokeManager.setRemoteMotionPublisher(publisher: connectivityService.$sensorValueXYZ)
     }
 }

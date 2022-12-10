@@ -98,6 +98,14 @@ struct HomeView: View {
         
     }
     
+    func getRemoteMoveTitle() -> String{
+        var remoteMoveTitle = "\(viewModel.skillTitle.uppercased()) \(viewModel.hearsTitle)"
+        if(viewModel.skillTitle.uppercased() == "ALLMOVES"){
+            remoteMoveTitle = "ALL MOVES"
+        }
+        return remoteMoveTitle
+    }
+    
     func stopLogging() {
         startBtnVisible = true
         stopBtnVisible = false
@@ -162,7 +170,8 @@ struct HomeView: View {
                             }
                         }
                         if(remoteAccelerometer){
-                            Text("\(viewModel.skillTitle.uppercased()) \(viewModel.hearsTitle)")
+                            
+                            Text(getRemoteMoveTitle())
                                     .font(.system(size: 15))
                                     .foregroundColor(.white)
                         }else{
@@ -210,7 +219,7 @@ struct HomeView: View {
             accMainStrength = motion.acc.x
             accLateralStrength = motion.acc.y
             remoteAcc = remoteAccelerometer
-
+             
             }.onDisappear {
                 motion.stop()
             }//.onappear

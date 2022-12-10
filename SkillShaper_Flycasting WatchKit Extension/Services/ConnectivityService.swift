@@ -20,7 +20,7 @@ class ConnectivityService: NSObject {
     private var hearsChanges: AnyCancellable!
     private var watchPositionChanges: AnyCancellable!
     
-    init(store: SettingsStore, publisher: Published<Double>.Publisher, publisher2: Published<CMAcceleration>.Publisher) {
+    init(store: SettingsStore, publisher: Published<CMAcceleration>.Publisher) {
         
         self.store = store
         
@@ -30,7 +30,7 @@ class ConnectivityService: NSObject {
         self.session.activate()
         
         self.subscribeToIsPlayingChanges()
-        self.subscribeToSensorChanges(publisher: publisher, publisher2: publisher2)
+        self.subscribeToSensorChanges(publisher: publisher)
         self.subscribeToSkillChanges()
         self.subscribeToHearsChanges()
         self.subscribeToWatchPositionChanges()
@@ -46,20 +46,9 @@ class ConnectivityService: NSObject {
         }
     }
     
-    private func subscribeToSensorChanges(publisher: Published<Double>.Publisher, publisher2: Published<CMAcceleration>.Publisher) {
+    private func subscribeToSensorChanges(publisher: Published<CMAcceleration>.Publisher) {
         
-        sensorChanges = publisher.sink { [weak self] value in
-            
-            guard let self = self else { return }
-            
-            if value > 0.01 || value < -0.01 {
-                
-                self.sendSensorValue(value: value)
-                //print(value)
-            }
-        }
-        
-        sensorAllChanges = publisher2.sink { [weak self] valueAll in
+        sensorAllChanges = publisher.sink { [weak self] valueAll in
             
             guard let self = self else { return }
             
@@ -111,25 +100,16 @@ class ConnectivityService: NSObject {
         }
     }
     
-    private func sendSensorValue(value: Double) {
-        
-        let message = ["v": Float32(value)]
-        
-        session.sendMessage(message, replyHandler: nil) { error in
-            
-            print("ERROR watchOS.ConnectivityService.sendSensorValue: \(error), \(error.localizedDescription)")
-        }
-        //NSLog(value.description);
-    }
-    
     private func sendSensorValue(value: CMAcceleration) {
-        
+        //let message = ["t": Float32(value.x)]
         let message = ["t": Float32(value.x),"u": Float32(value.y), "v": Float32(value.z)]
         session.sendMessage(message, replyHandler: nil) { error in
             
             print("ERROR watchOS.ConnectivityService.sendSensorValue: \(error), \(error.localizedDescription)")
         }
         //NSLog(value.description);
+        //print(message)
+        //print(NSDate.timeIntervalSinceReferenceDate)
     }
     
     

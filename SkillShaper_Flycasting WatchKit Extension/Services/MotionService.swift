@@ -13,7 +13,6 @@ class MotionService {
     private let maxRodAngleForRollCast = 9.0
     //private var rodAngle = 0.0
     @Published var rodAngle: Double = 0.0
-    @Published var sensorValue: Double = 0.0
     @Published var sensorsXYZValues:CMAcceleration = CMAcceleration()
     
     init(settingsStore: SettingsStore) {
@@ -23,7 +22,7 @@ class MotionService {
     }
     
     private func updateSensorValue(for acceleration: CMAcceleration) { //}, for angle: CMAttitude) {
-        
+        /*
         switch settingsStore.skill {
         case .allMoves:
             sensorValue = acceleration.z
@@ -33,6 +32,8 @@ class MotionService {
         case .straight:
             sensorValue = settingsStore.watchPosition == .sideways ? acceleration.y : acceleration.x
         }
+         */
+        sensorsXYZValues = acceleration
     }
     
     //private func updateRodAngle(for angle: CMAttitude){

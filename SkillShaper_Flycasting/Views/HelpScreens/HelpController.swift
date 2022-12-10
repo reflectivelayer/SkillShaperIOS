@@ -45,7 +45,7 @@ struct HelpController: View {
     }
 
         var body: some View {
-
+            ScrollView {
                 VStack(alignment: .leading, spacing: 0){
                     Text(" ")
 
@@ -61,9 +61,7 @@ struct HelpController: View {
                         VStack{
 
                            VStack{
-                               Text("SkillShaper Flycast Pro")
-                                   .foregroundColor(blkText)
-                               Text("2.0.1 Beta")
+                               Text("SkillShaper Flycast Pro 2.0.1 Beta")
                                    .foregroundColor(blkText)
                                Text(" ")
                                Text("Getting Started")
@@ -96,7 +94,6 @@ struct HelpController: View {
                                    .bold()
                                    .font(.system(size: 20))
                                    .foregroundColor(blkText)
-
                                HStack{
                                    Text(" Straps alonge the grip, held by rubber bands. Thumb on top. ")
                                        .foregroundColor(blkText)
@@ -145,7 +142,7 @@ struct HelpController: View {
                             .background(greenBtn)
                             .foregroundColor(.white)
                             // .cornerRadius(3)
-                            .font(.system(size: 15))
+                            .font(.system(size: 12))
                     })
 
                     Button(action: {
@@ -158,7 +155,7 @@ struct HelpController: View {
                             .background(greenBtn)
                             .foregroundColor(.white)
                             // .cornerRadius(3)
-                            .font(.system(size: 15))
+                            .font(.system(size: 12))
                     })
 
                     Button(action: {
@@ -171,7 +168,7 @@ struct HelpController: View {
                             .background(greenBtn)
                             .foregroundColor(.white)
                             // .cornerRadius(3)
-                            .font(.system(size: 15))
+                            .font(.system(size: 12))
                     })
                     
                     Button(action: {
@@ -179,7 +176,7 @@ struct HelpController: View {
                     }, label: {
                         Text("< BACK <")
                             .padding(10)
-                            .font(.system(size: 16))
+                            .font(.system(size: 12))
                             .background(greenBtn)
                             .foregroundColor(.white)
                     })
@@ -188,9 +185,8 @@ struct HelpController: View {
 
        }
      }
-
   }
-
+ }
 }
 
     struct HelpScreenController: PreviewProvider {

@@ -64,7 +64,7 @@ struct DataFilesView: View {
                     label: {
                         Text("CHART")
                             .padding(7)
-                            .font(.system(size: 14))
+                            .font(.system(size: 13))
                             .background(greenBtn)
                             .foregroundColor(btnEnableChart ? .white : .gray)
                     }).disabled(!btnEnableChart)
@@ -75,7 +75,7 @@ struct DataFilesView: View {
                 }, label: {
                     Text("DELETE")
                         .padding(7)
-                        .font(.system(size: 14))
+                        .font(.system(size: 13))
                         .background(greenBtn)
                         .foregroundColor(btnEnableDelete ? .white : .gray)
                 }).disabled(!btnEnableDelete)
@@ -85,7 +85,7 @@ struct DataFilesView: View {
                 }, label: {
                     Text("SEND")
                         .padding(7)
-                        .font(.system(size: 14))
+                        .font(.system(size: 13))
                         .background(greenBtn)
                         .foregroundColor(btnEnableSend ? .white : .gray)
                 }).disabled(!btnEnableSend)
@@ -95,7 +95,7 @@ struct DataFilesView: View {
                 }, label: {
                     Text("ERASE ALL")
                         .padding(7)
-                        .font(.system(size: 14))
+                        .font(.system(size: 13))
                         .background(greenBtn)
                         .foregroundColor(fileList.count>0 ? .white : .gray)
                 }).disabled(fileList.count==0)
@@ -121,7 +121,7 @@ struct DataFilesView: View {
                 }, label: {
                     Text("<Back")
                         .padding(7)
-                        .font(.system(size: 14))
+                        .font(.system(size: 12))
                         .background(greenBtn)
                         .foregroundColor(.white)
                 })
@@ -135,7 +135,7 @@ struct DataFilesView: View {
         } .sheet(isPresented: $showShareSheet) {
             if selectedItems.first != nil {
                 let data = strokeManager.getDataFromFile(fileName: selectedItems.first!)
-                ShareSheet(activityItems: [data])
+                ShareSheet(subject:selectedItems.first!, activityItems:[data])
             }
         }
      }
@@ -222,6 +222,7 @@ struct DataFilesView: View {
 struct ShareSheet: UIViewControllerRepresentable {
     typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
     
+    let subject: String
     let activityItems: [Any]
     let applicationActivities: [UIActivity]? = nil
     let excludedActivityTypes: [UIActivity.ActivityType]? = nil
@@ -233,6 +234,7 @@ struct ShareSheet: UIViewControllerRepresentable {
             applicationActivities: applicationActivities)
         controller.excludedActivityTypes = excludedActivityTypes
         controller.completionWithItemsHandler = callback
+        controller.setValue(subject, forKey: "subject")
         return controller
     }
     

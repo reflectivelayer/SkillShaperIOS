@@ -43,17 +43,17 @@ struct Settings: View {
                         )
                     )
                 } else {
-                    
-                    SettingsSection<MultipleSectionStrategy>(viewModel:
-                        SectionViewModel(
-                            store: viewModel.settingsStore,
-                            keyPath: \.hears
+                    if(self.viewModel.settingsStore.skill.name != "allMoves"){
+                        SettingsSection<MultipleSectionStrategy>(viewModel:
+                            SectionViewModel(
+                                store: viewModel.settingsStore,
+                                keyPath: \.hears
+                            )
                         )
-                    )
+                    }
                 }
                 
                 Button(action: {
-                    
                     self.viewModel.resetSettings()
                     
                 }) {

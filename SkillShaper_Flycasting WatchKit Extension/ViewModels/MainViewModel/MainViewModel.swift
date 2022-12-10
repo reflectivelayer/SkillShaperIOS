@@ -30,7 +30,7 @@ class MainViewModel: ObservableObject {
         
         self.workoutService = WorkoutService()
         self.motionService = MotionService(settingsStore: settingsStore)
-        self.connectivityService = ConnectivityService(store: settingsStore, publisher: motionService.$sensorValue, publisher2: motionService.$sensorsXYZValues)
+        self.connectivityService = ConnectivityService(store: settingsStore, publisher: motionService.$sensorsXYZValues)
     }
     
     func togglePlaying() {

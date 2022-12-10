@@ -10,7 +10,7 @@ import Combine
 import AVFoundation
 import CoreMotion
 
-class AudioService {
+class xAudioService {
     
     private let settingsStore: SettingsStore
     
@@ -95,7 +95,7 @@ class AudioService {
                     self.updatePitch(with: sensorValue)
                 }
                 self.lastReading = sensorValue
-                self.updateTimer()
+               // self.updateTimer()
             }
         }
     }

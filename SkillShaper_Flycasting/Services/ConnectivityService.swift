@@ -54,6 +54,8 @@ extension ConnectivityService: WCSessionDelegate {
             let axisY = Double(message["u"] as! Float32)
             let axitZ = Double(message["t"] as! Float32)
             sensorValueXYZ = CMAcceleration(x:axisX,y:axisY,z:axitZ)
+            //print(message)
+            //print(NSDate.timeIntervalSinceReferenceDate)
         }else{
             switch key {
                 case "p":

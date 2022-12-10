@@ -9,6 +9,10 @@ import Foundation
 import Combine
 import AVFoundation
 import CoreMotion
+import AudioKit
+import AudioKitEX
+import SoundpipeAudioKit
+
 
 class AudioService2 {
     
@@ -32,12 +36,14 @@ class AudioService2 {
     
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()
-        configurate(for: settingsStore.skill)
+        //configurate(for: settingsStore.skill)
+        //Synth() //initialize Sysnthesizer
+        
         if(motionCanceller == nil){
             motionCanceller = publisher.sink { [weak self] acc in
                 if remoteAccelerometer { return }
                 guard let self = self else { return }
-                if(!self.isLogging){return}
+                //if(!self.isLogging){return}
                 var sensorValue = 0.0;
                 if self.settingsStore.skill == .allMoves{
                     sensorValue = self.vectoredValue(acc: acc)
@@ -198,7 +204,7 @@ class AudioService2 {
         else{
             self.speedControl.rate = 0.4
         }
-        audioPlayer.play()
+       // audioPlayer.play()
     }
     
     private func updatePitch(with sensorValue: Double) {
@@ -242,3 +248,89 @@ class AudioService2 {
     }
 }
 
+
+typealias Signal = (Float) -> (Float)
+var speedNode = AVAudioUnitVarispeed()
+
+class Synth {
+    public static let shared = Synth()
+    
+    public var volume: Float {
+        set {
+            audioEngine.mainMixerNode.outputVolume = newValue
+        }
+        get {
+            return audioEngine.mainMixerNode.outputVolume
+        }
+    }
+    private var audioEngine: AVAudioEngine
+    private let sampleRate: Double
+    private let deltaTime: Float
+    private var signal: Signal
+    private var totalTime:Float = 0
+    private var waveVal:Float = 0
+
+    
+    private lazy var sourceNode = AVAudioSourceNode { (_, _, frameCount, audioBufferList) -> OSStatus in
+        let ablPointer = UnsafeMutableAudioBufferListPointer(audioBufferList)
+        for frame in 0..<Int(frameCount) {
+            self.waveVal = self.signal(self.totalTime)
+
+            self.totalTime += self.deltaTime
+            for buffer in ablPointer {
+                let buf: UnsafeMutableBufferPointer<Float> = UnsafeMutableBufferPointer(buffer)
+                buf[frame] = self.waveVal
+            }
+        }
+        return noErr
+    }
+    
+    init(signal: @escaping Signal = Oscillator.sine) {
+        self.signal = signal
+        audioEngine = AVAudioEngine()
+        let outputNode = audioEngine.outputNode
+        
+        //let speedNode = AVAudioUnitTimePitch()
+        let format = outputNode.inputFormat(forBus: 0)
+        let mainMixer = audioEngine.mainMixerNode
+        speedNode.rate = 2
+        sampleRate = format.sampleRate
+        deltaTime = 1 / Float(sampleRate)
+        let inputFormat = AVAudioFormat(commonFormat: format.commonFormat, sampleRate: sampleRate, channels: 1, interleaved: format.isInterleaved)
+        audioEngine.attach(sourceNode)
+        audioEngine.attach(speedNode)
+        audioEngine.connect(sourceNode, to: speedNode, format: inputFormat)
+        audioEngine.connect(speedNode, to: mainMixer, format: inputFormat)
+        audioEngine.connect(mainMixer, to: outputNode, format: nil)
+        mainMixer.outputVolume = 1
+        do {
+           try audioEngine.start()
+        } catch {
+           print("Could not start engine: \(error.localizedDescription)")
+        }
+    }
+    
+    public func setWaveformTo(_ signal: @escaping Signal) {
+        self.signal = signal
+    }
+}
+
+struct Oscillator {
+    static var amplitude: Float = 1
+    static var frequency: Float = 1440
+    static var phase: Double = 0
+    
+    static let sine = { (time: Float) -> Float in
+        let period = 1.0 / Double(Oscillator.frequency)
+        let currentTime = fmod(Double(time), period)
+        phase = currentTime/period
+       // print(phase)
+        return amplitude * sin(2.0 * Float.pi * frequency * time)
+    }
+    
+    static let square = { (time: Float) -> Float in
+        let period = 1.0 / Double(Oscillator.frequency)
+        let currentTime = fmod(Double(time), period)
+        return ((currentTime / period) < 0.5) ? Oscillator.amplitude : -1.0 * Oscillator.amplitude
+    }
+}

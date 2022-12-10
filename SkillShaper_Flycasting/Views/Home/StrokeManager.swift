@@ -55,6 +55,7 @@ class StrokeManager{
     }
     
     func setRemoteMotionPublisher( publisher: Published<CMAcceleration>.Publisher){
+print("xxd")
         publisher.sink { [weak self] acc in
             self?.updateAcceleration(acceleration: acc)
         }.store(in: &cancellables)
