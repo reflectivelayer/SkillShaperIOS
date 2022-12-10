@@ -36,8 +36,8 @@ class AudioService2 {
     
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()
-        //configurate(for: settingsStore.skill)
-        //Synth() //initialize Sysnthesizer
+        configurate(for: settingsStore.skill)
+
         
         if(motionCanceller == nil){
             motionCanceller = publisher.sink { [weak self] acc in
@@ -52,7 +52,7 @@ class AudioService2 {
                 }else{
                     sensorValue = acc.x * MotionManager.accMultiplier
                 }
-
+/*
                 guard self.validateSensorValue(value: sensorValue) else {
                     //                           ---------------------------------------Not validated ----------
                     self.audioPlayer.volume = 0.0
@@ -61,6 +61,7 @@ class AudioService2 {
                     self.bStopHasStarted = false
                     self.lastReading = sensorValue
                     return }
+ */
                 //                           ------------------------------------------ Validated ----------
                 if self.settingsStore.skill == .stop {
                     self.uAccel = abs(sensorValue*5)
@@ -121,49 +122,11 @@ class AudioService2 {
     }
     
     func configurate(for skill: Skill, hears: [Hear] = [Hear]()) {
+        if(oscillator == nil){
+            oscillator = Synth()
+        }
         settingsStore.skill = skill
         settingsStore.hears = hears
-        if audioPlayer.isPlaying {
-            audioPlayer.stop()
-        }
-        if engine.isRunning {
-            engine.stop()
-            engine.reset()
-        }
-        engine = AVAudioEngine()
-        audioPlayer = AVAudioPlayerNode()
-        pitchControl = AVAudioUnitTimePitch()
-        let fileName = skill == .straight ? "c4sq" : "g5sq" // ORIGINAL
-        let filePath = Bundle.main.path(forResource: fileName, ofType: "wav")!
-        let filePathURL = URL(fileURLWithPath: filePath)
-
-        let audioFile = try! AVAudioFile(forReading: filePathURL)
-        let audioPCMFormat = audioFile.processingFormat
-        let audioFrameCount = AVAudioFrameCount(audioFile.length)
-        let audioBuffer = AVAudioPCMBuffer(pcmFormat: audioPCMFormat, frameCapacity: audioFrameCount)!
-
-        try! audioFile.read(into: audioBuffer)
-        engine.attach(audioPlayer)
-        engine.attach(pitchControl)
-        engine.attach(speedControl)
-        if skill == .straight {
-            engine.connect(audioPlayer, to: pitchControl, format: nil)
-            engine.connect(pitchControl, to: engine.mainMixerNode, format:nil)
-        } else {
-            engine.connect(audioPlayer, to: speedControl, format:nil) //        New - for speedControl
-            engine.connect(speedControl, to: pitchControl, format: nil) //  New - for speedControl
-            engine.connect(pitchControl, to: engine.mainMixerNode, format: nil) // Original
-        }
-        audioPlayer.scheduleBuffer(audioBuffer, at: nil, options: .loops)
-        try! engine.start()
-        
-        audioPlayer.volume = 0.0
-        pitchControl.pitch = 0.0
-        if skill == .stop {  //
-            speedControl.rate = 1.0}
-        else {
-            speedControl.rate = 0.4}
-        audioPlayer.play()
     }
     
     private func validateSensorValue(value: Double) -> Bool {
@@ -208,29 +171,29 @@ class AudioService2 {
     }
     
     private func updatePitch(with sensorValue: Double) {
-        var sensitivityFactor = 1500.0
-                var rawPitch = 0.0
-                if settingsStore.skill == .stop{  //                    for STOP, sensorValue argument is already abs( )
-                    sensitivityFactor = 330.0
-                    rawPitch = pow(sensorValue,0.5) * sensitivityFactor
-                }else{
-                    let uSensorValue = abs(sensorValue)
-                    rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
-                }
-                let pitch = rawPitch > 2400.0 ? 2400.0 : rawPitch
-                self.pitchControl.pitch = Float(pitch)
-      
+        var sensitivityFactor = 1.0//1500.0
+        var rawPitch = 0.0
+        if settingsStore.skill == .stop{  //                    for STOP, sensorValue argument is already abs( )
+            sensitivityFactor = 0.2//330.0
+            rawPitch = pow(sensorValue,0.5) * sensitivityFactor
+        }else{
+            let uSensorValue = abs(sensorValue)
+            sensitivityFactor = 0.3
+            rawPitch = sensorValue*sensitivityFactor//pow(uSensorValue,0.5) * sensitivityFactor
+        }
+        //let pitch = rawPitch > 2400.0 ? 2400.0 : rawPitch
+        speedNode.rate = Float(rawPitch)
     }
 
     private func updateVolume(with sensorValue: Double) {
         let uSensorValue = abs(sensorValue)
         if settingsStore.skill == .straight && uSensorValue < 0.12{
-            self.audioPlayer.volume = 0.0;
+            oscillator?.mainMixer.outputVolume = 0.0;
             return
         }
         let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
         let volume = rawVolume > 1.0 ? 1.0 : rawVolume
-        self.audioPlayer.volume = volume
+        oscillator?.mainMixer.outputVolume = volume
     }
     
     func play() {
@@ -251,6 +214,7 @@ class AudioService2 {
 
 typealias Signal = (Float) -> (Float)
 var speedNode = AVAudioUnitVarispeed()
+var oscillator:Synth?
 
 class Synth {
     public static let shared = Synth()
@@ -269,7 +233,7 @@ class Synth {
     private var signal: Signal
     private var totalTime:Float = 0
     private var waveVal:Float = 0
-
+    let mainMixer:AVAudioMixerNode
     
     private lazy var sourceNode = AVAudioSourceNode { (_, _, frameCount, audioBufferList) -> OSStatus in
         let ablPointer = UnsafeMutableAudioBufferListPointer(audioBufferList)
@@ -288,21 +252,23 @@ class Synth {
     init(signal: @escaping Signal = Oscillator.sine) {
         self.signal = signal
         audioEngine = AVAudioEngine()
+        
         let outputNode = audioEngine.outputNode
         
         //let speedNode = AVAudioUnitTimePitch()
         let format = outputNode.inputFormat(forBus: 0)
-        let mainMixer = audioEngine.mainMixerNode
+        
         speedNode.rate = 2
         sampleRate = format.sampleRate
         deltaTime = 1 / Float(sampleRate)
+        mainMixer = audioEngine.mainMixerNode
         let inputFormat = AVAudioFormat(commonFormat: format.commonFormat, sampleRate: sampleRate, channels: 1, interleaved: format.isInterleaved)
         audioEngine.attach(sourceNode)
         audioEngine.attach(speedNode)
         audioEngine.connect(sourceNode, to: speedNode, format: inputFormat)
         audioEngine.connect(speedNode, to: mainMixer, format: inputFormat)
         audioEngine.connect(mainMixer, to: outputNode, format: nil)
-        mainMixer.outputVolume = 1
+        mainMixer.outputVolume = 0
         do {
            try audioEngine.start()
         } catch {
