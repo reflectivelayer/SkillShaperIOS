@@ -18,6 +18,11 @@ enum AccAxis {
     case vertical
 }
 
+enum AccSource {
+    case local
+    case remote
+}
+
 class StrokeManager{
     let maxSample = 2000
     var tempCounter = 0
@@ -42,24 +47,42 @@ class StrokeManager{
     var loadedFile:String?
     let dataManager = SessionDataManager()
     var motionCanceller: AnyCancellable?
-    
     private var cancellables = Set<AnyCancellable>()
+    private var remoteSettingsStore:SettingsStore?
+    private var remotePublisher: Published<CMAcceleration>.Publisher?
+    private var localPublisher: Published<CMAcceleration>.Publisher?
     
-    func setMotionManager(motionManager: MotionManager){
-        audioService = AudioService2(publisher: motionManager.$acc)
-        if(motionCanceller == nil){
-            motionCanceller = motionManager.$acc.sink { [weak self] acc in
-                self?.updateAcceleration(acceleration: acc)
-            }
+    func setLocalMotionSource(source: Published<CMAcceleration>.Publisher){
+        localPublisher = source
+
+    }
+    
+    func setRemoteMotionSource(settingsStore: SettingsStore,  source: Published<CMAcceleration>.Publisher){
+        remotePublisher = source
+        remoteSettingsStore = settingsStore
+    }
+    
+    func setMotionSource(accSource:AccSource){
+        var source: Published<CMAcceleration>.Publisher
+        var isRemote = false
+        switch(accSource){
+        case .local:
+            source = localPublisher!
+        case .remote:
+            isRemote = true
+            source = remotePublisher!
+        }
+        audioService = AudioService2(publisher: source)
+        audioService!.isRemote = isRemote
+        audioService!.remoteSettingsStore = remoteSettingsStore
+        if(motionCanceller != nil){
+            motionCanceller?.cancel()
+        }
+        motionCanceller = source.sink { [weak self] acc in
+            self?.updateAcceleration(acceleration: acc)
         }
     }
     
-    func setRemoteMotionPublisher( publisher: Published<CMAcceleration>.Publisher){
-print("xxd")
-        publisher.sink { [weak self] acc in
-            self?.updateAcceleration(acceleration: acc)
-        }.store(in: &cancellables)
-    }
     
     func getLineOffset(lineLevel:Int)->CGFloat{
         var offset:CGFloat = 0

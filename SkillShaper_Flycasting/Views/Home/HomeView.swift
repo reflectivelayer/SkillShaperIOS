@@ -44,6 +44,11 @@ struct HomeView: View {
     func  toggle(){
         remoteAccelerometer = !remoteAccelerometer
         remoteAcc = remoteAccelerometer
+        if(remoteAcc){
+            strokeManager.setMotionSource(accSource: AccSource.remote)
+        }else{
+            strokeManager.setMotionSource(accSource: AccSource.local)
+        }
     }
 
     func gotoSettings() {
@@ -214,7 +219,8 @@ struct HomeView: View {
         .onAppear {
                 timeRemaining = timeLength
                 print("ON APPEAR")
-                strokeManager.setMotionManager(motionManager: motion)
+            strokeManager.setLocalMotionSource(source: motion.$acc)
+            strokeManager.setMotionSource(accSource: AccSource.local)
                 strokeManager.stop()
             accMainStrength = motion.acc.x
             accLateralStrength = motion.acc.y

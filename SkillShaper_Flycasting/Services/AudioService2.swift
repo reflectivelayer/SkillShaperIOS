@@ -32,38 +32,39 @@ class AudioService2 {
     private var bStopHasStarted = false
     private var gain = 0.0
     private var isLogging = false
+    var isRemote = false
+    var remoteSettingsStore:SettingsStore?
     var motionCanceller: AnyCancellable?
     
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()
-        configurate(for: settingsStore.skill)
+        configurate(for: getSkill())
 
         
         if(motionCanceller == nil){
             motionCanceller = publisher.sink { [weak self] acc in
-                if remoteAccelerometer { return }
+                //if remoteAccelerometer { return }
                 guard let self = self else { return }
-                //if(!self.isLogging){return}
+                if(!self.isLogging){return}
                 var sensorValue = 0.0;
-                if self.settingsStore.skill == .allMoves{
+                if self.getSkill() == .allMoves{
                     sensorValue = self.vectoredValue(acc: acc)
-                }else if self.settingsStore.skill == .straight{
+                }else if self.getSkill() == .straight{
                     sensorValue = acc.z * MotionManager.accMultiplier
                 }else{
                     sensorValue = acc.x * MotionManager.accMultiplier
                 }
-/*
+
                 guard self.validateSensorValue(value: sensorValue) else {
                     //                           ---------------------------------------Not validated ----------
-                    self.audioPlayer.volume = 0.0
-                    self.pitchControl.pitch = 0.0
+                    self.updateVolume(with: 0)
                     self.uPeak = 0.0
                     self.bStopHasStarted = false
                     self.lastReading = sensorValue
                     return }
- */
+ 
                 //                           ------------------------------------------ Validated ----------
-                if self.settingsStore.skill == .stop {
+                if self.getSkill() == .stop {
                     self.uAccel = abs(sensorValue*5)
                     self.gain = sensorValue - self.lastReading
                     if sensorValue < 0.0 {
@@ -109,7 +110,6 @@ class AudioService2 {
                     self.updatePitch(with: sensorValue)
                 }
                 self.lastReading = sensorValue
-                self.updateTimer()
             }
         }
     }
@@ -125,13 +125,32 @@ class AudioService2 {
         if(oscillator == nil){
             oscillator = Synth()
         }
-        settingsStore.skill = skill
-        settingsStore.hears = hears
+        
+        if !isRemote{
+            settingsStore.skill = skill
+            settingsStore.hears = hears
+        }
+    }
+    
+    private func getSkill() -> Skill{
+        if isRemote {
+            return remoteSettingsStore!.skill
+        }else{
+            return settingsStore.skill
+        }
+    }
+    
+    private func getHears() -> [Hear]{
+        if isRemote {
+            return remoteSettingsStore!.hears
+        }else{
+            return settingsStore.hears
+        }
     }
     
     private func validateSensorValue(value: Double) -> Bool {
-        let skill = settingsStore.skill
-        let hears = settingsStore.hears
+        let skill = getSkill()
+        let hears = getHears()
         switch skill {
             case .stroke:
                 if (value <= 0 && hears.contains(.back)) || (value > 0 && hears.contains(.fore)) {
@@ -150,36 +169,16 @@ class AudioService2 {
         }
     }
     
-    private func updateTimer() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            
-            self.timer?.invalidate()
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.3,repeats: false) { [weak self] _ in
-                guard let self = self else { return }
-                
-                self.audioPlayer.volume = 0.0
-                self.pitchControl.pitch = 0.0
-            }
-        }
-        if self.settingsStore.skill == .stop { //       New .. puts Stop feedback into higher register
-            self.speedControl.rate = 1.0}
-        else{
-            self.speedControl.rate = 0.4
-        }
-       // audioPlayer.play()
-    }
-    
     private func updatePitch(with sensorValue: Double) {
         var sensitivityFactor = 1.0//1500.0
         var rawPitch = 0.0
-        if settingsStore.skill == .stop{  //                    for STOP, sensorValue argument is already abs( )
-            sensitivityFactor = 0.2//330.0
+        if getSkill() == .stop{  //                    for STOP, sensorValue argument is already abs( )
+            sensitivityFactor = 0.3//330.0
             rawPitch = pow(sensorValue,0.5) * sensitivityFactor
         }else{
             let uSensorValue = abs(sensorValue)
-            sensitivityFactor = 0.3
-            rawPitch = sensorValue*sensitivityFactor//pow(uSensorValue,0.5) * sensitivityFactor
+            sensitivityFactor = 1.0
+            rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
         }
         //let pitch = rawPitch > 2400.0 ? 2400.0 : rawPitch
         speedNode.rate = Float(rawPitch)
@@ -187,13 +186,13 @@ class AudioService2 {
 
     private func updateVolume(with sensorValue: Double) {
         let uSensorValue = abs(sensorValue)
-        if settingsStore.skill == .straight && uSensorValue < 0.12{
+        if getSkill() == .straight && uSensorValue < 0.12{
             oscillator?.mainMixer.outputVolume = 0.0;
             return
         }
         let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
         let volume = rawVolume > 1.0 ? 1.0 : rawVolume
-        oscillator?.mainMixer.outputVolume = volume
+        oscillator?.mainMixer.outputVolume = volume * 2
     }
     
     func play() {
@@ -207,7 +206,7 @@ class AudioService2 {
     
     func stop() {
         isLogging = false
-//        audioPlayer.pause()
+        oscillator?.mainMixer.outputVolume = 0.0
     }
 }
 
