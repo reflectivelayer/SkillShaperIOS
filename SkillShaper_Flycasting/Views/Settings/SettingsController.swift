@@ -202,7 +202,7 @@ import SwiftUI
                              .foregroundColor(.yellow)
         
                          
-                         Text("Accelerate smoothly")
+                         Text("Hear when you veer")
                              .foregroundColor(.white)
                              .font(.system(size: 15))
                          Spacer()
@@ -259,7 +259,7 @@ import SwiftUI
                              .foregroundColor(.yellow)
         
                          
-                         Text("Accelerate smoothly")
+                         Text("For loop control")
                              .foregroundColor(.white)
                              .font(.system(size: 15))
                          Spacer()
