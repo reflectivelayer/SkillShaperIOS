@@ -187,6 +187,7 @@ struct DataFilesView: View {
             }
         }
         fileList = Array(Set(fileList).subtracting(toRemove))
+        geFileList()
     }
     
     func onSendTapped(){
