@@ -181,7 +181,7 @@ class AudioService2 {
             rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
         }
         //let pitch = rawPitch > 2400.0 ? 2400.0 : rawPitch
-        speedNode.rate = Float(rawPitch)
+        speedNode.rate = Float(rawPitch/2)
     }
 
     private func updateVolume(with sensorValue: Double) {
