@@ -142,7 +142,7 @@ import SwiftUI
                              .foregroundColor(.yellow)
         
                          
-                         Text("Hear when you veer")
+                         Text("Accelerate smoothly")
                              .foregroundColor(.white)
                              .font(.system(size: 15))
                          Spacer()
@@ -202,7 +202,7 @@ import SwiftUI
                              .foregroundColor(.yellow)
         
                          
-                         Text("Hear when you veer")
+                         Text("Accelerate smoothly")
                              .foregroundColor(.white)
                              .font(.system(size: 15))
                          Spacer()
@@ -259,7 +259,7 @@ import SwiftUI
                              .foregroundColor(.yellow)
         
                          
-                         Text("Hear when you veer")
+                         Text("Accelerate smoothly")
                              .foregroundColor(.white)
                              .font(.system(size: 15))
                          Spacer()
