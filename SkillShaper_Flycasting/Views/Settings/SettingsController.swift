@@ -17,8 +17,8 @@ import SwiftUI
     @State var strokeForeBox = false
     @State var strokeBackBox = false
     @State var straightBox = true
-    @State var straightLeftBox = false
-    @State var straightRightBox = false
+    @State var straightLeftBox = true
+    @State var straightRightBox = true
     @State var stopBox = false
     @State var stopForeBox = false
     @State var stopBackBox = false
@@ -466,6 +466,20 @@ import SwiftUI
              strokeBackBox = true
          }else{
              strokeBackBox = false
+         }
+
+         let straightLeft = UserDefaults.standard.string(forKey: "straightLeft")
+         if(straightLeft == "false"){
+             straightLeftBox = false
+         }else{
+             straightLeftBox = true
+         }
+
+         let straightRight = UserDefaults.standard.string(forKey: "straightRight")
+         if(straightRight == "false"){
+             straightRightBox = false
+         }else{
+             straightRightBox = true
          }
          
          let stopFore = UserDefaults.standard.string(forKey: "stopFore")

@@ -82,6 +82,18 @@ struct HomeView: View {
                 fore = UserDefaults.standard.string(forKey: "strokeFore")
                 back = UserDefaults.standard.string(forKey: "strokeBack")
                 break
+            case "straight":
+                fore = UserDefaults.standard.string(forKey: "straightLeft")
+                back = UserDefaults.standard.string(forKey: "straightRight")
+                if fore == nil{
+                    fore = "true";
+                    saveSettings(name: "straightLeft", value: "true")
+                }
+                if back == nil{
+                    back = "true";
+                    saveSettings(name: "straightRight", value: "true")
+                }
+                break
             case "stop":
                 fore = UserDefaults.standard.string(forKey: "stopFore")
                 back = UserDefaults.standard.string(forKey: "stopBack")
@@ -89,8 +101,16 @@ struct HomeView: View {
         default:
             break
         }
-        
-        if(fore == nil || back == nil){
+        if(skill=="straight"){
+            if(fore == "true" && back == "true"){
+                hear = "Both ways"
+            }else if(fore == "true" && back == "false"){
+                hear = "left"
+            }else if(fore == "false" && back == "true"){
+                hear = "right"
+            }
+            
+        }else if(fore == nil || back == nil){
             hear = "foward cast"
         }else if(fore == "true" && back == "true"){
             hear = "Both ways"
@@ -288,6 +308,10 @@ struct HomeView: View {
              });
                     Text(" ")
          }
+    }
+    
+    func saveSettings(name:String, value:String){
+        UserDefaults.standard.set(value,forKey: name)
     }
 }
 

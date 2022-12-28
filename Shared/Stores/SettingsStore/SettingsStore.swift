@@ -72,6 +72,14 @@ class PhoneStore{
             }
         }else if(skillType == "straight"){
             skill = .straight
+            let straightL = UserDefaults.standard.string(forKey: "straightLeft")
+            if(straightL == "true"){
+                hears.append(.fore)
+            }
+            let straightR = UserDefaults.standard.string(forKey: "straightRight")
+            if(straightR == "true"){
+                hears.append(.back)
+            }
         }else if(skillType == "stop"){
             skill = .stop
             let stopF = UserDefaults.standard.string(forKey: "stopFore")

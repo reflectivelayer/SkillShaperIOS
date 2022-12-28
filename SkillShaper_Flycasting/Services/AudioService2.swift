@@ -38,7 +38,7 @@ class AudioService2 {
     
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()
-        configurate(for: getSkill())
+        configurate(for: getSkill(),hears: settingsStore.hears)
 
         
         if(motionCanceller == nil){
@@ -186,9 +186,23 @@ class AudioService2 {
 
     private func updateVolume(with sensorValue: Double) {
         let uSensorValue = abs(sensorValue)
-        if getSkill() == .straight && uSensorValue < 0.12{
-            oscillator?.mainMixer.outputVolume = 0.0;
+        if getSkill() == .straight{
+            
+            if uSensorValue < 0.12{
+                oscillator?.mainMixer.outputVolume = 0.0;
+                return
+            }else if (sensorValue < 0 && !getHears().contains(.fore)){
+                oscillator?.mainMixer.outputVolume = 0.0;
+                return
+            }else if (sensorValue > 0 && !getHears().contains(.back)){
+                oscillator?.mainMixer.outputVolume = 0.0;
+                return
+            }else{
+            let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
+            let volume = rawVolume > 1.0 ? 1.0 : rawVolume
+            oscillator?.mainMixer.outputVolume = volume * 2
             return
+            }
         }
         let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
         let volume = rawVolume > 1.0 ? 1.0 : rawVolume

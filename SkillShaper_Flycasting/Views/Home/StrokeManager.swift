@@ -151,7 +151,7 @@ class StrokeManager{
             skill = Skill.stroke
         }
 
-        audioService?.configurate(for: skill,hears: hears);
+        audioService?.configurate(for: skill,hears: settingsStore.hears);
     }
     
     func stop(){
