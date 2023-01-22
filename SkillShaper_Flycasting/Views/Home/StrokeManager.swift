@@ -161,7 +161,7 @@ class StrokeManager{
     
     func saveData(){
         dataManager.saveData(dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
-        print("dfx - saveData - " + String(accDataMain.count))
+        //print("dfx - saveData - " + String(accDataMain.count))
         clearMotionData()
         
     }

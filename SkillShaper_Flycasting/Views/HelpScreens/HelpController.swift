@@ -43,6 +43,12 @@ struct HelpController: View {
             window.makeKeyAndVisible()
         }
     }
+    
+    func buildNum() -> String {
+            let dictionary = Bundle.main.infoDictionary!
+            let build = dictionary["CFBundleVersion"] as! String
+            return "build \(build)"
+        }
 
         var body: some View {
             ScrollView {
@@ -61,7 +67,7 @@ struct HelpController: View {
                         VStack{
 
                            VStack{
-                               Text("SkillShaper Flycast Pro 2.0.1 Beta")
+                               Text("SkillShaper Flycast Pro 2.0.1 Beta \(buildNum())")
                                    .foregroundColor(blkText)
                                Text(" ")
                                Text("Getting Started")

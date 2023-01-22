@@ -32,6 +32,8 @@ class AudioService2 {
     private var bStopHasStarted = false
     private var gain = 0.0
     private var isLogging = false
+    private var inMax:Double = 0;
+    private var inMin:Double = 0;
     var isRemote = false
     var remoteSettingsStore:SettingsStore?
     var motionCanceller: AnyCancellable?
@@ -39,8 +41,6 @@ class AudioService2 {
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()
         configurate(for: getSkill(),hears: settingsStore.hears)
-
-        
         if(motionCanceller == nil){
             motionCanceller = publisher.sink { [weak self] acc in
                 //if remoteAccelerometer { return }
@@ -54,7 +54,6 @@ class AudioService2 {
                 }else{
                     sensorValue = acc.x * MotionManager.accMultiplier
                 }
-
                 guard self.validateSensorValue(value: sensorValue) else {
                     //                           ---------------------------------------Not validated ----------
                     self.updateVolume(with: 0)
@@ -175,20 +174,52 @@ class AudioService2 {
         if getSkill() == .stop{  //                    for STOP, sensorValue argument is already abs( )
             sensitivityFactor = 0.3//330.0
             rawPitch = pow(sensorValue,0.5) * sensitivityFactor
-        }else{
+            speedNode.rate = Float(rawPitch * 0.5)
+        }else if getSkill() == .stroke{
             let uSensorValue = abs(sensorValue)
             sensitivityFactor = 1.0
             rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
+            speedNode.rate = Float(0.5 + sensorValue * 0.25)
+        }else if getSkill() == .allMoves{
+            let uSensorValue = abs(sensorValue)
+            sensitivityFactor = 1.0
+            speedNode.rate = Float(0.5 + sensorValue * 0.25)
+        }else if getSkill() == .straight{
+            let uSensorValue = abs(sensorValue)
+            sensitivityFactor = 1.0
+            speedNode.rate = Float(0.5 + uSensorValue * 0.5)
+        }
+        else{
+            let uSensorValue = abs(sensorValue)
+            sensitivityFactor = 1.0
+            rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
+            speedNode.rate = Float(0.5 + sensorValue * 2)
         }
         //let pitch = rawPitch > 2400.0 ? 2400.0 : rawPitch
-        speedNode.rate = Float(rawPitch/2)
+
+        
+        //////////// Test code below
+        var change = false
+        if sensorValue > inMax{
+            inMax = sensorValue
+            change = true
+        }
+        if sensorValue < inMin{
+            inMin = sensorValue
+            change = true
+        }
+        if change {
+            //print(String(inMax) + ":" + String(inMin))
+        }
+        
     }
 
     private func updateVolume(with sensorValue: Double) {
+        //print(String(sensorValue))
         let uSensorValue = abs(sensorValue)
+        //printMinMax(sensorValue: sensorValue)
         if getSkill() == .straight{
-            
-            if uSensorValue < 0.12{
+            if uSensorValue < 0.1{
                 oscillator?.mainMixer.outputVolume = 0.0;
                 return
             }else if (sensorValue < 0 && !getHears().contains(.fore)){
@@ -203,10 +234,27 @@ class AudioService2 {
             oscillator?.mainMixer.outputVolume = volume * 2
             return
             }
+        }else if getSkill() == .stroke{
+            if uSensorValue < 0.1{
+                oscillator?.mainMixer.outputVolume = 0.0;
+                return
+            }
+        }else if getSkill() == .allMoves{
+            if uSensorValue < 0.2{
+                oscillator?.mainMixer.outputVolume = 0.0;
+                return
+            }
         }
         let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
         let volume = rawVolume > 1.0 ? 1.0 : rawVolume
         oscillator?.mainMixer.outputVolume = volume * 2
+    }
+    
+    func printMinMax(sensorValue:Double){
+        if sensorValue > inMax{
+            inMax = sensorValue
+        }
+        print(String(inMax) + " : " + String(sensorValue))
     }
     
     func play() {

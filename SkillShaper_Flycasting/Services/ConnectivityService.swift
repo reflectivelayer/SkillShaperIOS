@@ -54,6 +54,7 @@ extension ConnectivityService: WCSessionDelegate {
             let axisY = Double(message["u"] as! Float32)
             let axitZ = Double(message["t"] as! Float32)
             sensorValueXYZ = CMAcceleration(x:axisX,y:axisY,z:axitZ)
+            //sensorValueXYZ = CMAcceleration(x:0,y:0,z:axitZ)
             //print(message)
             //print(NSDate.timeIntervalSinceReferenceDate)
         }else{
