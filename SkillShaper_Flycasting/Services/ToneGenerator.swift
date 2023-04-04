@@ -11,10 +11,19 @@ import CoreAudioKit
 
 class ToneGenerator {
     var engine: AVAudioEngine!
-    var tone: AVTonePlayerUnit!
+    var tone: AVTonePlayerUnit! = AVTonePlayerUnit()
+    
+    public var frequency:Double{
+        get{return tone.frequency}
+        set{tone.frequency = newValue}
+    }
+    
+    public var volume:Float{
+        get{return tone.volume}
+        set{tone.volume = newValue}
+    }
     
     init() {
-        tone = AVTonePlayerUnit()
         let format = AVAudioFormat(standardFormatWithSampleRate:tone.sampleRate, channels: 1)
         print(format?.sampleRate ?? "format nil")
         engine = AVAudioEngine()
@@ -28,7 +37,10 @@ class ToneGenerator {
         }
         
         tone.preparePlaying()
+        tone.volume = 0
         tone.play()
         engine.mainMixerNode.volume = 1.0
     }
+    
+    
 }

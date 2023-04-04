@@ -55,15 +55,18 @@ class AudioService2 {
                 }else{
                     sensorValue = acc.x * MotionManager.accMultiplier
                 }
+                //print(sensorValue)
+                let freq = 440.0 * pow(2.0, sensorValue)
+                self.toneGenerator.frequency = freq
                 guard self.validateSensorValue(value: sensorValue) else {
-                    //                           ---------------------------------------Not validated ----------
+                    //---------------------------------------Not validated ----------
                     self.updateVolume(with: 0)
                     self.uPeak = 0.0
                     self.bStopHasStarted = false
                     self.lastReading = sensorValue
                     return }
  
-                //                           ------------------------------------------ Validated ----------
+                //------------------------------------------ Validated ----------
                 if self.getSkill() == .stop {
                     self.uAccel = abs(sensorValue*5)
                     self.gain = sensorValue - self.lastReading
@@ -106,8 +109,8 @@ class AudioService2 {
                   }
                 }
                 else {
-                    self.updateVolume(with: sensorValue)
-                    self.updatePitch(with: sensorValue)
+                    //self.updateVolume(with: sensorValue)
+                    //self.updatePitch(with: sensorValue)
                 }
                 self.lastReading = sensorValue
             }
@@ -123,7 +126,7 @@ class AudioService2 {
     
     func configurate(for skill: Skill, hears: [Hear] = [Hear]()) {
         if(oscillator == nil){
-            oscillator = Synth()
+            //oscillator = Synth()
         }
         
         if !isRemote{
@@ -170,6 +173,7 @@ class AudioService2 {
     }
     
     private func updatePitch(with sensorValue: Double) {
+        /*
         var sensitivityFactor = 1.0//1500.0
         var rawPitch = 0.0
         if getSkill() == .stop{  //                    for STOP, sensorValue argument is already abs( )
@@ -212,10 +216,12 @@ class AudioService2 {
         if change {
             //print(String(inMax) + ":" + String(inMin))
         }
+         */
         
     }
 
     private func updateVolume(with sensorValue: Double) {
+        /*
         //print(String(sensorValue))
         let uSensorValue = abs(sensorValue)
         //printMinMax(sensorValue: sensorValue)
@@ -249,6 +255,7 @@ class AudioService2 {
         let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
         let volume = rawVolume > 1.0 ? 1.0 : rawVolume
         oscillator?.mainMixer.outputVolume = volume * 2
+         */
     }
     
     func printMinMax(sensorValue:Double){
