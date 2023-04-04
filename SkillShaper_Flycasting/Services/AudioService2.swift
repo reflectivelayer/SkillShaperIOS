@@ -55,9 +55,6 @@ class AudioService2 {
                 }else{
                     sensorValue = acc.x * MotionManager.accMultiplier
                 }
-                //print(sensorValue)
-                let freq = 440.0 * pow(2.0, sensorValue)
-                self.toneGenerator.frequency = freq
                 guard self.validateSensorValue(value: sensorValue) else {
                     //---------------------------------------Not validated ----------
                     self.updateVolume(with: 0)
@@ -109,8 +106,8 @@ class AudioService2 {
                   }
                 }
                 else {
-                    //self.updateVolume(with: sensorValue)
-                    //self.updatePitch(with: sensorValue)
+                    self.updateVolume(with: sensorValue)
+                    self.updatePitch(with: sensorValue)
                 }
                 self.lastReading = sensorValue
             }
@@ -221,41 +218,38 @@ class AudioService2 {
     }
 
     private func updateVolume(with sensorValue: Double) {
-        /*
         //print(String(sensorValue))
         let uSensorValue = abs(sensorValue)
-        //printMinMax(sensorValue: sensorValue)
         if getSkill() == .straight{
             if uSensorValue < 0.1{
-                oscillator?.mainMixer.outputVolume = 0.0;
+                toneGenerator.volume = 0.0;
                 return
             }else if (sensorValue < 0 && !getHears().contains(.fore)){
-                oscillator?.mainMixer.outputVolume = 0.0;
+                toneGenerator.volume = 0.0;
                 return
             }else if (sensorValue > 0 && !getHears().contains(.back)){
-                oscillator?.mainMixer.outputVolume = 0.0;
+                toneGenerator.volume = 0.0;
                 return
             }else{
             let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
             let volume = rawVolume > 1.0 ? 1.0 : rawVolume
-            oscillator?.mainMixer.outputVolume = volume * 2
+                toneGenerator.volume = volume * 2
             return
             }
         }else if getSkill() == .stroke{
             if uSensorValue < 0.1{
-                oscillator?.mainMixer.outputVolume = 0.0;
+                toneGenerator.volume = 0.0;
                 return
             }
         }else if getSkill() == .allMoves{
             if uSensorValue < 0.2{
-                oscillator?.mainMixer.outputVolume = 0.0;
+                toneGenerator.volume = 0.0;
                 return
             }
         }
         let rawVolume = Float(uSensorValue)//                   Edit 3 Sept 9 // use this when not Bench testing
         let volume = rawVolume > 1.0 ? 1.0 : rawVolume
-        oscillator?.mainMixer.outputVolume = volume * 2
-         */
+        toneGenerator.volume = volume * 2
     }
     
     func printMinMax(sensorValue:Double){
