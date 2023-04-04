@@ -37,6 +37,7 @@ class AudioService2 {
     var isRemote = false
     var remoteSettingsStore:SettingsStore?
     var motionCanceller: AnyCancellable?
+    var toneGenerator:ToneGenerator = ToneGenerator()
     
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()

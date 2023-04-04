@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CED994429DC095700FD38F2 /* AVTonePlayerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED994329DC095700FD38F2 /* AVTonePlayerUnit.swift */; };
+		2CED994629DC098400FD38F2 /* ToneGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED994529DC098400FD38F2 /* ToneGenerator.swift */; };
 		48203AF124EBCB6D00BFE868 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203AF024EBCB6D00BFE868 /* Dashboard.swift */; };
 		48203AF524EBCB8A00BFE868 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203AF424EBCB8A00BFE868 /* Help.swift */; };
 		48203B0224EBDC7600BFE868 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48203B0124EBDC7600BFE868 /* Logo.swift */; };
@@ -134,6 +136,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2CED994329DC095700FD38F2 /* AVTonePlayerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVTonePlayerUnit.swift; sourceTree = "<group>"; };
+		2CED994529DC098400FD38F2 /* ToneGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneGenerator.swift; sourceTree = "<group>"; };
 		48203AF024EBCB6D00BFE868 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		48203AF424EBCB8A00BFE868 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		48203AF624EBCB9900BFE868 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -492,6 +496,8 @@
 				8D36DCC4273392BA00A88DCC /* MotionPublisher.swift */,
 				8D36DD002733A1BD00A88DCC /* MotionManager.swift */,
 				8D16ABA5291A300500541C78 /* SessionDataManager.swift */,
+				2CED994329DC095700FD38F2 /* AVTonePlayerUnit.swift */,
+				2CED994529DC098400FD38F2 /* ToneGenerator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -785,9 +791,11 @@
 				48808CF224F018D0009C4C60 /* Stroke.swift in Sources */,
 				48808CF624F01D0E009C4C60 /* Video.swift in Sources */,
 				4881D90A24F59AB40048C49F /* WatchPosition.swift in Sources */,
+				2CED994629DC098400FD38F2 /* ToneGenerator.swift in Sources */,
 				8D36DCCA2733935F00A88DCC /* HomeView.swift in Sources */,
 				488A994424F02D3300BF0BFE /* Straight.swift in Sources */,
 				8D65EBF227357B130042FFA2 /* AudioService2.swift in Sources */,
+				2CED994429DC095700FD38F2 /* AVTonePlayerUnit.swift in Sources */,
 				488A994124F02ABE00BF0BFE /* Stop.swift in Sources */,
 				8D36DCEF2733981100A88DCC /* HelpStopController.swift in Sources */,
 				4881D90724F59AB40048C49F /* SettingsParameter.swift in Sources */,
