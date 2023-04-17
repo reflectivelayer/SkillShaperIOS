@@ -61,6 +61,7 @@ struct HelpController: View {
                                .navigationBarTitle("Click To Page Back")
                                .navigationBarHidden(self.isNavigationBarHidden)
                                .onAppear {
+                                   UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
                                self.isNavigationBarHidden = true
                                }
 

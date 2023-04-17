@@ -39,8 +39,12 @@ struct DataFilesView: View {
     }
     
     func goBack() {
-        presentationMode.wrappedValue.dismiss()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.763) {
+            presentationMode.wrappedValue.dismiss()
+      }
     }
+    
+
     
     var body: some View {
         VStack{

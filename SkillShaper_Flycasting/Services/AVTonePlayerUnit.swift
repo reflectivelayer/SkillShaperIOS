@@ -31,7 +31,15 @@ class AVTonePlayerUnit: AVAudioPlayerNode {
         let theta_increment = 2.0 * .pi * self.frequency / self.sampleRate
         
         for frame in 0..<Int(numberFrames) {
-            data?[frame] = Float32(sin(theta) * amplitude)
+            let w = Float32(sin(theta) * amplitude)
+            if (w > 0){//convert to square wave
+                data?[frame] = Float32(amplitude)
+            }
+            else{
+                data?[frame] = 0
+            }
+           //data?[frame] = Float32(sin(theta) * amplitude); sinewave
+            
             
             theta += theta_increment
             if theta > 2.0 * .pi {

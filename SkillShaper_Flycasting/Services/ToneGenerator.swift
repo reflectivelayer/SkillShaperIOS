@@ -15,7 +15,7 @@ class ToneGenerator {
     
     public var frequency:Double{
         get{return tone.frequency}
-        set{tone.frequency = newValue}
+        set{tone.frequency = newValue*1000}
     }
     
     public var volume:Float{
@@ -27,8 +27,9 @@ class ToneGenerator {
         let format = AVAudioFormat(standardFormatWithSampleRate:tone.sampleRate, channels: 1)
         print(format?.sampleRate ?? "format nil")
         engine = AVAudioEngine()
-        engine.attach(tone)
         let mixer = engine.mainMixerNode
+        engine.attach(tone)
+        
         engine.connect(tone, to: mixer, format: format)
         do {
             try engine.start()

@@ -13,6 +13,7 @@ import AudioKit
 import AudioKitEX
 import SoundpipeAudioKit
 
+var toneGenerator:ToneGenerator = ToneGenerator()
 
 class AudioService2 {
     
@@ -32,12 +33,13 @@ class AudioService2 {
     private var bStopHasStarted = false
     private var gain = 0.0
     private var isLogging = false
-    private var inMax:Double = 0;
-    private var inMin:Double = 0;
+    private var inMax:Double = 0
+    private var inMin:Double = 0
+    private var minThreshold:Double = 0.1
     var isRemote = false
     var remoteSettingsStore:SettingsStore?
     var motionCanceller: AnyCancellable?
-    var toneGenerator:ToneGenerator = ToneGenerator()
+
     
     init(publisher: Published<CMAcceleration>.Publisher) {
         settingsStore = PhoneStore()
@@ -78,7 +80,7 @@ class AudioService2 {
                            self.updatePitch(with: self.uAccel)
                        }
                        else { //                                  if accel is less than peak
-                           if self.uAccel < 0.2{ //                   if accel less than 0.2
+                           if self.uAccel < self.minThreshold{ //                   if accel less than 0.2
                                self.bStopHasStarted = false//               turn off Stopping Flag
                                self.uPeak = 0.0 //                          Algo 8c
                                self.updateVolume(with: 0.0) //              turn off sound
@@ -92,7 +94,7 @@ class AudioService2 {
                        }
                    }
                    else { //                                  Stopping has NOT sterted
-                       if self.uAccel > 1.6 && self.gain > 0.2{ //   If sharp change to strong accel
+                       if self.uAccel > 1.6 && self.gain > self.minThreshold{ //   If sharp change to strong accel
                            self.bStopHasStarted = true //                  set StoppingFlag to true
                            self.uPeak = self.uAccel //                     set peak
                            self.updateVolume(with: self.uAccel)
@@ -170,37 +172,38 @@ class AudioService2 {
     }
     
     private func updatePitch(with sensorValue: Double) {
-        /*
+
         var sensitivityFactor = 1.0//1500.0
         var rawPitch = 0.0
         if getSkill() == .stop{  //                    for STOP, sensorValue argument is already abs( )
             sensitivityFactor = 0.3//330.0
             rawPitch = pow(sensorValue,0.5) * sensitivityFactor
-            speedNode.rate = Float(rawPitch * 0.5)
+            toneGenerator.frequency = rawPitch * 0.5
         }else if getSkill() == .stroke{
             let uSensorValue = abs(sensorValue)
             sensitivityFactor = 1.0
             rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
-            speedNode.rate = Float(0.5 + sensorValue * 0.25)
+            toneGenerator.frequency = 0.5 + sensorValue * 0.25
         }else if getSkill() == .allMoves{
             let uSensorValue = abs(sensorValue)
             sensitivityFactor = 1.0
-            speedNode.rate = Float(0.5 + sensorValue * 0.25)
+            toneGenerator.frequency = 0.5 + sensorValue * 0.25
         }else if getSkill() == .straight{
             let uSensorValue = abs(sensorValue)
             sensitivityFactor = 1.0
-            speedNode.rate = Float(0.5 + uSensorValue * 0.5)
+            toneGenerator.frequency = 0.5 + uSensorValue * 0.5
         }
         else{
             let uSensorValue = abs(sensorValue)
             sensitivityFactor = 1.0
             rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
-            speedNode.rate = Float(0.5 + sensorValue * 2)
+            toneGenerator.frequency = 0.5 + sensorValue * 2
         }
         //let pitch = rawPitch > 2400.0 ? 2400.0 : rawPitch
 
         
         //////////// Test code below
+        /*
         var change = false
         if sensorValue > inMax{
             inMax = sensorValue
@@ -221,7 +224,7 @@ class AudioService2 {
         //print(String(sensorValue))
         let uSensorValue = abs(sensorValue)
         if getSkill() == .straight{
-            if uSensorValue < 0.1{
+            if uSensorValue < self.minThreshold{
                 toneGenerator.volume = 0.0;
                 return
             }else if (sensorValue < 0 && !getHears().contains(.fore)){
@@ -237,12 +240,12 @@ class AudioService2 {
             return
             }
         }else if getSkill() == .stroke{
-            if uSensorValue < 0.1{
+            if uSensorValue < self.minThreshold{
                 toneGenerator.volume = 0.0;
                 return
             }
         }else if getSkill() == .allMoves{
-            if uSensorValue < 0.2{
+            if uSensorValue < self.minThreshold{
                 toneGenerator.volume = 0.0;
                 return
             }
@@ -270,7 +273,7 @@ class AudioService2 {
     
     func stop() {
         isLogging = false
-        oscillator?.mainMixer.outputVolume = 0.0
+        toneGenerator.volume = 0.0
     }
 }
 
