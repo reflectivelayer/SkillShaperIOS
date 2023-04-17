@@ -70,6 +70,21 @@ struct ChartController: View {
         return dataSources.count > 1 || dataSources.first != axis
     }
     
+    func convertFileName(title:String?)->String{
+        if (title != nil){
+            var titleSplit = title!.split(separator: ":")
+            var name = ""
+            if(titleSplit.count < 4){
+                name = title!
+            }else{
+                name = titleSplit[0] + ":" + titleSplit[1] + titleSplit[3]
+            }
+            return name
+        }else{
+            return ""
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing:0){
             Text(" ")
@@ -82,7 +97,7 @@ struct ChartController: View {
                 .foregroundColor(yellow)
                 .font(.system(size: 30)
                         .bold())
-            Text(strokeManager.loadedFile ?? "")
+            Text(convertFileName(title:strokeManager.loadedFile))
                 .foregroundColor(yellow)
                 .font(.system(size: 25)
                         .bold())

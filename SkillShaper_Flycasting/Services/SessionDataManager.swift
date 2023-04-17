@@ -11,15 +11,16 @@ class SessionDataManager {
     let formatter = DateFormatter()
     init(){
         formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.dateFormat = "MM.dd HH:mm:ss"
+        formatter.dateFormat = "MM.dd HH:mm:ss:"
     }
     
-    func saveData(dataPrimary:[Double], dataLateral:[Double], dataVertical:[Double]){
-        var sessionText = _addHeader()
+    func saveData(loggedTime:Double,dataPrimary:[Double], dataLateral:[Double], dataVertical:[Double]){
+        var sessionText = _addHeader(duration: loggedTime)
         sessionText += _addData(dataPrimary:dataPrimary, dataLateral:dataLateral, dataVertical:dataVertical)
         sessionText += _addAnnotations()
-        var fileName = formatter.string(from: Date()) + ".txt"
+        var fileName = formatter.string(from: Date()) + "(" + String(Int(loggedTime)) + "secs).txt"
         _saveToDisk(fileName: fileName, text: sessionText)
+        print(loggedTime)
 
     }
     
@@ -71,8 +72,8 @@ class SessionDataManager {
     
     
     
-    func _addHeader()->String{
-        return "<header>\n</header>\n"
+    func _addHeader(duration:Double)->String{
+        return "<header>\n<duration>\n" + String(Int(duration)) + "\n</duration>\n</header>\n"
     }
 
     func _addData(dataPrimary:[Double], dataLateral:[Double], dataVertical:[Double])->String{

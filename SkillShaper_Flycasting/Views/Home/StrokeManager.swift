@@ -45,6 +45,7 @@ class StrokeManager{
     var viewWidth:CGFloat = 0
     var audioService:AudioService2?
     var loadedFile:String?
+    var startTime:Double = 0
     let dataManager = SessionDataManager()
     var motionCanceller: AnyCancellable?
     private var cancellables = Set<AnyCancellable>()
@@ -109,6 +110,8 @@ class StrokeManager{
     }
     
     func start(){
+        print("Logging started")
+        startTime = Date().timeIntervalSince1970
         accDataMain.removeAll()
         accDataLateral.removeAll()
         accDataVertical.removeAll()
@@ -155,13 +158,14 @@ class StrokeManager{
     }
     
     func stop(){
+        print("Logging stopped")
         audioService?.stop()
         isLogging = false
     }
     
     func saveData(){
-        dataManager.saveData(dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
-        //print("dfx - saveData - " + String(accDataMain.count))
+        let duration = Date().timeIntervalSince1970 - startTime
+        dataManager.saveData(loggedTime:duration, dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
         clearMotionData()
         
     }
@@ -181,6 +185,7 @@ class StrokeManager{
     }
     
     func loadMotionFromData(data:String){
+        print(data)
         clearMotionData()
         var dataSub = data.components(separatedBy: "<data>")[1]
         dataSub = dataSub.components(separatedBy: "</data>")[0]

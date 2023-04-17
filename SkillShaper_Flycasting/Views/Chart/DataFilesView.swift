@@ -148,8 +148,9 @@ struct DataFilesView: View {
     //================================= Logic
     
     func renderFileEntry(title:String)->some View{
+        
         return HStack{
-            Text(title)
+            Text(convertFileName(title: title))
                 .font(.system(size: 17))
                 .bold()
                 .foregroundColor(.black)
@@ -162,6 +163,17 @@ struct DataFilesView: View {
                 .foregroundColor(.black)
             }
         }
+    }
+    
+    func convertFileName(title:String)->String{
+        var titleSplit = title.split(separator: ":")
+        var name = ""
+        if(titleSplit.count < 4){
+            name = title
+        }else{
+           name = titleSplit[0] + ":" + titleSplit[1] + titleSplit[3]
+        }
+        return name
     }
     
     
