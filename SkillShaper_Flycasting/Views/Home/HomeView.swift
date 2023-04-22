@@ -102,12 +102,22 @@ struct HomeView: View {
             break
         }
         if(skill=="straight"){
+            var phoneStore = PhoneStore()
             if(fore == "true" && back == "true"){
                 hear = "Both ways"
             }else if(fore == "true" && back == "false"){
-                hear = "left"
+                if phoneStore.isLeft{
+                    hear = "right"
+                }else{
+                    hear = "left"
+                }
             }else if(fore == "false" && back == "true"){
-                hear = "right"
+                if phoneStore.isLeft{
+                    hear = "left"
+                }else{
+                    hear = "right"
+                }
+
             }
             
         }else if(fore == nil || back == nil){

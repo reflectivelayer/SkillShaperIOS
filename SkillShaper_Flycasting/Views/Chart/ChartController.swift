@@ -193,7 +193,7 @@ struct ChartController: View {
                     .font(.system(size: 15))
                 Button(action: {
                     toggle1()
-                    fillPositive = remoteBoxClicked1
+                    fillNegative = remoteBoxClicked1
                 }) {
                     HStack{
                       Image(systemName: !remoteBoxClicked1 ? "square" : "checkmark.square")
@@ -209,7 +209,7 @@ struct ChartController: View {
                 Button(action: {
                     toggle2()
                     print("backwardcheck box")
-                    fillNegative = remoteBoxClicked2
+                    fillPositive = remoteBoxClicked2
                 }) {
                     HStack{
                         Image(systemName: !remoteBoxClicked2 ? "square" : "checkmark.square")

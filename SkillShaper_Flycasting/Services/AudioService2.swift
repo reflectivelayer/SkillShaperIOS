@@ -35,7 +35,7 @@ class AudioService2 {
     private var isLogging = false
     private var inMax:Double = 0
     private var inMin:Double = 0
-    private var minThreshold:Double = 0.1
+    private var minThreshold:Double = 0.05
     var isRemote = false
     var remoteSettingsStore:SettingsStore?
     var motionCanceller: AnyCancellable?
@@ -154,11 +154,30 @@ class AudioService2 {
         let skill = getSkill()
         let hears = getHears()
         switch skill {
+            case .straight:
+                if settingsStore.isLeft{
+                    if (value >= 0 && hears.contains(.back)) || (value < 0 && hears.contains(.fore)) {
+                        return true
+                    }
+                    return false
+                }else{
+                    if (value <= 0 && hears.contains(.fore)) || (value > 0 && hears.contains(.back)) {
+                        return true
+                    }
+                    return false
+                }
             case .stroke:
+            if settingsStore.isLeft{
+                if (value >= 0 && hears.contains(.back)) || (value < 0 && hears.contains(.fore)) {
+                    return true
+                }
+                return false
+            }else{
                 if (value <= 0 && hears.contains(.back)) || (value > 0 && hears.contains(.fore)) {
                     return true
                 }
                 return false
+            }
                 
             case .stop:
                 if (value < 0 && hears.contains(.fore)) || (value >= 0 && hears.contains(.back)) {
@@ -180,10 +199,9 @@ class AudioService2 {
             rawPitch = pow(sensorValue,0.5) * sensitivityFactor
             toneGenerator.frequency = rawPitch * 0.5
         }else if getSkill() == .stroke{
-            let uSensorValue = abs(sensorValue)
+            var uSensorValue = abs(sensorValue)
             sensitivityFactor = 1.0
-            rawPitch = pow(uSensorValue,0.5) * sensitivityFactor
-            toneGenerator.frequency = 0.5 + sensorValue * 0.25
+            toneGenerator.frequency = 0.5 + uSensorValue * 0.25
         }else if getSkill() == .allMoves{
             let uSensorValue = abs(sensorValue)
             sensitivityFactor = 1.0

@@ -52,6 +52,7 @@ class StrokeManager{
     private var remoteSettingsStore:SettingsStore?
     private var remotePublisher: Published<CMAcceleration>.Publisher?
     private var localPublisher: Published<CMAcceleration>.Publisher?
+    private var settingsStore = PhoneStore()
     
     func setLocalMotionSource(source: Published<CMAcceleration>.Publisher){
         localPublisher = source
@@ -121,7 +122,7 @@ class StrokeManager{
     }
     
     private func configAudio(){
-        let settingsStore = PhoneStore()
+        settingsStore = PhoneStore()
         var skill = settingsStore.skill
         var hears = [Hear]()
         switch settingsStore.skill {
@@ -218,7 +219,11 @@ class StrokeManager{
                 accDataVertical.removeFirst();
                 
             }
-            accDataMain.append(acceleration.x)
+            var accX = -acceleration.x
+            if settingsStore.isLeft {
+                accX = acceleration.x
+            }
+            accDataMain.append(accX)
             accDataLateral.append(acceleration.z)
             accDataVertical.append(acceleration.y)
         }
