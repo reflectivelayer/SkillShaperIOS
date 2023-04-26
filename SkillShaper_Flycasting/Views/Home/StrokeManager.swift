@@ -70,9 +70,11 @@ class StrokeManager{
         switch(accSource){
         case .local:
             source = localPublisher!
+            print("Motion Source is local")
         case .remote:
             isRemote = true
             source = remotePublisher!
+            print("Motion Source is remote")
         }
         audioService = AudioService2(publisher: source)
         audioService!.isRemote = isRemote

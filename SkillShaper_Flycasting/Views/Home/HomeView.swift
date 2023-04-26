@@ -250,7 +250,8 @@ struct HomeView: View {
                 timeRemaining = timeLength
                 print("ON APPEAR")
             strokeManager.setLocalMotionSource(source: motion.$acc)
-            strokeManager.setMotionSource(accSource: AccSource.local)
+            
+            strokeManager.setMotionSource(accSource: remoteAcc ? AccSource.remote : AccSource.local)
                 strokeManager.stop()
             accMainStrength = motion.acc.x
             accLateralStrength = motion.acc.y
