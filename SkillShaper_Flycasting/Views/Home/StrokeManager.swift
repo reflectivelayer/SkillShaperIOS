@@ -210,6 +210,7 @@ class StrokeManager{
     
     func updateAcceleration(acceleration: CMAcceleration){
         if(isLogging){
+
             accMain = acceleration.x * MotionManager.accMultiplier
             accVertical = acceleration.y * MotionManager.accMultiplier
             accLateral = acceleration.z * MotionManager.accMultiplier
@@ -223,6 +224,7 @@ class StrokeManager{
             if settingsStore.isLeft {
                 accX = acceleration.x
             }
+            //print(accX)
             accDataMain.append(accX)
             accDataLateral.append(acceleration.z)
             accDataVertical.append(acceleration.y)
@@ -317,8 +319,8 @@ class StrokeManager{
             path.move(to: point)
             let endFrame = min(accDataMain.count,dataEnd)
             for i in dataStart...endFrame-1{
-                y = CGFloat(data![i] * -1)
-                path.addLine(to: CGPoint(x: CGFloat(i-dataStart), y: centerY-y*50))
+                y = CGFloat(data![i] * lineDiv)
+                path.addLine(to: CGPoint(x: CGFloat(i-dataStart), y: centerY-y))
             }
         }
 
