@@ -35,7 +35,7 @@ class AudioService2 {
     private var isLogging = false
     private var inMax:Double = 0
     private var inMin:Double = 0
-    private var minThreshold:Double = 0.05
+    public var minThreshold:Double = 0.05
     var isRemote = false
     var remoteSettingsStore:SettingsStore?
     var motionCanceller: AnyCancellable?
@@ -177,6 +177,7 @@ class AudioService2 {
                     return true
                 }
                 return false
+                
             }
                 
             case .stop:

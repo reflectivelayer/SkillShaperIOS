@@ -9,18 +9,23 @@
 import Foundation
 class SessionDataManager {
     let formatter = DateFormatter()
+    var headerText = ""
+    
     init(){
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "MM.dd HH:mm:ss:"
     }
     
     func saveData(loggedTime:Double,dataPrimary:[Double], dataLateral:[Double], dataVertical:[Double]){
-        var sessionText = _addHeader(duration: loggedTime)
+        
+        
+        var sessionText = headerText
+        
         sessionText += _addData(dataPrimary:dataPrimary, dataLateral:dataLateral, dataVertical:dataVertical)
         sessionText += _addAnnotations()
         var fileName = formatter.string(from: Date()) + "(" + String(Int(loggedTime)) + "secs).txt"
         _saveToDisk(fileName: fileName, text: sessionText)
-        print(loggedTime)
+  
 
     }
     
@@ -71,9 +76,80 @@ class SessionDataManager {
     }
     
     
+    func setHeader(duration:Double,
+                    appDevice:String,
+                    rightHandGrip:Bool,
+                    currentSkill:Int,
+                    dataPointCount:Int,
+                    sensorIntervalPresetInMS:Int,
+                    soundOnPositiveReading:Bool,
+                    soundOnNegativeReading:Bool,
+                    noAudioBelowThisReading:Float,
+                    noAudioAboveThisReading:Float){
+        var appName = Bundle.main.infoDictionary?["CFBundleName"] as! String ?? ""
+        var appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String ?? ""
+        var appEdition = Bundle.main.infoDictionary?["AppEdition"] as! String ?? ""
+
+        var h1 = "<header>\n"
+        var d1 = keyValueToString(key: "AppName", value: appName)
+        var d2 = keyValueToString(key: "AppVersion", value: appVersion)
+        var d3 = keyValueToString(key: "AppEdition", value: appEdition)
+        var d4 = keyValueToString(key: "AppDevice", value: appDevice)
+        var d5 = keyValueToString(key: "RightHandGrip", value: String(rightHandGrip))
+        var d6 = keyValueToString(key: "CurrentSkill", value: String(currentSkill))
+        var d7 = keyValueToString(key: "Duration", value: String(Int(duration)))
+        var d8 = keyValueToString(key: "DataPointCount", value: String(dataPointCount))
+        var d9 = keyValueToString(key: "SensorIntervalPresetInMS", value: String(sensorIntervalPresetInMS))
+        var d10 = keyValueToString(key: "SoundOnPositiveReading", value: String(soundOnPositiveReading))
+        var d11 = keyValueToString(key: "SoundOnNegativeReading", value: String(soundOnNegativeReading))
+        var d12 = keyValueToString(key: "NoAudioBelowThisReading", value: String(Float(noAudioBelowThisReading)))
+        var d13 = keyValueToString(key: "NoAudioAboveThisReading", value: String(Float(noAudioAboveThisReading)))
+        var h2 = "</header>\n"
+        
+        headerText = h1+d1+d2+d3+d4+d5+d6+d7+d8+d9+d10+d11+d12+d13+h2
+        print(headerText)
+        /*
+
+         
+         
+         AppName                                                       String                 SkillShaper Flycast
+
+         AppVersion                                                   String                 #.#.#
+
+         AppEdition                                                    String                 Caster/ Pro/ Dev
+
+         AppDevice                                                     String                                                                         Phone/Watch/Other
+
+         RightHandGrip                                            Boolean              True/False
+
+         CurrentSkill                                                  Integer                #  (0=AllMove,1=Stroke, etc)
+
+         Duration (secs)                                              Integer                #
+
+         DataPointCount                                            Integer                #
+
+         SensorIntervalPresetInMS                          Integer                10    (if known)
+
+         SoundOnPositiveReading                            Float(to 100th)    false
+
+         SoundOnNegativeReading                           Float(to 100th)    true
+
+         NoAudioBelowThisReading                         Float (to 100th)   0.10
+
+         NoAudioAboveThisReading                        Float(to 100th)    8.00
+         
+         
+         
+         
+         
+         */
+    }
     
-    func _addHeader(duration:Double)->String{
-        return "<header>\n<duration>\n" + String(Int(duration)) + "\n</duration>\n</header>\n"
+    func keyValueToString(key:String, value:String)->String{
+        var h1:String = "<"+key+">"
+        var h2:String = "</"+key+">\n"
+        return h1+value+h2
+        
     }
 
     func _addData(dataPrimary:[Double], dataLateral:[Double], dataVertical:[Double])->String{

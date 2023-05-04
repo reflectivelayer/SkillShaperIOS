@@ -53,6 +53,7 @@ class StrokeManager{
     private var remotePublisher: Published<CMAcceleration>.Publisher?
     private var localPublisher: Published<CMAcceleration>.Publisher?
     private var settingsStore = PhoneStore()
+    private var isRemote:Bool = false
     
     func setLocalMotionSource(source: Published<CMAcceleration>.Publisher){
         localPublisher = source
@@ -66,7 +67,7 @@ class StrokeManager{
     
     func setMotionSource(accSource:AccSource){
         var source: Published<CMAcceleration>.Publisher
-        var isRemote = false
+        isRemote = false
         switch(accSource){
         case .local:
             source = localPublisher!
@@ -167,7 +168,47 @@ class StrokeManager{
     }
     
     func saveData(){
-        let duration = Date().timeIntervalSince1970 - startTime
+        let duration = (Date().timeIntervalSince1970 - startTime)
+        var appDevice = "Phone"
+        if isRemote{
+            appDevice = "Watch"
+        }
+        var skillIndex = 0
+        switch(settingsStore.skill){
+        case .allMoves:
+            skillIndex = 0
+        case .stroke:
+            skillIndex = 1
+        case .stop:
+            skillIndex = 2
+        case .straight:
+            skillIndex = 3
+        }
+        var intervalInMS = Int(duration * 1000) / accDataMain.count
+        
+        var positiveSound:Bool = true
+        var negativeSound:Bool = true
+        
+        if settingsStore.skill == .straight{
+            if (!settingsStore.hears.contains(.fore)){
+                negativeSound = false
+            }
+            if (!settingsStore.hears.contains(.back)){
+                positiveSound = false
+            }
+        }
+        
+        dataManager.setHeader(duration: duration,
+                              appDevice: appDevice,
+                              rightHandGrip: !settingsStore.isLeft,
+                              currentSkill: skillIndex,
+                              dataPointCount: accDataMain.count,
+                              sensorIntervalPresetInMS: intervalInMS,
+                              soundOnPositiveReading: positiveSound,
+                              soundOnNegativeReading: negativeSound,
+                              noAudioBelowThisReading: Float(audioService!.minThreshold),
+                              noAudioAboveThisReading: 1.0)
+        
         dataManager.saveData(loggedTime:duration, dataPrimary: accDataMain,dataLateral: accDataLateral,dataVertical: accDataVertical)
         clearMotionData()
         

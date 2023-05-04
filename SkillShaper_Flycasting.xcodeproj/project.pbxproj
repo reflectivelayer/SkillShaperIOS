@@ -167,7 +167,7 @@
 		48808CF524F01D0E009C4C60 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		488A994024F02ABE00BF0BFE /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		488A994324F02D3300BF0BFE /* Straight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Straight.swift; sourceTree = "<group>"; };
-		48992DF924D4820D00B59465 /* SkillShaper_Flycasting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillShaper_Flycasting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48992DF924D4820D00B59465 /* SkillShaper Flycast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SkillShaper Flycast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48992DFC24D4820D00B59465 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48992DFE24D4820D00B59465 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		48992E0224D4820E00B59465 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -405,7 +405,7 @@
 		48992DFA24D4820D00B59465 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48992DF924D4820D00B59465 /* SkillShaper_Flycasting.app */,
+				48992DF924D4820D00B59465 /* SkillShaper Flycast.app */,
 				48992E0D24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App.app */,
 				48992E1C24D4820F00B59465 /* SkillShaper_Flycasting WatchKit Extension.appex */,
 			);
@@ -646,7 +646,7 @@
 				8D02D538294352A900627E1B /* SoundpipeAudioKit */,
 			);
 			productName = SkillShaper_Flycasting;
-			productReference = 48992DF924D4820D00B59465 /* SkillShaper_Flycasting.app */;
+			productReference = 48992DF924D4820D00B59465 /* SkillShaper Flycast.app */;
 			productType = "com.apple.product-type.application";
 		};
 		48992E0C24D4820E00B59465 /* SkillShaper_Flycasting WatchKit App */ = {
@@ -932,6 +932,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "SkillShaper Flycast";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -987,6 +988,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "SkillShaper Flycast";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1003,7 +1005,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "SkillShaper_Flycasting WatchKit Extension/SkillShaper_Flycasting WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
@@ -1013,7 +1015,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1030,7 +1032,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "SkillShaper_Flycasting WatchKit Extension/SkillShaper_Flycasting WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
@@ -1040,7 +1042,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1057,11 +1059,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				IBSC_MODULE = SkillShaper_Flycasting_WatchKit_Extension;
 				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1078,11 +1080,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				IBSC_MODULE = SkillShaper_Flycasting_WatchKit_Extension;
 				INFOPLIST_FILE = "SkillShaper_Flycasting WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1098,19 +1100,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SkillShaper_Flycasting/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "SkillShaper Flycast";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SkillShaper Flycast";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1121,19 +1124,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 48;
 				DEVELOPMENT_ASSET_PATHS = "\"SkillShaper_Flycasting/Preview Content\"";
 				DEVELOPMENT_TEAM = VQKUT3YD36;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SkillShaper_Flycasting/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "SkillShaper Flycast";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "us.skillshaper.SkillShaper-Flycasting";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SkillShaper Flycast";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
