@@ -27,6 +27,7 @@ struct DataFilesView: View {
     @State var btnEnableChart = false
     @State var btnEnableDelete = false
     @State var btnEnableSend = false
+    @State private var showTargetView = false
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var showShareSheet = false
@@ -61,10 +62,17 @@ struct DataFilesView: View {
             }
             
             HStack{
-                NavigationLink(
-                    destination: ChartController().navigationBarBackButtonHidden(true).onAppear(perform: {
-                        onChartTapped()
-                    }),
+                //NavigationLink(
+                  //  destination: ChartController().navigationBarBackButtonHidden(true).onAppear(perform: {
+                    //    onChartTapped()
+                   // })
+                NavigationLink(destination: ChartController(), isActive: $showTargetView) { EmptyView() }
+
+                Button(action: {
+                    onChartTapped()
+                    showTargetView = true
+                }
+                    ,
                     label: {
                         Text("CHART")
                             .padding(7)

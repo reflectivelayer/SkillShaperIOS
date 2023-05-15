@@ -26,6 +26,7 @@ enum AccSource {
 class StrokeManager{
     let maxSample = 2000
     var tempCounter = 0
+    var chartXoffset = 50.0
     var dataOffset = 0
     var dataStart = 0
     var dataEnd = 300
@@ -33,6 +34,8 @@ class StrokeManager{
     var accDataMain = [Double]()
     var accDataLateral = [Double]()
     var accDataVertical = [Double]()
+    var duration:Float =  0  //Duration of the most recent loaded session
+    var zoom:Float = 1
     var isLogging = false
     var centerY:CGFloat = 0
     var lineDiv:CGFloat = 0
@@ -229,8 +232,11 @@ class StrokeManager{
     }
     
     func loadMotionFromData(data:String){
-        print(data)
+        //print(data)
         clearMotionData()
+        var timeSub = data.components(separatedBy: "<Duration>")[1]
+        timeSub = timeSub.components(separatedBy: "</Duration>")[0]
+        duration = Float(timeSub) ?? 0
         var dataSub = data.components(separatedBy: "<data>")[1]
         dataSub = dataSub.components(separatedBy: "</data>")[0]
         var entries = dataSub.components(separatedBy: "\n")
@@ -242,6 +248,10 @@ class StrokeManager{
                     accDataVertical.append(Double(vals[2])!)
                 }
             }
+        dataStart = 0
+        dataOffset = 0
+        dataSegment = 0
+        updateZoom()
     }
     
     func clearMotionData(){
@@ -263,9 +273,9 @@ class StrokeManager{
                 accDataVertical.removeFirst();
                 
             }
-            var accX = -acceleration.x
+            var accX = acceleration.x
             if settingsStore.isLeft {
-                accX = acceleration.x
+                accX = -acceleration.x
             }
             //print(accX)
             accDataMain.append(accX)
@@ -278,7 +288,7 @@ class StrokeManager{
     func createGrid(width:CGFloat,height:CGFloat)->Path{
         totalDivision = 16
         if viewWidth == 0{
-            viewWidth = width
+            viewWidth = (width-chartXoffset)/Double(zoom)
             dataEnd = Int(viewWidth)
         }
         var path = Path()
@@ -294,7 +304,7 @@ class StrokeManager{
     func createGridOffset(width:CGFloat,height:CGFloat, graphOffset: CGSize)->Path{
         totalDivision = 16
         if viewWidth == 0{
-            viewWidth = width
+            viewWidth = (width-chartXoffset)/Double(zoom)
             dataEnd = Int(viewWidth)
         }
         var path = Path()
@@ -334,10 +344,10 @@ class StrokeManager{
         if accDataMain.count>0{
             let endFrame = min(accDataMain.count,dataEnd)
             for i in dataStart...endFrame-1{
-                y = CGFloat(data![i] * -1)
+                y = CGFloat(data![i] * lineDiv)
                 if(fillPositive && y<=0) || (fillNegative && y>0){
                     path.move(to: CGPoint(x: CGFloat(i-dataStart), y: centerY))
-                    path.addLine(to: CGPoint(x: CGFloat(i-dataStart), y: centerY-y*50))
+                    path.addLine(to: CGPoint(x: CGFloat(i-dataStart), y: centerY-y))
                 }
                     
             }
@@ -346,6 +356,9 @@ class StrokeManager{
     }
     
     func createGraph(accAxis:AccAxis)->Path{
+        print(dataStart)
+        print("***")
+
         var data:[Double]?
         switch accAxis{
         case .main:
@@ -363,11 +376,26 @@ class StrokeManager{
             let endFrame = min(accDataMain.count,dataEnd)
             for i in dataStart...endFrame-1{
                 y = CGFloat(data![i] * lineDiv)
-                path.addLine(to: CGPoint(x: CGFloat(i-dataStart), y: centerY-y))
+                path.addLine(to: CGPoint(x: CGFloat(i-dataStart)*CGFloat(zoom), y: centerY-y))
             }
         }
-
+        print(dataStart)
+        /*
+print("adjustment")
+print(zoom)
+print(duration)
+print(frameLength)
+         */
         return path
+    }
+    
+    func updateZoom(){
+        var frameLength = duration/Float(accDataMain.count)
+
+        if (frameLength > 0){
+            var count2Sec = Int(2.0/frameLength)
+            zoom = Float(screenWidth )/Float(count2Sec)
+        }
     }
     
     func updateAccMainDisplay(strength:Double,width:CGFloat,height:CGFloat)->Path{
@@ -392,6 +420,9 @@ class StrokeManager{
         if(accDataMain.count > Int(viewWidth)){
             let nOffset = -offset
             dataStart = min(max(0,dataSegment + nOffset),accDataMain.count-Int(viewWidth))
+            print(dataSegment)
+            print(offset)
+            print("--1")
             dataEnd = dataStart+Int(viewWidth)
         }
     }

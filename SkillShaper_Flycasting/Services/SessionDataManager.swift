@@ -41,7 +41,7 @@ class SessionDataManager {
             print("Error while enumerating files \(motionPath): \(error.localizedDescription)")
         }
         for url in docList {
-            print(url.lastPathComponent)
+            //print(url.lastPathComponent)
         }
         return docList
     }
@@ -107,42 +107,7 @@ class SessionDataManager {
         var h2 = "</header>\n"
         
         headerText = h1+d1+d2+d3+d4+d5+d6+d7+d8+d9+d10+d11+d12+d13+h2
-        print(headerText)
-        /*
-
-         
-         
-         AppName                                                       String                 SkillShaper Flycast
-
-         AppVersion                                                   String                 #.#.#
-
-         AppEdition                                                    String                 Caster/ Pro/ Dev
-
-         AppDevice                                                     String                                                                         Phone/Watch/Other
-
-         RightHandGrip                                            Boolean              True/False
-
-         CurrentSkill                                                  Integer                #  (0=AllMove,1=Stroke, etc)
-
-         Duration (secs)                                              Integer                #
-
-         DataPointCount                                            Integer                #
-
-         SensorIntervalPresetInMS                          Integer                10    (if known)
-
-         SoundOnPositiveReading                            Float(to 100th)    false
-
-         SoundOnNegativeReading                           Float(to 100th)    true
-
-         NoAudioBelowThisReading                         Float (to 100th)   0.10
-
-         NoAudioAboveThisReading                        Float(to 100th)    8.00
-         
-         
-         
-         
-         
-         */
+        //print(headerText)
     }
     
     func keyValueToString(key:String, value:String)->String{

@@ -14,6 +14,7 @@ var accData = [CMAttitude]()
 var index = 0
 var strokeManager:StrokeManager = StrokeManager()
 var remoteAccelerometer = false
+var screenWidth = 0.0
 
 struct HomeView: View {
     @ObservedObject var viewModel: ConfigViewModel
@@ -154,99 +155,102 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView{
-        VStack{
-
-            Logo()
-
             VStack{
-            
-                HStack {
-
+                
+                Logo()
+                
+                VStack{
+ 
                     
-                    Button(action: {
-                        if(!remoteAcc){
-                            startBtnVisible = false
-                            stopBtnVisible = true
-                            dataBtnEnabled = false
-                            isLogging = true
-                            motion.start()
-                            strokeManager.start()
-                        }
-                    }) {
-                    Text(" ")
-                        .padding(.top, 61)
-                    if startBtnVisible && !remoteAcc{
-                        Text("START")
-                            .padding(5)
-                            .font(.system(size: 21))
-                            .background(greenBtn)
-                            .foregroundColor(.green)
-                    }else{
-                        Text("START")
-                            .padding(5)
-                            .font(.system(size: 21))
-                            .background(greenBtn)
-                            .foregroundColor(.green)
-                            .hidden()
-                    }
-                }
-                    VStack(alignment: .leading){
+                    HStack {
+                        
+                        
                         Button(action: {
-                            toggle()
+                            if(!remoteAcc){
+                                startBtnVisible = false
+                                stopBtnVisible = true
+                                dataBtnEnabled = false
+                                isLogging = true
+                                motion.start()
+                                strokeManager.start()
+                            }
                         }) {
-
-                            HStack{
-                                Image(systemName: remoteAcc ? "checkmark.square" : "square")
-                                    .padding(3)
+                            Text(" ")
+                                .padding(.top, 61)
+                            if startBtnVisible && !remoteAcc{
+                                Text("START")
+                                    .padding(5)
+                                    .font(.system(size: 21))
+                                    .background(greenBtn)
+                                    .foregroundColor(.green)
+                            }else{
+                                Text("START")
+                                    .padding(5)
+                                    .font(.system(size: 21))
+                                    .background(greenBtn)
+                                    .foregroundColor(.green)
+                                    .hidden()
+                            }
+                        }
+                        VStack(alignment: .leading){
+                            Button(action: {
+                                toggle()
+                            }) {
+                                
+                                HStack{
+                                    Image(systemName: remoteAcc ? "checkmark.square" : "square")
+                                        .padding(3)
+                                        .foregroundColor(.white)
+                                    Text("Remote sensor")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            if(remoteAccelerometer){
+                                
+                                Text(getRemoteMoveTitle())
+                                    .font(.system(size: 15))
                                     .foregroundColor(.white)
-                                Text("Remote sensor")
+                            }else{
+                                Text(getSkillHearName())
                                     .font(.system(size: 15))
                                     .foregroundColor(.white)
                             }
                         }
-                        if(remoteAccelerometer){
-                            
-                            Text(getRemoteMoveTitle())
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
-                        }else{
-                            Text(getSkillHearName())
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.white)
+                        
+                        Button(action: {
+                            stopLogging()
+                            motion.stop()
+                        }) {
+                            Text(" ")
+                                .padding(.top, 61)
+                            if stopBtnVisible {
+                                Text("STOP")
+                                    .padding(5)
+                                    .font(.system(size: 21))
+                                    .background(greenBtn)
+                                    .foregroundColor(.red)
+                            }else{
+                                Text("STOP")
+                                    .padding(5)
+                                    .font(.system(size: 21))
+                                    .background(greenBtn)
+                                    .foregroundColor(.red).hidden()
+                                    .disabled(true)
+                            }
+                            Text("  ")
                         }
+                        // if stop
                     }
                     
-                    Button(action: {
-                        stopLogging()
-                        motion.stop()
-                    }) {
-                    Text(" ")
-                        .padding(.top, 61)
-                    if stopBtnVisible {
-                        Text("STOP")
-                            .padding(5)
-                            .font(.system(size: 21))
-                            .background(greenBtn)
-                            .foregroundColor(.red)
-                    }else{
-                        Text("STOP")
-                            .padding(5)
-                            .font(.system(size: 21))
-                            .background(greenBtn)
-                            .foregroundColor(.red).hidden()
-                            .disabled(true)
+                    if isLogging{
+                        AccStrengthView(motion: motion)
                     }
-                    Text("  ")
-                    }
-                              // if stop
-                }
-
-                if isLogging{
-                    AccStrengthView(motion: motion)
-                }
-
-        }
+                    
+                
+            }
         .onAppear {
+            screenWidth = UIScreen.main.bounds.width
                 timeRemaining = timeLength
                 print("ON APPEAR")
             strokeManager.setLocalMotionSource(source: motion.$acc)
